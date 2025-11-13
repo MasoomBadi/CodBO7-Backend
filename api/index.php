@@ -30,48 +30,13 @@ try {
             require __DIR__ . '/endpoints/version.php';
             break;
 
-        case 'weapons':
-            require __DIR__ . '/endpoints/weapons.php';
-            break;
-
-        case 'maps':
-            require __DIR__ . '/endpoints/maps.php';
-            break;
-
-        case 'perks':
-            require __DIR__ . '/endpoints/perks.php';
-            break;
-
-        case 'equipment':
-            require __DIR__ . '/endpoints/equipment.php';
-            break;
-
-        case 'scorestreaks':
-            require __DIR__ . '/endpoints/scorestreaks.php';
-            break;
-
-        case 'guides':
-            require __DIR__ . '/endpoints/guides.php';
-            break;
-
-        case 'attachments':
-            require __DIR__ . '/endpoints/attachments.php';
-            break;
-
         case '':
             // API info endpoint
             Response::success([
                 'name' => 'Call of Duty Companion API',
                 'version' => '1.0.0',
                 'endpoints' => [
-                    'GET /api/version' => 'Get all data versions',
-                    'GET /api/weapons' => 'Get all weapons',
-                    'GET /api/maps' => 'Get all maps',
-                    'GET /api/perks' => 'Get all perks',
-                    'GET /api/equipment' => 'Get all equipment',
-                    'GET /api/scorestreaks' => 'Get all scorestreaks',
-                    'GET /api/guides' => 'Get all guides',
-                    'GET /api/attachments' => 'Get all attachments'
+                    'GET /api/version' => 'Get all data versions'
                 ]
             ], 'API is running');
             break;
