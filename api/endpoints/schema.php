@@ -14,7 +14,7 @@ $category = isset($pathParts[1]) && !empty($pathParts[1]) ? $pathParts[1] : null
 
 try {
     if ($category === null) {
-        // Return all schemas
+        // Return all schemas (exclude data_versions table)
         $stmt = $db->query("SELECT category FROM data_versions ORDER BY category");
         $categories = $stmt->fetchAll();
 
