@@ -8,3 +8,4 @@ deployment:
     - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp README.md $DEPLOYPATH
     - /bin/cp SCHEMA.md $DEPLOYPATH
+    - /bin/cp API.md $DEPLOYPATH
