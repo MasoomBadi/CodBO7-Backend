@@ -43,10 +43,15 @@ Upload all files to your web hosting.
 
 Visit: `http://yourdomain.com/api/`
 
-## API Endpoints
+## Production URL
 
-- `GET /api/` - API info
-- `GET /api/version` - Get all data versions
+```
+https://codbo7.masoombadi.top/api/
+```
+
+## API Documentation
+
+See [API.md](API.md) for complete API documentation with sample requests and responses.
 
 ## Database Schema
 
@@ -57,7 +62,11 @@ See [SCHEMA.md](SCHEMA.md) for complete database schema documentation.
 When you update data, increment the version:
 
 ```sql
-UPDATE data_versions SET version = version + 1 WHERE category = 'weapons';
+UPDATE data_versions SET version = version + 1 WHERE category = 'operators';
 ```
 
 Your Android app compares version numbers and syncs only changed data.
+
+## Auto Deployment
+
+This repository uses cPanel auto-deployment via `.cpanel.yml`. Any push to the branch automatically deploys to the production server.
