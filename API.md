@@ -54,6 +54,7 @@ GET https://codbo7.masoombadi.top/api/version
 {
   "success": true,
   "data": {
+    "icons": 1,
     "operators": 1
   },
   "message": null
@@ -154,6 +155,7 @@ Current available categories:
 | Category | Description | Version |
 |----------|-------------|---------|
 | operators | Playable characters | 1 |
+| icons | Icons and emblems | 1 |
 
 ---
 
