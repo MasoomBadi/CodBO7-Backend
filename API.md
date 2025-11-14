@@ -54,23 +54,16 @@ GET https://codbo7.masoombadi.top/api/version
 {
   "success": true,
   "data": {
-    "versions": {
-      "operators": 1
-    },
-    "detailed": {
-      "operators": {
-        "version": 1,
-        "last_updated": "2025-11-13 12:00:00"
-      }
-    }
-  }
+    "operators": 1
+  },
+  "message": null
 }
 ```
 
 **Response Fields:**
 - `success` (boolean) - Request success status
-- `data.versions` (object) - Simple key-value pairs of category and version number
-- `data.detailed` (object) - Detailed version info with last update timestamp
+- `data` (object) - Key-value pairs of category and version number
+- `message` (string|null) - Optional message
 
 ---
 
@@ -95,7 +88,7 @@ GET https://codbo7.masoombadi.top/api/version
 ```kotlin
 // 1. Get remote versions
 val response = api.getVersions()
-val remoteVersion = response.data.versions.operators
+val remoteVersion = response.data.operators
 
 // 2. Get local version from SharedPreferences
 val localVersion = sharedPrefs.getInt("operators_version", 0)
