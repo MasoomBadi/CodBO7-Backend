@@ -1,0 +1,10 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/joziedti/codbo7.masoombadi.top/
+    - /bin/cp -R api $DEPLOYPATH
+    - /bin/cp -R includes $DEPLOYPATH
+    - /bin/cp -R database $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp README.md $DEPLOYPATH
+    - /bin/cp SCHEMA.md $DEPLOYPATH
