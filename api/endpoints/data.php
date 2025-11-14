@@ -58,17 +58,13 @@ try {
     } elseif ($tableName !== null) {
         // Return specific table data
 
-        $stmt = $db->prepare("SELECT * FROM `$tableName`");
-        $stmt->execute();
-        $data = $stmt->fetchAll();
-
-        if (empty($data) && $tableName !== 'data_versions') {
-            // Check if table exists using a different method
-            $checkStmt = $db->prepare("SHOW TABLES LIKE ?");
-            $checkStmt->execute([$tableName]);
-            if (!$checkStmt->fetch()) {
-                Response::error("Table '$tableName' not found", 404);
-            }
+        try {
+            $stmt = $db->prepare("SELECT * FROM `$tableName`");
+            $stmt->execute();
+            $data = $stmt->fetchAll();
+        } catch (PDOException $e) {
+            // If table doesn't exist, return error
+            Response::error("Table '$tableName' not found or query failed", 404, $e->getMessage());
         }
 
         // Convert numeric fields to proper types
