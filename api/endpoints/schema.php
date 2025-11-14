@@ -1,34 +1,57 @@
 <?php
 /**
  * Schema Endpoint
- * Returns schema definition (fields) for all categories or a specific category
+ * Returns schema definition (fields) for all tables or a specific table
  */
 
 if ($requestMethod !== 'GET') {
     Response::error('Method not allowed', 405);
 }
 
-// Get category from path (e.g., /api/schema/operators or /api/schema)
+// Get table name from path (e.g., /api/schema/operators or /api/schema/all)
 $pathParts = explode('/', trim($path, '/'));
-$category = isset($pathParts[1]) && !empty($pathParts[1]) ? $pathParts[1] : null;
+$tableName = isset($pathParts[1]) && !empty($pathParts[1]) ? $pathParts[1] : null;
 
 try {
-    if ($category === null) {
-        // Return all schemas (exclude data_versions table)
+    if ($tableName === 'all') {
+        // Return all table schemas including data_versions
+
+        // Get all tables that have entries in data_versions
         $stmt = $db->query("SELECT category FROM data_versions ORDER BY category");
         $categories = $stmt->fetchAll();
 
         $allSchemas = [];
 
+        // First, add data_versions table schema
+        $stmt = $db->prepare("DESCRIBE `data_versions`");
+        $stmt->execute();
+        $columns = $stmt->fetchAll();
+
+        $fields = [];
+        foreach ($columns as $column) {
+            $fields[] = [
+                'name' => $column['Field'],
+                'type' => $column['Type'],
+                'nullable' => $column['Null'] === 'YES',
+                'key' => $column['Key'],
+                'default' => $column['Default'],
+                'extra' => $column['Extra']
+            ];
+        }
+
+        $allSchemas['data_versions'] = [
+            'table' => 'data_versions',
+            'fields' => $fields
+        ];
+
+        // Then add all category tables
         foreach ($categories as $cat) {
             $categoryName = $cat['category'];
 
-            // Get table schema using DESCRIBE
             $stmt = $db->prepare("DESCRIBE `$categoryName`");
             $stmt->execute();
             $columns = $stmt->fetchAll();
 
-            // Format schema
             $fields = [];
             foreach ($columns as $column) {
                 $fields[] = [
@@ -42,28 +65,24 @@ try {
             }
 
             $allSchemas[$categoryName] = [
-                'category' => $categoryName,
+                'table' => $categoryName,
                 'fields' => $fields
             ];
         }
 
         Response::success($allSchemas);
 
-    } else {
-        // Return specific category schema
-        // Validate category exists in data_versions
-        $stmt = $db->prepare("SELECT category FROM data_versions WHERE category = :category");
-        $stmt->execute(['category' => $category]);
-        $exists = $stmt->fetch();
-
-        if (!$exists) {
-            Response::error("Category '$category' not found", 404);
-        }
+    } elseif ($tableName !== null) {
+        // Return specific table schema
 
         // Get table schema using DESCRIBE
-        $stmt = $db->prepare("DESCRIBE `$category`");
+        $stmt = $db->prepare("DESCRIBE `$tableName`");
         $stmt->execute();
         $columns = $stmt->fetchAll();
+
+        if (empty($columns)) {
+            Response::error("Table '$tableName' not found", 404);
+        }
 
         // Format schema
         $fields = [];
@@ -79,9 +98,11 @@ try {
         }
 
         Response::success([
-            'category' => $category,
+            'table' => $tableName,
             'fields' => $fields
         ]);
+    } else {
+        Response::error('Table name required. Usage: /api/schema/{tableName} or /api/schema/all', 400);
     }
 
 } catch (PDOException $e) {

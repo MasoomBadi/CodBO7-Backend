@@ -76,14 +76,14 @@ GET https://codbo7.masoombadi.top/api/version
 
 ---
 
-### 3. Get All Schemas
-Get field definitions for all categories. Call this only when any `schemaVersion` changes.
+### 3. Get All Table Schemas
+Get field definitions for all tables including `data_versions`. Call this for bulk schema updates.
 
-**Endpoint:** `GET /api/schema`
+**Endpoint:** `GET /api/schema/all`
 
 **Request:**
 ```
-GET https://codbo7.masoombadi.top/api/schema
+GET https://codbo7.masoombadi.top/api/schema/all
 ```
 
 **Response:**
@@ -91,8 +91,37 @@ GET https://codbo7.masoombadi.top/api/schema
 {
   "success": true,
   "data": {
+    "data_versions": {
+      "table": "data_versions",
+      "fields": [
+        {
+          "name": "category",
+          "type": "varchar(50)",
+          "nullable": false,
+          "key": "PRI",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "version",
+          "type": "int unsigned",
+          "nullable": false,
+          "key": "",
+          "default": "1",
+          "extra": ""
+        },
+        {
+          "name": "schema_version",
+          "type": "int unsigned",
+          "nullable": false,
+          "key": "",
+          "default": "1",
+          "extra": ""
+        }
+      ]
+    },
     "icons": {
-      "category": "icons",
+      "table": "icons",
       "fields": [
         {
           "name": "id",
@@ -129,7 +158,7 @@ GET https://codbo7.masoombadi.top/api/schema
       ]
     },
     "operators": {
-      "category": "operators",
+      "table": "operators",
       "fields": [
         {
           "name": "id",
@@ -164,9 +193,9 @@ GET https://codbo7.masoombadi.top/api/schema
 
 **Response Fields:**
 - `success` (boolean) - Request success status
-- `data` (object) - Object with category names as keys
-  - `{category}.category` (string) - Category name
-  - `{category}.fields` (array) - Array of field definitions
+- `data` (object) - Object with table names as keys
+  - `{tableName}.table` (string) - Table name
+  - `{tableName}.fields` (array) - Array of field definitions
     - `name` (string) - Field name
     - `type` (string) - MySQL data type
     - `nullable` (boolean) - Whether field can be null
@@ -176,10 +205,10 @@ GET https://codbo7.masoombadi.top/api/schema
 
 ---
 
-### 4. Get Schema for Specific Category
-Get field definitions for a single category.
+### 4. Get Schema for Specific Table
+Get field definitions for a single table. Works for any table including `data_versions`.
 
-**Endpoint:** `GET /api/schema/{category}`
+**Endpoint:** `GET /api/schema/{tableName}`
 
 **Request:**
 ```
@@ -191,7 +220,7 @@ GET https://codbo7.masoombadi.top/api/schema/operators
 {
   "success": true,
   "data": {
-    "category": "operators",
+    "table": "operators",
     "fields": [
       {
         "name": "id",
@@ -225,12 +254,18 @@ GET https://codbo7.masoombadi.top/api/schema/operators
 
 **Response Fields:**
 - `success` (boolean) - Request success status
-- `data.category` (string) - Category name
+- `data.table` (string) - Table name
 - `data.fields` (array) - Array of field definitions (same structure as above)
 
-**Available Categories:**
+**Available Tables:**
+- `data_versions`
 - `operators`
 - `icons`
+
+**Example: Get data_versions schema**
+```
+GET https://codbo7.masoombadi.top/api/schema/data_versions
+```
 
 ---
 
@@ -243,7 +278,7 @@ GET https://codbo7.masoombadi.top/api/schema/operators
    - Compare both `version` and `schemaVersion` with locally stored values
 
 2. **If Any Schema Version Changed:**
-   - Call `GET /api/schema` to get all schemas at once
+   - Call `GET /api/schema/all` to get all schemas at once
    - Update Realm models dynamically based on new fields
    - Store new schemaVersion for each category locally
 
@@ -272,11 +307,11 @@ response.data.forEach { (category, versionInfo) ->
 
 // 3. If any schema changed, fetch all schemas
 if (anySchemaChanged) {
-    val schemaResponse = api.getAllSchemas() // GET /api/schema
+    val schemaResponse = api.getAllSchemas() // GET /api/schema/all
 
-    // Update Realm schemas dynamically for each category
-    schemaResponse.data.forEach { (category, schemaInfo) ->
-        realmManager.updateSchema(category, schemaInfo.fields)
+    // Update Realm schemas dynamically for each table
+    schemaResponse.data.forEach { (tableName, schemaInfo) ->
+        realmManager.updateSchema(tableName, schemaInfo.fields)
 
         // Save new schema version
         sharedPrefs.edit()

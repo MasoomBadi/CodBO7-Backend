@@ -41,8 +41,8 @@ try {
                     'version' => '1.0.0',
                     'endpoints' => [
                         'GET /api/version' => 'Get all data versions',
-                        'GET /api/schema' => 'Get all schemas',
-                        'GET /api/schema/{category}' => 'Get schema for a specific category'
+                        'GET /api/schema/all' => 'Get all table schemas',
+                        'GET /api/schema/{tableName}' => 'Get schema for a specific table'
                     ]
                 ], 'API is running');
                 break;
