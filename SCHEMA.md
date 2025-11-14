@@ -8,7 +8,8 @@
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
 | category | VARCHAR(50) | PRIMARY KEY | Data category name |
-| version | INT UNSIGNED | NOT NULL, DEFAULT 1 | Version number (max: 4,294,967,295) |
+| version | INT UNSIGNED | NOT NULL, DEFAULT 1 | Data version number (increments on data changes) |
+| schema_version | INT UNSIGNED | NOT NULL, DEFAULT 1 | Schema version number (increments on schema changes) |
 | last_updated | TIMESTAMP | DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | Last modification timestamp |
 | description | VARCHAR(255) | NULL | Category description |
 
@@ -16,8 +17,8 @@
 - PRIMARY KEY on `category`
 
 **Initial Data:**
-- `operators` - Playable characters (version 1)
-- `icons` - Icons and emblems (version 1)
+- `operators` - Playable characters (version 1, schema_version 1)
+- `icons` - Icons and emblems (version 1, schema_version 1)
 
 ---
 
@@ -58,14 +59,36 @@
 
 ## Version Management
 
-When you update data in any table, increment the corresponding version:
+### Two-Tier Versioning System
+
+**1. Data Version (`version`)** - Increments when data changes:
+- New records added
+- Existing records updated
+- Records deleted
 
 ```sql
--- After updating operators
+-- After adding/updating/deleting operators data
 UPDATE data_versions SET version = version + 1 WHERE category = 'operators';
 
--- After updating icons
+-- After adding/updating/deleting icons data
 UPDATE data_versions SET version = version + 1 WHERE category = 'icons';
 ```
 
-This allows your Android app to detect changes and sync only updated data.
+**2. Schema Version (`schema_version`)** - Increments when schema changes:
+- New fields added to table
+- Field types modified
+- Fields removed or renamed
+
+```sql
+-- After modifying operators table structure
+UPDATE data_versions SET schema_version = schema_version + 1 WHERE category = 'operators';
+
+-- After modifying icons table structure
+UPDATE data_versions SET schema_version = schema_version + 1 WHERE category = 'icons';
+```
+
+### Android App Integration
+
+1. Check `version` - if changed, fetch new data
+2. Check `schemaVersion` - if changed, fetch new schema and update Realm models dynamically
+3. This enables dynamic schema management without requiring app updates

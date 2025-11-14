@@ -24,26 +24,32 @@ $db = Database::getInstance()->getConnection();
 
 // Route handling
 try {
-    switch ($path) {
-        case 'version':
-        case 'versions':
-            require __DIR__ . '/endpoints/version.php';
-            break;
+    // Handle schema endpoint (e.g., /api/schema/operators)
+    if (strpos($path, 'schema/') === 0) {
+        require __DIR__ . '/endpoints/schema.php';
+    } else {
+        switch ($path) {
+            case 'version':
+            case 'versions':
+                require __DIR__ . '/endpoints/version.php';
+                break;
 
-        case '':
-            // API info endpoint
-            Response::success([
-                'name' => 'Call of Duty Companion API',
-                'version' => '1.0.0',
-                'endpoints' => [
-                    'GET /api/version' => 'Get all data versions'
-                ]
-            ], 'API is running');
-            break;
+            case '':
+                // API info endpoint
+                Response::success([
+                    'name' => 'Call of Duty Companion API',
+                    'version' => '1.0.0',
+                    'endpoints' => [
+                        'GET /api/version' => 'Get all data versions',
+                        'GET /api/schema/{category}' => 'Get schema for a category'
+                    ]
+                ], 'API is running');
+                break;
 
-        default:
-            Response::notFound('Endpoint not found');
-            break;
+            default:
+                Response::notFound('Endpoint not found');
+                break;
+        }
     }
 } catch (Exception $e) {
     Response::error('Internal server error', 500, $e->getMessage());

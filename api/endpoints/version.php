@@ -9,14 +9,17 @@ if ($requestMethod !== 'GET') {
 }
 
 try {
-    $stmt = $db->query("SELECT category, version FROM data_versions ORDER BY category");
+    $stmt = $db->query("SELECT category, version, schema_version FROM data_versions ORDER BY category");
     $versions = $stmt->fetchAll();
 
-    // Format as simple key-value pairs
+    // Format with version and schemaVersion
     $versionData = [];
 
     foreach ($versions as $row) {
-        $versionData[$row['category']] = (int)$row['version'];
+        $versionData[$row['category']] = [
+            'version' => (int)$row['version'],
+            'schemaVersion' => (int)$row['schema_version']
+        ];
     }
 
     Response::success($versionData);
