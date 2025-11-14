@@ -27,6 +27,10 @@ try {
     // Handle schema endpoint (e.g., /api/schema or /api/schema/operators)
     if ($path === 'schema' || strpos($path, 'schema/') === 0) {
         require __DIR__ . '/endpoints/schema.php';
+    }
+    // Handle data endpoint (e.g., /api/data/all or /api/data/operators)
+    elseif ($path === 'data' || strpos($path, 'data/') === 0) {
+        require __DIR__ . '/endpoints/data.php';
     } else {
         switch ($path) {
             case 'version':
@@ -42,7 +46,9 @@ try {
                     'endpoints' => [
                         'GET /api/version' => 'Get all data versions',
                         'GET /api/schema/all' => 'Get all table schemas',
-                        'GET /api/schema/{tableName}' => 'Get schema for a specific table'
+                        'GET /api/schema/{tableName}' => 'Get schema for a specific table',
+                        'GET /api/data/all' => 'Get all table data',
+                        'GET /api/data/{tableName}' => 'Get data for a specific table'
                     ]
                 ], 'API is running');
                 break;

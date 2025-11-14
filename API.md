@@ -269,6 +269,147 @@ GET https://codbo7.masoombadi.top/api/schema/data_versions
 
 ---
 
+### 5. Get All Table Data
+Get all data from all tables including `data_versions`. Use this for initial sync.
+
+**Endpoint:** `GET /api/data/all`
+
+**Request:**
+```
+GET https://codbo7.masoombadi.top/api/data/all
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "data_versions": [
+      {
+        "category": "icons",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-14 06:09:23",
+        "description": "Icons and emblems"
+      },
+      {
+        "category": "operators",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-14 00:39:23",
+        "description": "Playable characters"
+      }
+    ],
+    "icons": [
+      {
+        "id": 1,
+        "category": "operators",
+        "name": "jsoc",
+        "icon_url": "/assets/icons/jsoc.png"
+      },
+      {
+        "id": 2,
+        "category": "operators",
+        "name": "guild",
+        "icon_url": "/assets/icons/guild.png"
+      },
+      {
+        "id": 3,
+        "category": "operators",
+        "name": "zombie",
+        "icon_url": "/assets/icons/zombie.png"
+      }
+    ],
+    "operators": [
+      {
+        "id": 1,
+        "short_name": "50/50",
+        "full_name": "Leilani \"50/50\" Tupuola",
+        "nationality": "New Zealander",
+        "divison": "jsoc",
+        "zombie_playable": 0,
+        "description": "Leilani \"50/50\" Tupoula survived...",
+        "unlock_criteria": "Unlocked immediately",
+        "image_url": "/assets/operators/50_50.webp"
+      }
+    ]
+  },
+  "message": null
+}
+```
+
+**Response Fields:**
+- `success` (boolean) - Request success status
+- `data` (object) - Object with table names as keys
+  - `{tableName}` (array) - Array of records from that table
+- `message` (string|null) - Optional message
+
+---
+
+### 6. Get Data for Specific Table
+Get data from a single table. Works for any table including `data_versions`.
+
+**Endpoint:** `GET /api/data/{tableName}`
+
+**Request:**
+```
+GET https://codbo7.masoombadi.top/api/data/operators
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "table": "operators",
+    "data": [
+      {
+        "id": 1,
+        "short_name": "50/50",
+        "full_name": "Leilani \"50/50\" Tupuola",
+        "nationality": "New Zealander",
+        "divison": "jsoc",
+        "zombie_playable": 0,
+        "description": "Leilani \"50/50\" Tupoula survived...",
+        "unlock_criteria": "Unlocked immediately",
+        "image_url": "/assets/operators/50_50.webp"
+      },
+      {
+        "id": 2,
+        "short_name": "Anderson",
+        "full_name": "Nora Anderson",
+        "nationality": "N/A",
+        "divison": "jsoc",
+        "zombie_playable": 0,
+        "description": "Captain Nora Anderson is a legendary...",
+        "unlock_criteria": "Unlocked immediately",
+        "image_url": "/assets/operators/anderson.webp"
+      }
+    ]
+  },
+  "message": null
+}
+```
+
+**Response Fields:**
+- `success` (boolean) - Request success status
+- `data.table` (string) - Table name
+- `data.data` (array) - Array of records from the table
+
+**Available Tables:**
+- `data_versions`
+- `operators`
+- `icons`
+
+**Examples:**
+```
+GET /api/data/operators - Get all operators
+GET /api/data/icons - Get all icons
+GET /api/data/data_versions - Get version tracking data
+```
+
+---
+
 ## Version Sync Strategy
 
 ### How to Use Two-Tier Versioning
@@ -326,14 +467,14 @@ response.data.forEach { (category, versionInfo) ->
 
     if (versionInfo.version > localVersion) {
         // Data changed - fetch new data
+        val dataResponse = api.getTableData(category) // GET /api/data/{category}
+
         when (category) {
             "operators" -> {
-                val operators = api.getOperators()
-                database.updateOperators(operators)
+                database.updateOperators(dataResponse.data.data)
             }
             "icons" -> {
-                val icons = api.getIcons()
-                database.updateIcons(icons)
+                database.updateIcons(dataResponse.data.data)
             }
         }
 
@@ -342,6 +483,25 @@ response.data.forEach { (category, versionInfo) ->
             .putInt("${category}_version", versionInfo.version)
             .apply()
     }
+}
+```
+
+**Initial Sync (First App Launch):**
+```kotlin
+// For first time app installation, fetch all data at once
+val allDataResponse = api.getAllData() // GET /api/data/all
+
+// Store all data
+database.updateOperators(allDataResponse.data.operators)
+database.updateIcons(allDataResponse.data.icons)
+
+// Save all version numbers
+val versionResponse = api.getVersions()
+versionResponse.data.forEach { (category, versionInfo) ->
+    sharedPrefs.edit()
+        .putInt("${category}_version", versionInfo.version)
+        .putInt("${category}_schema_version", versionInfo.schemaVersion)
+        .apply()
 }
 ```
 
