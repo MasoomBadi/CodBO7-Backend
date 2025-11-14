@@ -40,15 +40,15 @@ try {
             $stmt->execute();
             $allData[$categoryName] = $stmt->fetchAll();
 
-            // Convert data types based on table
-            if ($categoryName === 'operators') {
-                foreach ($allData[$categoryName] as &$row) {
+            // Convert numeric fields to proper types
+            foreach ($allData[$categoryName] as &$row) {
+                // Convert all 'id' fields to int
+                if (isset($row['id'])) {
                     $row['id'] = (int)$row['id'];
-                    $row['zombie_playable'] = (int)$row['zombie_playable'];
                 }
-            } elseif ($categoryName === 'icons') {
-                foreach ($allData[$categoryName] as &$row) {
-                    $row['id'] = (int)$row['id'];
+                // Convert boolean fields
+                if (isset($row['zombie_playable'])) {
+                    $row['zombie_playable'] = (int)$row['zombie_playable'];
                 }
             }
         }
@@ -63,28 +63,30 @@ try {
         $data = $stmt->fetchAll();
 
         if (empty($data) && $tableName !== 'data_versions') {
-            // Check if table exists
-            $checkStmt = $db->prepare("SHOW TABLES LIKE :tableName");
-            $checkStmt->execute(['tableName' => $tableName]);
+            // Check if table exists using a different method
+            $checkStmt = $db->prepare("SHOW TABLES LIKE ?");
+            $checkStmt->execute([$tableName]);
             if (!$checkStmt->fetch()) {
                 Response::error("Table '$tableName' not found", 404);
             }
         }
 
-        // Convert data types based on table
-        if ($tableName === 'data_versions') {
-            foreach ($data as &$row) {
+        // Convert numeric fields to proper types
+        foreach ($data as &$row) {
+            // Convert all 'id' fields to int
+            if (isset($row['id'])) {
+                $row['id'] = (int)$row['id'];
+            }
+            // Convert version fields
+            if (isset($row['version'])) {
                 $row['version'] = (int)$row['version'];
+            }
+            if (isset($row['schema_version'])) {
                 $row['schema_version'] = (int)$row['schema_version'];
             }
-        } elseif ($tableName === 'operators') {
-            foreach ($data as &$row) {
-                $row['id'] = (int)$row['id'];
+            // Convert boolean fields
+            if (isset($row['zombie_playable'])) {
                 $row['zombie_playable'] = (int)$row['zombie_playable'];
-            }
-        } elseif ($tableName === 'icons') {
-            foreach ($data as &$row) {
-                $row['id'] = (int)$row['id'];
             }
         }
 
