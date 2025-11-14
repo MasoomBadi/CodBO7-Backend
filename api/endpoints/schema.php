@@ -1,53 +1,88 @@
 <?php
 /**
  * Schema Endpoint
- * Returns schema definition (fields) for a specific category
+ * Returns schema definition (fields) for all categories or a specific category
  */
 
 if ($requestMethod !== 'GET') {
     Response::error('Method not allowed', 405);
 }
 
-// Get category from path (e.g., /api/schema/operators)
+// Get category from path (e.g., /api/schema/operators or /api/schema)
 $pathParts = explode('/', trim($path, '/'));
-if (count($pathParts) < 2 || $pathParts[0] !== 'schema') {
-    Response::error('Category parameter required. Usage: /api/schema/{category}', 400);
-}
+$category = isset($pathParts[1]) && !empty($pathParts[1]) ? $pathParts[1] : null;
 
-$category = $pathParts[1];
-
-// Validate category exists in data_versions
 try {
-    $stmt = $db->prepare("SELECT category FROM data_versions WHERE category = :category");
-    $stmt->execute(['category' => $category]);
-    $exists = $stmt->fetch();
+    if ($category === null) {
+        // Return all schemas
+        $stmt = $db->query("SELECT category FROM data_versions ORDER BY category");
+        $categories = $stmt->fetchAll();
 
-    if (!$exists) {
-        Response::error("Category '$category' not found", 404);
+        $allSchemas = [];
+
+        foreach ($categories as $cat) {
+            $categoryName = $cat['category'];
+
+            // Get table schema using DESCRIBE
+            $stmt = $db->prepare("DESCRIBE `$categoryName`");
+            $stmt->execute();
+            $columns = $stmt->fetchAll();
+
+            // Format schema
+            $fields = [];
+            foreach ($columns as $column) {
+                $fields[] = [
+                    'name' => $column['Field'],
+                    'type' => $column['Type'],
+                    'nullable' => $column['Null'] === 'YES',
+                    'key' => $column['Key'],
+                    'default' => $column['Default'],
+                    'extra' => $column['Extra']
+                ];
+            }
+
+            $allSchemas[$categoryName] = [
+                'category' => $categoryName,
+                'fields' => $fields
+            ];
+        }
+
+        Response::success($allSchemas);
+
+    } else {
+        // Return specific category schema
+        // Validate category exists in data_versions
+        $stmt = $db->prepare("SELECT category FROM data_versions WHERE category = :category");
+        $stmt->execute(['category' => $category]);
+        $exists = $stmt->fetch();
+
+        if (!$exists) {
+            Response::error("Category '$category' not found", 404);
+        }
+
+        // Get table schema using DESCRIBE
+        $stmt = $db->prepare("DESCRIBE `$category`");
+        $stmt->execute();
+        $columns = $stmt->fetchAll();
+
+        // Format schema
+        $fields = [];
+        foreach ($columns as $column) {
+            $fields[] = [
+                'name' => $column['Field'],
+                'type' => $column['Type'],
+                'nullable' => $column['Null'] === 'YES',
+                'key' => $column['Key'],
+                'default' => $column['Default'],
+                'extra' => $column['Extra']
+            ];
+        }
+
+        Response::success([
+            'category' => $category,
+            'fields' => $fields
+        ]);
     }
-
-    // Get table schema using DESCRIBE
-    $stmt = $db->prepare("DESCRIBE `$category`");
-    $stmt->execute();
-    $columns = $stmt->fetchAll();
-
-    // Format schema
-    $fields = [];
-    foreach ($columns as $column) {
-        $fields[] = [
-            'name' => $column['Field'],
-            'type' => $column['Type'],
-            'nullable' => $column['Null'] === 'YES',
-            'key' => $column['Key'],
-            'default' => $column['Default'],
-            'extra' => $column['Extra']
-        ];
-    }
-
-    Response::success([
-        'category' => $category,
-        'fields' => $fields
-    ]);
 
 } catch (PDOException $e) {
     Response::error('Failed to fetch schema', 500, $e->getMessage());

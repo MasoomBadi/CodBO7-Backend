@@ -24,8 +24,8 @@ $db = Database::getInstance()->getConnection();
 
 // Route handling
 try {
-    // Handle schema endpoint (e.g., /api/schema/operators)
-    if (strpos($path, 'schema/') === 0) {
+    // Handle schema endpoint (e.g., /api/schema or /api/schema/operators)
+    if ($path === 'schema' || strpos($path, 'schema/') === 0) {
         require __DIR__ . '/endpoints/schema.php';
     } else {
         switch ($path) {
@@ -41,7 +41,8 @@ try {
                     'version' => '1.0.0',
                     'endpoints' => [
                         'GET /api/version' => 'Get all data versions',
-                        'GET /api/schema/{category}' => 'Get schema for a category'
+                        'GET /api/schema' => 'Get all schemas',
+                        'GET /api/schema/{category}' => 'Get schema for a specific category'
                     ]
                 ], 'API is running');
                 break;

@@ -76,8 +76,108 @@ GET https://codbo7.masoombadi.top/api/version
 
 ---
 
-### 3. Get Schema Definition
-Get field definitions for a specific category. Call this only when `schemaVersion` changes.
+### 3. Get All Schemas
+Get field definitions for all categories. Call this only when any `schemaVersion` changes.
+
+**Endpoint:** `GET /api/schema`
+
+**Request:**
+```
+GET https://codbo7.masoombadi.top/api/schema
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "icons": {
+      "category": "icons",
+      "fields": [
+        {
+          "name": "id",
+          "type": "int",
+          "nullable": false,
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "name": "category",
+          "type": "varchar(50)",
+          "nullable": false,
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "name",
+          "type": "varchar(50)",
+          "nullable": false,
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "icon_url",
+          "type": "varchar(150)",
+          "nullable": false,
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ]
+    },
+    "operators": {
+      "category": "operators",
+      "fields": [
+        {
+          "name": "id",
+          "type": "int",
+          "nullable": false,
+          "key": "PRI",
+          "default": null,
+          "extra": "auto_increment"
+        },
+        {
+          "name": "short_name",
+          "type": "varchar(50)",
+          "nullable": false,
+          "key": "",
+          "default": null,
+          "extra": ""
+        },
+        {
+          "name": "full_name",
+          "type": "varchar(50)",
+          "nullable": false,
+          "key": "",
+          "default": null,
+          "extra": ""
+        }
+      ]
+    }
+  },
+  "message": null
+}
+```
+
+**Response Fields:**
+- `success` (boolean) - Request success status
+- `data` (object) - Object with category names as keys
+  - `{category}.category` (string) - Category name
+  - `{category}.fields` (array) - Array of field definitions
+    - `name` (string) - Field name
+    - `type` (string) - MySQL data type
+    - `nullable` (boolean) - Whether field can be null
+    - `key` (string) - Key type (PRI for primary key, empty otherwise)
+    - `default` - Default value (null if none)
+    - `extra` (string) - Additional info (e.g., "auto_increment")
+
+---
+
+### 4. Get Schema for Specific Category
+Get field definitions for a single category.
 
 **Endpoint:** `GET /api/schema/{category}`
 
@@ -126,13 +226,7 @@ GET https://codbo7.masoombadi.top/api/schema/operators
 **Response Fields:**
 - `success` (boolean) - Request success status
 - `data.category` (string) - Category name
-- `data.fields` (array) - Array of field definitions
-  - `name` (string) - Field name
-  - `type` (string) - MySQL data type
-  - `nullable` (boolean) - Whether field can be null
-  - `key` (string) - Key type (PRI for primary key, empty otherwise)
-  - `default` - Default value (null if none)
-  - `extra` (string) - Additional info (e.g., "auto_increment")
+- `data.fields` (array) - Array of field definitions (same structure as above)
 
 **Available Categories:**
 - `operators`
@@ -148,10 +242,10 @@ GET https://codbo7.masoombadi.top/api/schema/operators
    - Call `GET /api/version`
    - Compare both `version` and `schemaVersion` with locally stored values
 
-2. **If Schema Version Changed:**
-   - Call `GET /api/schema/{category}` to get new schema
+2. **If Any Schema Version Changed:**
+   - Call `GET /api/schema` to get all schemas at once
    - Update Realm models dynamically based on new fields
-   - Store new schemaVersion locally
+   - Store new schemaVersion for each category locally
 
 3. **If Data Version Changed:**
    - Fetch updated data for that category
@@ -166,40 +260,53 @@ GET https://codbo7.masoombadi.top/api/schema/operators
 ```kotlin
 // 1. Get remote versions
 val response = api.getVersions()
-val remoteData = response.data.operators
-val remoteVersion = remoteData.version
-val remoteSchemaVersion = remoteData.schemaVersion
 
-// 2. Get local versions from SharedPreferences
-val localVersion = sharedPrefs.getInt("operators_version", 0)
-val localSchemaVersion = sharedPrefs.getInt("operators_schema_version", 0)
-
-// 3. Check schema version first
-if (remoteSchemaVersion > localSchemaVersion) {
-    // Schema changed - fetch new schema
-    val schemaResponse = api.getSchema("operators")
-
-    // Update Realm schema dynamically
-    realmManager.updateSchema("operators", schemaResponse.data.fields)
-
-    // Save new schema version
-    sharedPrefs.edit()
-        .putInt("operators_schema_version", remoteSchemaVersion)
-        .apply()
+// 2. Check if any schema version changed
+var anySchemaChanged = false
+response.data.forEach { (category, versionInfo) ->
+    val localSchemaVersion = sharedPrefs.getInt("${category}_schema_version", 0)
+    if (versionInfo.schemaVersion > localSchemaVersion) {
+        anySchemaChanged = true
+    }
 }
 
-// 4. Check data version
-if (remoteVersion > localVersion) {
-    // Data changed - fetch new data
-    val operators = api.getOperators()
+// 3. If any schema changed, fetch all schemas
+if (anySchemaChanged) {
+    val schemaResponse = api.getAllSchemas() // GET /api/schema
 
-    // Update local database
-    database.updateOperators(operators)
+    // Update Realm schemas dynamically for each category
+    schemaResponse.data.forEach { (category, schemaInfo) ->
+        realmManager.updateSchema(category, schemaInfo.fields)
 
-    // Save new version
-    sharedPrefs.edit()
-        .putInt("operators_version", remoteVersion)
-        .apply()
+        // Save new schema version
+        sharedPrefs.edit()
+            .putInt("${category}_schema_version", response.data[category]!!.schemaVersion)
+            .apply()
+    }
+}
+
+// 4. Check data versions and sync if needed
+response.data.forEach { (category, versionInfo) ->
+    val localVersion = sharedPrefs.getInt("${category}_version", 0)
+
+    if (versionInfo.version > localVersion) {
+        // Data changed - fetch new data
+        when (category) {
+            "operators" -> {
+                val operators = api.getOperators()
+                database.updateOperators(operators)
+            }
+            "icons" -> {
+                val icons = api.getIcons()
+                database.updateIcons(icons)
+            }
+        }
+
+        // Save new version
+        sharedPrefs.edit()
+            .putInt("${category}_version", versionInfo.version)
+            .apply()
+    }
 }
 ```
 
