@@ -1,6 +1,6 @@
 <?php
 /**
- * Maps Endpoint
+ * Maps Endpoint - Enhanced with layers and filter support
  * Returns map data with markers in GeoJSON format
  */
 
@@ -14,32 +14,51 @@ $mapName = isset($pathParts[1]) && !empty($pathParts[1]) ? $pathParts[1] : null;
 
 try {
     if ($mapName === 'all') {
-        // Return all maps with their markers in GeoJSON format
-
+        // Return all maps with their layers and markers
         $allMaps = [];
 
         // Get all maps
-        $stmt = $db->query("SELECT id, name, display_name, image_url, bounds FROM maps ORDER BY name");
+        $stmt = $db->query("SELECT id, name, display_name, base_image_url, bounds FROM maps ORDER BY name");
         $maps = $stmt->fetchAll();
 
         foreach ($maps as $map) {
             $mapId = (int)$map['id'];
             $mapKey = $map['name'];
 
+            // Get layers for this map
+            $stmt = $db->prepare("SELECT layer_key, layer_name, layer_type, image_url, default_visible FROM map_layers WHERE map_id = ? ORDER BY id");
+            $stmt->execute([$mapId]);
+            $layers = $stmt->fetchAll();
+
+            $layersData = [];
+            foreach ($layers as $layer) {
+                $layersData[] = [
+                    'key' => $layer['layer_key'],
+                    'name' => $layer['layer_name'],
+                    'type' => $layer['layer_type'],
+                    'imageUrl' => $layer['image_url'],
+                    'defaultVisible' => (bool)$layer['default_visible']
+                ];
+            }
+
             // Get all markers for this map
-            $stmt = $db->prepare("SELECT marker_type, name, coord_x, coord_y, properties FROM map_markers WHERE map_id = ? ORDER BY id");
+            $stmt = $db->prepare("SELECT category, marker_type, name, coord_x, coord_y, icon_url, hide_on_load, properties FROM map_markers WHERE map_id = ? ORDER BY category, id");
             $stmt->execute([$mapId]);
             $markers = $stmt->fetchAll();
 
             // Build GeoJSON FeatureCollection
             $features = [];
+            $filterConfig = [];
+
             foreach ($markers as $marker) {
                 // Parse properties JSON
                 $properties = json_decode($marker['properties'], true) ?: [];
 
-                // Add type and name to properties
+                // Add standard fields to properties
+                $properties['category'] = $marker['category'];
                 $properties['type'] = $marker['marker_type'];
                 $properties['name'] = $marker['name'];
+                $properties['hideOnLoad'] = (bool)$marker['hide_on_load'];
 
                 $features[] = [
                     'type' => 'Feature',
@@ -52,13 +71,28 @@ try {
                     ],
                     'properties' => $properties
                 ];
+
+                // Build filter configuration
+                $category = $marker['category'];
+                if (!isset($filterConfig[$category])) {
+                    $filterConfig[$category] = [
+                        'category' => $category,
+                        'displayName' => ucfirst(str_replace('_', ' ', $category)),
+                        'markerType' => $marker['marker_type'],
+                        'iconUrl' => $marker['icon_url'],
+                        'count' => 0
+                    ];
+                }
+                $filterConfig[$category]['count']++;
             }
 
             $allMaps[$mapKey] = [
                 'name' => $map['name'],
                 'displayName' => $map['display_name'],
-                'imageUrl' => $map['image_url'],
+                'baseImageUrl' => $map['base_image_url'],
                 'bounds' => json_decode($map['bounds'], true),
+                'layers' => $layersData,
+                'filters' => array_values($filterConfig),
                 'geojson' => [
                     'type' => 'FeatureCollection',
                     'features' => $features
@@ -69,10 +103,10 @@ try {
         Response::success($allMaps);
 
     } elseif ($mapName !== null) {
-        // Return specific map with markers in GeoJSON format
+        // Return specific map with layers and markers
 
         // Get map details
-        $stmt = $db->prepare("SELECT id, name, display_name, image_url, bounds FROM maps WHERE name = ?");
+        $stmt = $db->prepare("SELECT id, name, display_name, base_image_url, bounds FROM maps WHERE name = ?");
         $stmt->execute([$mapName]);
         $map = $stmt->fetch();
 
@@ -82,20 +116,40 @@ try {
 
         $mapId = (int)$map['id'];
 
+        // Get layers for this map
+        $stmt = $db->prepare("SELECT layer_key, layer_name, layer_type, image_url, default_visible FROM map_layers WHERE map_id = ? ORDER BY id");
+        $stmt->execute([$mapId]);
+        $layers = $stmt->fetchAll();
+
+        $layersData = [];
+        foreach ($layers as $layer) {
+            $layersData[] = [
+                'key' => $layer['layer_key'],
+                'name' => $layer['layer_name'],
+                'type' => $layer['layer_type'],
+                'imageUrl' => $layer['image_url'],
+                'defaultVisible' => (bool)$layer['default_visible']
+            ];
+        }
+
         // Get all markers for this map
-        $stmt = $db->prepare("SELECT marker_type, name, coord_x, coord_y, properties FROM map_markers WHERE map_id = ? ORDER BY id");
+        $stmt = $db->prepare("SELECT category, marker_type, name, coord_x, coord_y, icon_url, hide_on_load, properties FROM map_markers WHERE map_id = ? ORDER BY category, id");
         $stmt->execute([$mapId]);
         $markers = $stmt->fetchAll();
 
-        // Build GeoJSON FeatureCollection
+        // Build GeoJSON FeatureCollection and filter config
         $features = [];
+        $filterConfig = [];
+
         foreach ($markers as $marker) {
             // Parse properties JSON
             $properties = json_decode($marker['properties'], true) ?: [];
 
-            // Add type and name to properties
+            // Add standard fields to properties
+            $properties['category'] = $marker['category'];
             $properties['type'] = $marker['marker_type'];
             $properties['name'] = $marker['name'];
+            $properties['hideOnLoad'] = (bool)$marker['hide_on_load'];
 
             $features[] = [
                 'type' => 'Feature',
@@ -108,13 +162,28 @@ try {
                 ],
                 'properties' => $properties
             ];
+
+            // Build filter configuration
+            $category = $marker['category'];
+            if (!isset($filterConfig[$category])) {
+                $filterConfig[$category] = [
+                    'category' => $category,
+                    'displayName' => ucfirst(str_replace('_', ' ', $category)),
+                    'markerType' => $marker['marker_type'],
+                    'iconUrl' => $marker['icon_url'],
+                    'count' => 0
+                ];
+            }
+            $filterConfig[$category]['count']++;
         }
 
         Response::success([
             'name' => $map['name'],
             'displayName' => $map['display_name'],
-            'imageUrl' => $map['image_url'],
+            'baseImageUrl' => $map['base_image_url'],
             'bounds' => json_decode($map['bounds'], true),
+            'layers' => $layersData,
+            'filters' => array_values($filterConfig),
             'geojson' => [
                 'type' => 'FeatureCollection',
                 'features' => $features
