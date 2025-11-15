@@ -5,6 +5,7 @@ deployment:
     - /bin/cp -R api $DEPLOYPATH
     - /bin/cp -R includes $DEPLOYPATH
     - /bin/cp -R database $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
     - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp README.md $DEPLOYPATH
     - /bin/cp SCHEMA.md $DEPLOYPATH
