@@ -31,6 +31,10 @@ try {
     // Handle data endpoint (e.g., /api/data/all or /api/data/operators)
     elseif ($path === 'data' || strpos($path, 'data/') === 0) {
         require __DIR__ . '/endpoints/data.php';
+    }
+    // Handle maps endpoint (e.g., /api/maps/all or /api/maps/blackheart)
+    elseif ($path === 'maps' || strpos($path, 'maps/') === 0) {
+        require __DIR__ . '/endpoints/maps.php';
     } else {
         switch ($path) {
             case 'version':
@@ -48,7 +52,9 @@ try {
                         'GET /api/schema/all' => 'Get all table schemas',
                         'GET /api/schema/{tableName}' => 'Get schema for a specific table',
                         'GET /api/data/all' => 'Get all table data',
-                        'GET /api/data/{tableName}' => 'Get data for a specific table'
+                        'GET /api/data/{tableName}' => 'Get data for a specific table',
+                        'GET /api/maps/all' => 'Get all maps with markers in GeoJSON format',
+                        'GET /api/maps/{mapName}' => 'Get specific map with markers in GeoJSON format'
                     ]
                 ], 'API is running');
                 break;

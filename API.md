@@ -410,6 +410,202 @@ GET /api/data/data_versions - Get version tracking data
 
 ---
 
+### 7. Get All Maps with Markers
+Get all maps with their markers in GeoJSON format. Use this for initial map data sync.
+
+**Endpoint:** `GET /api/maps/all`
+
+**Request:**
+```
+GET https://codbo7.masoombadi.top/api/maps/all
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "blackheart": {
+      "name": "blackheart",
+      "displayName": "Blackheart",
+      "imageUrl": "/assets/maps/blackheart.jpg",
+      "bounds": {
+        "southwest": [0, 0],
+        "northeast": [2048, 2048]
+      },
+      "geojson": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [512.5, 1536.75]
+            },
+            "properties": {
+              "type": "domination",
+              "name": "A",
+              "label": "A",
+              "icon": "domination"
+            }
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [768.25, 1280.5]
+            },
+            "properties": {
+              "type": "hardpoint",
+              "name": "Hardpoint 1",
+              "label": "1",
+              "icon": "hardpoint"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "message": null
+}
+```
+
+**Response Fields:**
+- `success` (boolean) - Request success status
+- `data` (object) - Object with map names as keys
+  - `{mapName}.name` (string) - Map identifier
+  - `{mapName}.displayName` (string) - Human-readable map name
+  - `{mapName}.imageUrl` (string) - Map image path
+  - `{mapName}.bounds` (object) - Map boundary coordinates
+  - `{mapName}.geojson` (object) - GeoJSON FeatureCollection
+    - `type` (string) - Always "FeatureCollection"
+    - `features` (array) - Array of map markers
+      - `type` (string) - Always "Feature"
+      - `geometry.type` (string) - Always "Point"
+      - `geometry.coordinates` (array) - [x, y] coordinates
+      - `properties` (object) - Marker properties
+        - `type` (string) - Marker type (domination, hardpoint, snd, spawn, poi)
+        - `name` (string) - Marker name
+        - Additional properties vary by marker type
+
+---
+
+### 8. Get Specific Map with Markers
+Get a single map with its markers in GeoJSON format.
+
+**Endpoint:** `GET /api/maps/{mapName}`
+
+**Request:**
+```
+GET https://codbo7.masoombadi.top/api/maps/blackheart
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "data": {
+    "name": "blackheart",
+    "displayName": "Blackheart",
+    "imageUrl": "/assets/maps/blackheart.jpg",
+    "bounds": {
+      "southwest": [0, 0],
+      "northeast": [2048, 2048]
+    },
+    "geojson": {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [512.5, 1536.75]
+          },
+          "properties": {
+            "type": "domination",
+            "name": "A",
+            "label": "A",
+            "icon": "domination"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [1024.0, 1024.0]
+          },
+          "properties": {
+            "type": "domination",
+            "name": "B",
+            "label": "B",
+            "icon": "domination"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [768.25, 1280.5]
+          },
+          "properties": {
+            "type": "hardpoint",
+            "name": "Hardpoint 1",
+            "label": "1",
+            "icon": "hardpoint"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [256.0, 1792.0]
+          },
+          "properties": {
+            "type": "spawn",
+            "name": "JSOC Spawn",
+            "team": "JSOC",
+            "icon": "spawn_jsoc"
+          }
+        },
+        {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [512.0, 1536.0]
+          },
+          "properties": {
+            "type": "poi",
+            "name": "Drill",
+            "icon": "poi"
+          }
+        }
+      ]
+    }
+  },
+  "message": null
+}
+```
+
+**Marker Types:**
+- `domination` - Domination zone (A, B, C)
+- `hardpoint` - Hardpoint location (1-5)
+- `snd` - Search & Destroy site (A, B)
+- `spawn` - Team spawn point (JSOC, Guild)
+- `poi` - Point of Interest
+
+**Response Fields:**
+- `success` (boolean) - Request success status
+- `data.name` (string) - Map identifier
+- `data.displayName` (string) - Human-readable map name
+- `data.imageUrl` (string) - Map image path
+- `data.bounds` (object) - Map boundary coordinates for scaling
+- `data.geojson` (object) - Standard GeoJSON FeatureCollection format
+
+**Available Maps:**
+- `blackheart` - Blackheart
+
+---
+
 ## Version Sync Strategy
 
 ### How to Use Two-Tier Versioning
@@ -552,6 +748,7 @@ Current available categories:
 |----------|-------------|---------|
 | operators | Playable characters | 1 |
 | icons | Icons and emblems | 1 |
+| maps | Interactive map data and markers | 1 |
 
 ---
 
