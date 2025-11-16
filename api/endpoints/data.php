@@ -127,6 +127,32 @@ try {
             if (isset($row['zombie_playable'])) {
                 $row['zombie_playable'] = (int)$row['zombie_playable'];
             }
+
+            // Map-related table conversions
+            // For maps table
+            if (isset($row['bounds'])) {
+                $row['bounds'] = json_decode($row['bounds'], true);
+            }
+            // For map_layers and map_markers tables
+            if (isset($row['map_id'])) {
+                $row['map_id'] = (int)$row['map_id'];
+            }
+            if (isset($row['default_visible'])) {
+                $row['default_visible'] = (int)$row['default_visible'];
+            }
+            // For map_markers table
+            if (isset($row['coord_x'])) {
+                $row['coord_x'] = (float)$row['coord_x'];
+            }
+            if (isset($row['coord_y'])) {
+                $row['coord_y'] = (float)$row['coord_y'];
+            }
+            if (isset($row['hide_on_load'])) {
+                $row['hide_on_load'] = (int)$row['hide_on_load'];
+            }
+            if (isset($row['properties'])) {
+                $row['properties'] = json_decode($row['properties'], true);
+            }
         }
 
         Response::success([
