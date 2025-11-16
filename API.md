@@ -58,6 +58,18 @@ GET https://codbo7.masoombadi.top/api/version
       "version": 1,
       "schemaVersion": 1
     },
+    "map_layers": {
+      "version": 1,
+      "schemaVersion": 1
+    },
+    "map_markers": {
+      "version": 1,
+      "schemaVersion": 1
+    },
+    "maps": {
+      "version": 1,
+      "schemaVersion": 1
+    },
     "operators": {
       "version": 1,
       "schemaVersion": 1
@@ -293,11 +305,25 @@ GET https://codbo7.masoombadi.top/api/data/all
         "description": "Icons and emblems"
       },
       {
+        "category": "map_layers",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-16 00:00:00",
+        "description": "Map overlay layers"
+      },
+      {
+        "category": "map_markers",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-16 00:00:00",
+        "description": "Interactive map markers and POIs"
+      },
+      {
         "category": "maps",
         "version": 1,
         "schema_version": 1,
         "last_updated": "2025-11-16 00:00:00",
-        "description": "Interactive map data and markers"
+        "description": "Interactive map base data"
       },
       {
         "category": "operators",
