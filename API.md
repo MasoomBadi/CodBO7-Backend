@@ -270,7 +270,7 @@ GET https://codbo7.masoombadi.top/api/schema/data_versions
 ---
 
 ### 5. Get All Table Data
-Get all data from all tables including `data_versions`. Use this for initial sync.
+Get all data from all tables including `data_versions`, `maps`, `map_layers`, and `map_markers`. Use this for initial sync.
 
 **Endpoint:** `GET /api/data/all`
 
@@ -293,6 +293,13 @@ GET https://codbo7.masoombadi.top/api/data/all
         "description": "Icons and emblems"
       },
       {
+        "category": "maps",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-16 00:00:00",
+        "description": "Interactive map data and markers"
+      },
+      {
         "category": "operators",
         "version": 1,
         "schema_version": 1,
@@ -306,18 +313,6 @@ GET https://codbo7.masoombadi.top/api/data/all
         "category": "operators",
         "name": "jsoc",
         "icon_url": "/assets/icons/jsoc.png"
-      },
-      {
-        "id": 2,
-        "category": "operators",
-        "name": "guild",
-        "icon_url": "/assets/icons/guild.png"
-      },
-      {
-        "id": 3,
-        "category": "operators",
-        "name": "zombie",
-        "icon_url": "/assets/icons/zombie.png"
       }
     ],
     "operators": [
@@ -332,6 +327,53 @@ GET https://codbo7.masoombadi.top/api/data/all
         "unlock_criteria": "Unlocked immediately",
         "image_url": "/assets/operators/50_50.webp"
       }
+    ],
+    "maps": [
+      {
+        "id": 1,
+        "name": "blackheart",
+        "display_name": "Blackheart",
+        "base_image_url": "/assets/maps/blackheart/Blackheart_Tac_Map_BLANK1.webp",
+        "cover_image_url": "/assets/maps/blackheart/cover.webp",
+        "teams": "JSOC vs The Guilds",
+        "modes": "All (except Skirmish)",
+        "campaign_map": "Containment",
+        "bounds": {"southwest": [0, 0], "northeast": [2048, 2048]}
+      }
+    ],
+    "map_layers": [
+      {
+        "id": 1,
+        "map_id": 1,
+        "layer_key": "domination_zone",
+        "layer_name": "Domination Zone",
+        "layer_type": "overlay",
+        "image_url": "/assets/maps/blackheart/Blackheart_Tac_Map_DOM.webp",
+        "default_visible": 0
+      },
+      {
+        "id": 2,
+        "map_id": 1,
+        "layer_key": "hardpoint_zone",
+        "layer_name": "Hardpoint Zone",
+        "layer_type": "overlay",
+        "image_url": "/assets/maps/blackheart/Blackheart_Tac_Map_HP.webp",
+        "default_visible": 0
+      }
+    ],
+    "map_markers": [
+      {
+        "id": 1,
+        "map_id": 1,
+        "category": "multiplayer_objective_domination",
+        "marker_type": "domination",
+        "name": "Domination Zone A",
+        "coord_x": 697.00,
+        "coord_y": 959.00,
+        "icon_url": "/assets/maps/blackheart/Marker_Objective_Domination.svg",
+        "hide_on_load": 0,
+        "properties": {"label": "A", "mode": "multiplayer", "gameSelection": "bo7"}
+      }
     ]
   },
   "message": null
@@ -341,7 +383,12 @@ GET https://codbo7.masoombadi.top/api/data/all
 **Response Fields:**
 - `success` (boolean) - Request success status
 - `data` (object) - Object with table names as keys
-  - `{tableName}` (array) - Array of records from that table
+  - `data_versions` (array) - Version tracking data
+  - `icons` (array) - Icon data
+  - `operators` (array) - Operator data
+  - `maps` (array) - Map data with teams, modes, campaign info
+  - `map_layers` (array) - Map overlay layers (DOM, HP zones)
+  - `map_markers` (array) - Map markers with coordinates
 - `message` (string|null) - Optional message
 
 ---
@@ -428,11 +475,40 @@ GET https://codbo7.masoombadi.top/api/maps/all
     "blackheart": {
       "name": "blackheart",
       "displayName": "Blackheart",
-      "imageUrl": "/assets/maps/blackheart.jpg",
+      "baseImageUrl": "/assets/maps/blackheart/Blackheart_Tac_Map_BLANK1.webp",
+      "coverImageUrl": "/assets/maps/blackheart/cover.webp",
+      "teams": "JSOC vs The Guilds",
+      "modes": "All (except Skirmish)",
+      "campaignMap": "Containment",
       "bounds": {
         "southwest": [0, 0],
         "northeast": [2048, 2048]
       },
+      "layers": [
+        {
+          "key": "domination_zone",
+          "name": "Domination Zone",
+          "type": "overlay",
+          "imageUrl": "/assets/maps/blackheart/Blackheart_Tac_Map_DOM.webp",
+          "defaultVisible": false
+        },
+        {
+          "key": "hardpoint_zone",
+          "name": "Hardpoint Zone",
+          "type": "overlay",
+          "imageUrl": "/assets/maps/blackheart/Blackheart_Tac_Map_HP.webp",
+          "defaultVisible": false
+        }
+      ],
+      "filters": [
+        {
+          "category": "multiplayer_objective_domination",
+          "displayName": "Multiplayer objective domination",
+          "markerType": "domination",
+          "iconUrl": "/assets/maps/blackheart/Marker_Objective_Domination.svg",
+          "count": 3
+        }
+      ],
       "geojson": {
         "type": "FeatureCollection",
         "features": [
@@ -440,26 +516,16 @@ GET https://codbo7.masoombadi.top/api/maps/all
             "type": "Feature",
             "geometry": {
               "type": "Point",
-              "coordinates": [512.5, 1536.75]
+              "coordinates": [697, 959]
             },
             "properties": {
+              "category": "multiplayer_objective_domination",
               "type": "domination",
-              "name": "A",
+              "name": "Domination Zone A",
+              "hideOnLoad": false,
               "label": "A",
-              "icon": "domination"
-            }
-          },
-          {
-            "type": "Feature",
-            "geometry": {
-              "type": "Point",
-              "coordinates": [768.25, 1280.5]
-            },
-            "properties": {
-              "type": "hardpoint",
-              "name": "Hardpoint 1",
-              "label": "1",
-              "icon": "hardpoint"
+              "mode": "multiplayer",
+              "gameSelection": "bo7"
             }
           }
         ]
@@ -475,8 +541,14 @@ GET https://codbo7.masoombadi.top/api/maps/all
 - `data` (object) - Object with map names as keys
   - `{mapName}.name` (string) - Map identifier
   - `{mapName}.displayName` (string) - Human-readable map name
-  - `{mapName}.imageUrl` (string) - Map image path
+  - `{mapName}.baseImageUrl` (string) - Base tactical map image (blank)
+  - `{mapName}.coverImageUrl` (string) - Cover/preview image for the map
+  - `{mapName}.teams` (string) - Team matchup (e.g., "JSOC vs The Guilds")
+  - `{mapName}.modes` (string) - Available game modes
+  - `{mapName}.campaignMap` (string) - Associated campaign map
   - `{mapName}.bounds` (object) - Map boundary coordinates
+  - `{mapName}.layers` (array) - Overlay layers (DOM/HP zones)
+  - `{mapName}.filters` (array) - Filter metadata for building toggle UI
   - `{mapName}.geojson` (object) - GeoJSON FeatureCollection
     - `type` (string) - Always "FeatureCollection"
     - `features` (array) - Array of map markers
@@ -484,6 +556,7 @@ GET https://codbo7.masoombadi.top/api/maps/all
       - `geometry.type` (string) - Always "Point"
       - `geometry.coordinates` (array) - [x, y] coordinates
       - `properties` (object) - Marker properties
+        - `category` (string) - Marker category
         - `type` (string) - Marker type (domination, hardpoint, snd, spawn, poi)
         - `name` (string) - Marker name
         - Additional properties vary by marker type
@@ -507,11 +580,68 @@ GET https://codbo7.masoombadi.top/api/maps/blackheart
   "data": {
     "name": "blackheart",
     "displayName": "Blackheart",
-    "imageUrl": "/assets/maps/blackheart.jpg",
+    "baseImageUrl": "/assets/maps/blackheart/Blackheart_Tac_Map_BLANK1.webp",
+    "coverImageUrl": "/assets/maps/blackheart/cover.webp",
+    "teams": "JSOC vs The Guilds",
+    "modes": "All (except Skirmish)",
+    "campaignMap": "Containment",
     "bounds": {
       "southwest": [0, 0],
       "northeast": [2048, 2048]
     },
+    "layers": [
+      {
+        "key": "domination_zone",
+        "name": "Domination Zone",
+        "type": "overlay",
+        "imageUrl": "/assets/maps/blackheart/Blackheart_Tac_Map_DOM.webp",
+        "defaultVisible": false
+      },
+      {
+        "key": "hardpoint_zone",
+        "name": "Hardpoint Zone",
+        "type": "overlay",
+        "imageUrl": "/assets/maps/blackheart/Blackheart_Tac_Map_HP.webp",
+        "defaultVisible": false
+      }
+    ],
+    "filters": [
+      {
+        "category": "multiplayer_objective_domination",
+        "displayName": "Multiplayer objective domination",
+        "markerType": "domination",
+        "iconUrl": "/assets/maps/blackheart/Marker_Objective_Domination.svg",
+        "count": 3
+      },
+      {
+        "category": "multiplayer_objective_hardpoint",
+        "displayName": "Multiplayer objective hardpoint",
+        "markerType": "hardpoint",
+        "iconUrl": "/assets/maps/blackheart/Marker_Objective_Hardpoint.svg",
+        "count": 5
+      },
+      {
+        "category": "multiplayer_objective_searchAndDestroy",
+        "displayName": "Multiplayer objective searchAndDestroy",
+        "markerType": "snd",
+        "iconUrl": "/assets/maps/blackheart/Marker_Objective_SearchAndDestroy.svg",
+        "count": 2
+      },
+      {
+        "category": "multiplayer_mainSpawnLocation",
+        "displayName": "Multiplayer mainSpawnLocation",
+        "markerType": "spawn",
+        "iconUrl": "/assets/maps/blackheart/Marker_MainSpawnLocations.svg",
+        "count": 2
+      },
+      {
+        "category": "poiLabel",
+        "displayName": "PoiLabel",
+        "markerType": "poi",
+        "iconUrl": "/assets/maps/blackheart/Marker_POIs.svg",
+        "count": 5
+      }
+    ],
     "geojson": {
       "type": "FeatureCollection",
       "features": [
@@ -519,64 +649,16 @@ GET https://codbo7.masoombadi.top/api/maps/blackheart
           "type": "Feature",
           "geometry": {
             "type": "Point",
-            "coordinates": [512.5, 1536.75]
+            "coordinates": [697, 959]
           },
           "properties": {
+            "category": "multiplayer_objective_domination",
             "type": "domination",
-            "name": "A",
+            "name": "Domination Zone A",
+            "hideOnLoad": false,
             "label": "A",
-            "icon": "domination"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [1024.0, 1024.0]
-          },
-          "properties": {
-            "type": "domination",
-            "name": "B",
-            "label": "B",
-            "icon": "domination"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [768.25, 1280.5]
-          },
-          "properties": {
-            "type": "hardpoint",
-            "name": "Hardpoint 1",
-            "label": "1",
-            "icon": "hardpoint"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [256.0, 1792.0]
-          },
-          "properties": {
-            "type": "spawn",
-            "name": "JSOC Spawn",
-            "team": "JSOC",
-            "icon": "spawn_jsoc"
-          }
-        },
-        {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [512.0, 1536.0]
-          },
-          "properties": {
-            "type": "poi",
-            "name": "Drill",
-            "icon": "poi"
+            "mode": "multiplayer",
+            "gameSelection": "bo7"
           }
         }
       ]
@@ -597,8 +679,14 @@ GET https://codbo7.masoombadi.top/api/maps/blackheart
 - `success` (boolean) - Request success status
 - `data.name` (string) - Map identifier
 - `data.displayName` (string) - Human-readable map name
-- `data.imageUrl` (string) - Map image path
+- `data.baseImageUrl` (string) - Base tactical map image (blank)
+- `data.coverImageUrl` (string) - Cover/preview image
+- `data.teams` (string) - Team matchup
+- `data.modes` (string) - Available game modes
+- `data.campaignMap` (string) - Associated campaign map
 - `data.bounds` (object) - Map boundary coordinates for scaling
+- `data.layers` (array) - Overlay layers for toggling
+- `data.filters` (array) - Filter metadata for UI
 - `data.geojson` (object) - Standard GeoJSON FeatureCollection format
 
 **Available Maps:**
