@@ -28,7 +28,7 @@ try {
             $row['schema_version'] = (int)$row['schema_version'];
         }
 
-        // 2. Get all category tables from data_versions (icons, operators)
+        // 2. Get all category tables from data_versions
         $stmt = $db->query("SELECT category FROM data_versions ORDER BY category");
         $categories = $stmt->fetchAll();
 
@@ -36,63 +36,66 @@ try {
         foreach ($categories as $cat) {
             $categoryName = $cat['category'];
 
-            // Skip 'maps' as we'll handle it separately with its related tables
-            if ($categoryName === 'maps') {
-                continue;
+            // Determine sort order based on table
+            $orderBy = "id";
+            if ($categoryName === 'map_layers' || $categoryName === 'map_markers') {
+                $orderBy = "map_id, id";
             }
 
-            $stmt = $db->prepare("SELECT * FROM `$categoryName`");
+            $stmt = $db->prepare("SELECT * FROM `$categoryName` ORDER BY $orderBy");
             $stmt->execute();
             $allData[$categoryName] = $stmt->fetchAll();
 
-            // Convert numeric fields to proper types
+            // Convert numeric fields to proper types based on table
             foreach ($allData[$categoryName] as &$row) {
                 // Convert all 'id' fields to int
                 if (isset($row['id'])) {
                     $row['id'] = (int)$row['id'];
                 }
-                // Convert boolean fields
-                if (isset($row['zombie_playable'])) {
-                    $row['zombie_playable'] = (int)$row['zombie_playable'];
+
+                // Table-specific conversions
+                switch ($categoryName) {
+                    case 'operators':
+                        if (isset($row['zombie_playable'])) {
+                            $row['zombie_playable'] = (int)$row['zombie_playable'];
+                        }
+                        break;
+
+                    case 'maps':
+                        // Parse JSON bounds field
+                        if (isset($row['bounds'])) {
+                            $row['bounds'] = json_decode($row['bounds'], true);
+                        }
+                        break;
+
+                    case 'map_layers':
+                        if (isset($row['map_id'])) {
+                            $row['map_id'] = (int)$row['map_id'];
+                        }
+                        if (isset($row['default_visible'])) {
+                            $row['default_visible'] = (int)$row['default_visible'];
+                        }
+                        break;
+
+                    case 'map_markers':
+                        if (isset($row['map_id'])) {
+                            $row['map_id'] = (int)$row['map_id'];
+                        }
+                        if (isset($row['coord_x'])) {
+                            $row['coord_x'] = (float)$row['coord_x'];
+                        }
+                        if (isset($row['coord_y'])) {
+                            $row['coord_y'] = (float)$row['coord_y'];
+                        }
+                        if (isset($row['hide_on_load'])) {
+                            $row['hide_on_load'] = (int)$row['hide_on_load'];
+                        }
+                        // Parse JSON properties field
+                        if (isset($row['properties'])) {
+                            $row['properties'] = json_decode($row['properties'], true);
+                        }
+                        break;
                 }
-            }
-        }
-
-        // 3. Get maps table data
-        $stmt = $db->query("SELECT * FROM maps ORDER BY id");
-        $allData['maps'] = $stmt->fetchAll();
-
-        foreach ($allData['maps'] as &$row) {
-            $row['id'] = (int)$row['id'];
-            // Parse JSON bounds field
-            if (isset($row['bounds'])) {
-                $row['bounds'] = json_decode($row['bounds'], true);
-            }
-        }
-
-        // 4. Get map_layers table data
-        $stmt = $db->query("SELECT * FROM map_layers ORDER BY map_id, id");
-        $allData['map_layers'] = $stmt->fetchAll();
-
-        foreach ($allData['map_layers'] as &$row) {
-            $row['id'] = (int)$row['id'];
-            $row['map_id'] = (int)$row['map_id'];
-            $row['default_visible'] = (int)$row['default_visible'];
-        }
-
-        // 5. Get map_markers table data
-        $stmt = $db->query("SELECT * FROM map_markers ORDER BY map_id, id");
-        $allData['map_markers'] = $stmt->fetchAll();
-
-        foreach ($allData['map_markers'] as &$row) {
-            $row['id'] = (int)$row['id'];
-            $row['map_id'] = (int)$row['map_id'];
-            $row['coord_x'] = (float)$row['coord_x'];
-            $row['coord_y'] = (float)$row['coord_y'];
-            $row['hide_on_load'] = (int)$row['hide_on_load'];
-            // Parse JSON properties field
-            if (isset($row['properties'])) {
-                $row['properties'] = json_decode($row['properties'], true);
             }
         }
 
