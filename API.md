@@ -447,13 +447,24 @@ GET https://codbo7.masoombadi.top/api/data/operators
 - `data_versions`
 - `operators`
 - `icons`
+- `maps`
+- `map_layers`
+- `map_markers`
 
 **Examples:**
 ```
 GET /api/data/operators - Get all operators
 GET /api/data/icons - Get all icons
 GET /api/data/data_versions - Get version tracking data
+GET /api/data/maps - Get all maps (with bounds as JSON)
+GET /api/data/map_layers - Get all map layers
+GET /api/data/map_markers - Get all map markers (with coordinates as floats, properties as JSON)
 ```
+
+**Note:** Map-related tables include automatic type conversions:
+- `maps`: `bounds` field is parsed as JSON object, `id` as integer
+- `map_layers`: `map_id` and `default_visible` as integers
+- `map_markers`: `map_id` and `hide_on_load` as integers, `coord_x`/`coord_y` as floats, `properties` as JSON object
 
 ---
 
