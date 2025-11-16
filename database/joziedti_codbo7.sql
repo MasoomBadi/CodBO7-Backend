@@ -41,6 +41,7 @@ CREATE TABLE `data_versions` (
 
 INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`) VALUES
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
+('maps', 1, 1, '2025-11-16 00:00:00', 'Interactive map data and markers'),
 ('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters');
 
 -- --------------------------------------------------------
@@ -111,7 +112,95 @@ INSERT INTO `operators` (`id`, `short_name`, `full_name`, `nationality`, `diviso
 (21, 'Carver', 'Mackenzie Carver', 'American', 'guild', 1, 'Major Mackenzie Carver comes from a long line of military excellence and earned his own reputation through exceptional skill and loyalty. Even after losing his rank and being imprisoned, he kept his mind and body sharp, determined to reclaim his honor.\\n\\nLeaving Janus Towers with a renewed fury toward the Dark Aether, Carver emerges with a clear purpose. No longer content to simply follow orders, he now fights as a protector, determined to build a future where humanity stands free from any mast', 'Unlocked immediately', '/assets/operators/carver.webp'),
 (22, 'Grey', 'Elizabeth Grey', 'British', 'guild', 1, 'Dr. Elizabeth Grey is a brilliant Aetherium researcher whose groundbreaking work was twisted toward darker purposes. Years of imprisonment under Requiem’s former director changed her, leaving her sharper, tougher, and determined to use her scientific skill to give her team every possible advantage.\\n\\nLeaving Janus Towers, Grey carries both hard-won victories and a growing unease—wondering if science alone can repair the damage it has caused. Once devoted to pure reason, she now fears that survi', 'Unlocked immediately', '/assets/operators/grey.webp'),
 (23, 'Maya', 'Maya Aguinaldo', 'Filipina', 'jsoc', 1, 'Raised in a family of smugglers, Maya Aguinaldo brings sharp instincts, stealth, and covert skill to every mission. Her search for the Syndicate that abducted her brother led her to Requiem, where she helped free their leaders on Terminus Island.\\n\\nThough the Dark Aether is far outside her world, her grit and street-honed instincts made her a crucial ally in a much larger fight.\\n\\nUnsure of her place in this new “family,” the events at Janus Towers force her to stand with old and new allies al', 'Unlocked immediately', '/assets/operators/maya.webp'),
-(24, 'Weaver', 'Grigori Weaver', 'Soviet, American', 'jsoc', 1, 'Grigori Weaver is a Ranger-trained CIA operative whose combat skill and espionage expertise have carried him through countless covert missions. After his mother defected from the Soviet Union, he devoted himself to clandestine service, driven by past mistakes and a need to fight for something that matters.\\n\\nThe fall of Janus Towers changed him. No longer just a shadowy handler, Weaver has become a hardened leader shaped by sacrifice. With Requiem in ruins, he’s determined to pull the pieces to', 'Unlocked immediately', '/assets/operators/weaver.webp');
+(24, 'Weaver', 'Grigori Weaver', 'Soviet, American', 'jsoc', 1, 'Grigori Weaver is a Ranger-trained CIA operative whose combat skill and espionage expertise have carried him through countless covert missions. After his mother defected from the Soviet Union, he devoted himself to clandestine service, driven by past mistakes and a need to fight for something that matters.\\n\\nThe fall of Janus Towers changed him. No longer just a shadowy handler, Weaver has become a hardened leader shaped by sacrifice. With Requiem in ruins, he's determined to pull the pieces to', 'Unlocked immediately', '/assets/operators/weaver.webp');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `maps`
+--
+
+CREATE TABLE `maps` (
+  `id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `base_image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cover_image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bounds` JSON DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `maps`
+--
+
+INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image_url`, `bounds`) VALUES
+(1, 'blackheart', 'Blackheart', '/assets/maps/blackheart/Blackheart_Tac_Map_BLANK1.webp', '/assets/maps/blackheart/cover.webp', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `map_layers`
+--
+
+CREATE TABLE `map_layers` (
+  `id` int NOT NULL,
+  `map_id` int NOT NULL,
+  `layer_key` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `layer_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `layer_type` enum('overlay','base') DEFAULT 'overlay',
+  `image_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `default_visible` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `map_layers`
+--
+
+INSERT INTO `map_layers` (`id`, `map_id`, `layer_key`, `layer_name`, `layer_type`, `image_url`, `default_visible`) VALUES
+(1, 1, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/blackheart/Blackheart_Tac_Map_DOM.webp', 0),
+(2, 1, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/blackheart/Blackheart_Tac_Map_HP.webp', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `map_markers`
+--
+
+CREATE TABLE `map_markers` (
+  `id` int NOT NULL,
+  `map_id` int NOT NULL,
+  `category` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `marker_type` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coord_x` decimal(10,2) NOT NULL,
+  `coord_y` decimal(10,2) NOT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `hide_on_load` tinyint(1) DEFAULT 0,
+  `properties` JSON DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `map_markers`
+--
+
+INSERT INTO `map_markers` (`id`, `map_id`, `category`, `marker_type`, `name`, `coord_x`, `coord_y`, `icon_url`, `hide_on_load`, `properties`) VALUES
+(1, 1, 'multiplayer_objective_domination', 'domination', 'Domination Zone A', 697.00, 959.00, '/assets/maps/blackheart/Marker_Objective_Domination.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(2, 1, 'multiplayer_objective_domination', 'domination', 'Domination Zone B', 1022.00, 731.00, '/assets/maps/blackheart/Marker_Objective_Domination.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(3, 1, 'multiplayer_objective_domination', 'domination', 'Domination Zone C', 1452.00, 1141.00, '/assets/maps/blackheart/Marker_Objective_Domination.svg', 0, '{\"label\": \"C\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(4, 1, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 1', 1022.00, 1060.00, '/assets/maps/blackheart/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"1\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(5, 1, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 2', 468.00, 1236.00, '/assets/maps/blackheart/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"2\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(6, 1, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 3', 1426.00, 720.00, '/assets/maps/blackheart/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"3\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(7, 1, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 4', 633.00, 679.00, '/assets/maps/blackheart/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"4\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(8, 1, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 5', 1353.00, 1303.00, '/assets/maps/blackheart/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"5\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(9, 1, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 937.00, 1208.00, '/assets/maps/blackheart/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(10, 1, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 582.00, 729.00, '/assets/maps/blackheart/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(11, 1, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn Point', 1744.00, 980.00, '/assets/maps/blackheart/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(12, 1, 'multiplayer_mainSpawnLocation', 'spawn', 'Guild Spawn', 364.00, 966.00, '/assets/maps/blackheart/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(13, 1, 'poiLabel', 'poi', 'Drill', 1028.00, 1175.00, '/assets/maps/blackheart/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(14, 1, 'poiLabel', 'poi', 'Diving Bell', 1025.00, 748.00, '/assets/maps/blackheart/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(15, 1, 'poiLabel', 'poi', 'Grinder Pit', 1025.00, 1383.00, '/assets/maps/blackheart/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(16, 1, 'poiLabel', 'poi', 'Seabed Mining Vehicle', 364.00, 1012.00, '/assets/maps/blackheart/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(17, 1, 'poiLabel', 'poi', 'Barge', 1639.00, 1041.00, '/assets/maps/blackheart/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
 
 --
 -- Indexes for dumped tables
@@ -136,6 +225,28 @@ ALTER TABLE `operators`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `maps`
+--
+ALTER TABLE `maps`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_name` (`name`);
+
+--
+-- Indexes for table `map_layers`
+--
+ALTER TABLE `map_layers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `map_id` (`map_id`);
+
+--
+-- Indexes for table `map_markers`
+--
+ALTER TABLE `map_markers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `map_id` (`map_id`),
+  ADD KEY `category` (`category`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -150,6 +261,40 @@ ALTER TABLE `icons`
 --
 ALTER TABLE `operators`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `maps`
+--
+ALTER TABLE `maps`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `map_layers`
+--
+ALTER TABLE `map_layers`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `map_markers`
+--
+ALTER TABLE `map_markers`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `map_layers`
+--
+ALTER TABLE `map_layers`
+  ADD CONSTRAINT `map_layers_ibfk_1` FOREIGN KEY (`map_id`) REFERENCES `maps` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `map_markers`
+--
+ALTER TABLE `map_markers`
+  ADD CONSTRAINT `map_markers_ibfk_1` FOREIGN KEY (`map_id`) REFERENCES `maps` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
