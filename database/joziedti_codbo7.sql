@@ -303,7 +303,25 @@ INSERT INTO `map_markers` (`id`, `map_id`, `category`, `marker_type`, `name`, `c
 (64, 10, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 1050.00, 940.00, '/assets/maps/imprint/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (65, 10, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 793.00, 1287.00, '/assets/maps/imprint/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (66, 10, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1785.00, 968.00, '/assets/maps/imprint/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
-(67, 10, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 226.00, 1021.00, '/assets/maps/imprint/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
+(67, 10, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 226.00, 1021.00, '/assets/maps/imprint/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+-- The Forge Map Markers
+(68, 15, 'poiLabel', 'poi', 'Driveway', 860.00, 482.00, '/assets/maps/the_forge/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(69, 15, 'poiLabel', 'poi', 'Demo', 1256.00, 786.00, '/assets/maps/the_forge/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(70, 15, 'poiLabel', 'poi', 'Observation', 1044.00, 1366.00, '/assets/maps/the_forge/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(71, 15, 'poiLabel', 'poi', 'Range', 970.00, 905.00, '/assets/maps/the_forge/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(72, 15, 'poiLabel', 'poi', 'Monument', 1276.00, 1492.00, '/assets/maps/the_forge/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(73, 15, 'multiplayer_objective_domination', 'domination', 'Domination Zone A', 1004.00, 1517.00, '/assets/maps/the_forge/Marker_Objective_Domination.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(74, 15, 'multiplayer_objective_domination', 'domination', 'Domination Zone B', 1027.00, 983.00, '/assets/maps/the_forge/Marker_Objective_Domination.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(75, 15, 'multiplayer_objective_domination', 'domination', 'Domination Zone C', 1242.00, 580.00, '/assets/maps/the_forge/Marker_Objective_Domination.svg', 0, '{\"label\": \"C\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(76, 15, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 1', 1065.00, 1020.00, '/assets/maps/the_forge/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"1\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(77, 15, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 2', 785.00, 824.00, '/assets/maps/the_forge/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"2\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(78, 15, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 3', 1384.00, 1138.00, '/assets/maps/the_forge/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"3\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(79, 15, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 4', 842.00, 1292.00, '/assets/maps/the_forge/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"4\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(80, 15, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 5', 1338.00, 546.00, '/assets/maps/the_forge/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"5\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(81, 15, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 897.00, 1036.00, '/assets/maps/the_forge/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(82, 15, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 1299.00, 1284.00, '/assets/maps/the_forge/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(83, 15, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1017.00, 298.00, '/assets/maps/the_forge/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(84, 15, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 1251.00, 1736.00, '/assets/maps/the_forge/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
 
 --
 -- Indexes for dumped tables
@@ -381,7 +399,7 @@ ALTER TABLE `map_layers`
 -- AUTO_INCREMENT for table `map_markers`
 --
 ALTER TABLE `map_markers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- Constraints for dumped tables
