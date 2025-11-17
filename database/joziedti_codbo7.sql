@@ -156,7 +156,8 @@ INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image
 (13, 'retrieval', 'Retrieval', '/assets/maps/retrieval/Retrieval_Tac_Map_BLANK.webp', '/assets/maps/retrieval/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Alaska, United States of America', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (14, 'scar', 'Scar', '/assets/maps/scar/Scar_Tac_Map_BLANK.webp', '/assets/maps/scar/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Silverbrook, Alaska, United States of America', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (15, 'the_forge', 'The Forge', '/assets/maps/the_forge/The_Forge_Tac_Map_BLANK.webp', '/assets/maps/the_forge/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'Disruption', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
-(16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core');
+(16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
+(17, 'vandorn_farm', 'Ashes of the Damned', '/assets/maps/vandorn_farm/tiles/{z}/{x}/{y}.png', NULL, 'Zombies', 'Zombies', NULL, 'Germany', '{\"southwest\": [0, 0], \"northeast\": [8192, 8192]}', 'zombie');
 
 -- --------------------------------------------------------
 
@@ -211,6 +212,71 @@ INSERT INTO `map_layers` (`id`, `map_id`, `layer_key`, `layer_name`, `layer_type
 (30, 15, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/the_forge/Forge_Tac_Map_HP.webp', 0),
 (31, 16, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_DOM.webp', 0),
 (32, 16, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_HP.webp', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `map_tiles`
+--
+
+CREATE TABLE `map_tiles` (
+  `id` int NOT NULL,
+  `map_id` int NOT NULL,
+  `zoom_level` int NOT NULL,
+  `tile_x` int NOT NULL,
+  `tile_y` int NOT NULL,
+  `tile_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `map_tiles`
+--
+
+INSERT INTO `map_tiles` (`id`, `map_id`, `zoom_level`, `tile_x`, `tile_y`, `tile_url`) VALUES
+(1, 17, 1, 0, 0, '/assets/maps/vandorn_farm/tiles/1/0/0.png'),
+(2, 17, 1, 0, 1, '/assets/maps/vandorn_farm/tiles/1/0/1.png'),
+(3, 17, 1, 1, 0, '/assets/maps/vandorn_farm/tiles/1/1/0.png'),
+(4, 17, 1, 1, 1, '/assets/maps/vandorn_farm/tiles/1/1/1.png'),
+(5, 17, 2, 0, 0, '/assets/maps/vandorn_farm/tiles/2/0/0.png'),
+(6, 17, 2, 0, 1, '/assets/maps/vandorn_farm/tiles/2/0/1.png'),
+(7, 17, 2, 0, 2, '/assets/maps/vandorn_farm/tiles/2/0/2.png'),
+(8, 17, 2, 0, 3, '/assets/maps/vandorn_farm/tiles/2/0/3.png'),
+(9, 17, 2, 1, 0, '/assets/maps/vandorn_farm/tiles/2/1/0.png'),
+(10, 17, 2, 1, 1, '/assets/maps/vandorn_farm/tiles/2/1/1.png'),
+(11, 17, 2, 1, 2, '/assets/maps/vandorn_farm/tiles/2/1/2.png'),
+(12, 17, 2, 1, 3, '/assets/maps/vandorn_farm/tiles/2/1/3.png'),
+(13, 17, 2, 2, 0, '/assets/maps/vandorn_farm/tiles/2/2/0.png'),
+(14, 17, 2, 2, 1, '/assets/maps/vandorn_farm/tiles/2/2/1.png'),
+(15, 17, 2, 2, 2, '/assets/maps/vandorn_farm/tiles/2/2/2.png'),
+(16, 17, 2, 2, 3, '/assets/maps/vandorn_farm/tiles/2/2/3.png'),
+(17, 17, 2, 3, 0, '/assets/maps/vandorn_farm/tiles/2/3/0.png'),
+(18, 17, 2, 3, 1, '/assets/maps/vandorn_farm/tiles/2/3/1.png'),
+(19, 17, 2, 3, 2, '/assets/maps/vandorn_farm/tiles/2/3/2.png'),
+(20, 17, 2, 3, 3, '/assets/maps/vandorn_farm/tiles/2/3/3.png'),
+(21, 17, 3, 0, 6, '/assets/maps/vandorn_farm/tiles/3/0/6.png'),
+(22, 17, 3, 2, 4, '/assets/maps/vandorn_farm/tiles/3/2/4.png'),
+(23, 17, 3, 2, 5, '/assets/maps/vandorn_farm/tiles/3/2/5.png'),
+(24, 17, 3, 2, 6, '/assets/maps/vandorn_farm/tiles/3/2/6.png'),
+(25, 17, 3, 4, 4, '/assets/maps/vandorn_farm/tiles/3/4/4.png'),
+(26, 17, 3, 4, 6, '/assets/maps/vandorn_farm/tiles/3/4/6.png'),
+(27, 17, 3, 5, 5, '/assets/maps/vandorn_farm/tiles/3/5/5.png'),
+(28, 17, 3, 5, 6, '/assets/maps/vandorn_farm/tiles/3/5/6.png'),
+(29, 17, 4, 4, 13, '/assets/maps/vandorn_farm/tiles/4/4/13.png'),
+(30, 17, 4, 4, 14, '/assets/maps/vandorn_farm/tiles/4/4/14.png'),
+(31, 17, 4, 5, 13, '/assets/maps/vandorn_farm/tiles/4/5/13.png'),
+(32, 17, 4, 5, 14, '/assets/maps/vandorn_farm/tiles/4/5/14.png'),
+(33, 17, 4, 6, 13, '/assets/maps/vandorn_farm/tiles/4/6/13.png'),
+(34, 17, 4, 6, 14, '/assets/maps/vandorn_farm/tiles/4/6/14.png'),
+(35, 17, 4, 7, 12, '/assets/maps/vandorn_farm/tiles/4/7/12.png'),
+(36, 17, 4, 7, 13, '/assets/maps/vandorn_farm/tiles/4/7/13.png'),
+(37, 17, 4, 8, 13, '/assets/maps/vandorn_farm/tiles/4/8/13.png'),
+(38, 17, 5, 11, 3, '/assets/maps/vandorn_farm/tiles/5/11/3.png'),
+(39, 17, 5, 16, 22, '/assets/maps/vandorn_farm/tiles/5/16/22.png'),
+(40, 17, 5, 18, 23, '/assets/maps/vandorn_farm/tiles/5/18/23.png'),
+(41, 17, 5, 21, 25, '/assets/maps/vandorn_farm/tiles/5/21/25.png'),
+(42, 17, 5, 23, 24, '/assets/maps/vandorn_farm/tiles/5/23/24.png'),
+(43, 17, 5, 5, 2, '/assets/maps/vandorn_farm/tiles/5/5/2.png'),
+(44, 17, 5, 9, 6, '/assets/maps/vandorn_farm/tiles/5/9/6.png');
 
 -- --------------------------------------------------------
 
@@ -546,6 +612,14 @@ ALTER TABLE `map_layers`
   ADD KEY `map_id` (`map_id`);
 
 --
+-- Indexes for table `map_tiles`
+--
+ALTER TABLE `map_tiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `map_id` (`map_id`),
+  ADD KEY `zoom_level` (`zoom_level`);
+
+--
 -- Indexes for table `map_markers`
 --
 ALTER TABLE `map_markers`
@@ -573,13 +647,19 @@ ALTER TABLE `operators`
 -- AUTO_INCREMENT for table `maps`
 --
 ALTER TABLE `maps`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `map_layers`
 --
 ALTER TABLE `map_layers`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `map_tiles`
+--
+ALTER TABLE `map_tiles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `map_markers`
@@ -596,6 +676,12 @@ ALTER TABLE `map_markers`
 --
 ALTER TABLE `map_layers`
   ADD CONSTRAINT `map_layers_ibfk_1` FOREIGN KEY (`map_id`) REFERENCES `maps` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `map_tiles`
+--
+ALTER TABLE `map_tiles`
+  ADD CONSTRAINT `map_tiles_ibfk_1` FOREIGN KEY (`map_id`) REFERENCES `maps` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `map_markers`
