@@ -497,7 +497,16 @@ INSERT INTO `map_markers` (`id`, `map_id`, `category`, `marker_type`, `name`, `c
 (247, 8, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 1002.00, 923.00, '/assets/maps/hijacked/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (248, 8, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 748.00, 1090.00, '/assets/maps/hijacked/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (249, 8, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1660.00, 1027.00, '/assets/maps/hijacked/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
-(250, 8, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 402.00, 1027.00, '/assets/maps/hijacked/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
+(250, 8, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 402.00, 1027.00, '/assets/maps/hijacked/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+-- Paranoia Map Markers
+(251, 11, 'poiLabel', 'poi', 'Waiting Room', 1498.00, 1133.00, '/assets/maps/paranoia/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(252, 11, 'poiLabel', 'poi', 'Walkway', 1030.00, 1088.00, '/assets/maps/paranoia/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(253, 11, 'poiLabel', 'poi', 'Reception', 817.00, 978.00, '/assets/maps/paranoia/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(254, 11, 'multiplayer_objective_domination', 'domination', 'Domination Zone A', 1338.00, 1080.00, '/assets/maps/paranoia/Marker_Objective_Domination.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(255, 11, 'multiplayer_objective_domination', 'domination', 'Domination Zone B', 1027.00, 1005.00, '/assets/maps/paranoia/Marker_Objective_Domination.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(256, 11, 'multiplayer_objective_domination', 'domination', 'Domination Zone C', 675.00, 938.00, '/assets/maps/paranoia/Marker_Objective_Domination.svg', 0, '{\"label\": \"C\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(257, 11, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1669.00, 1250.00, '/assets/maps/paranoia/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(258, 11, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 417.00, 842.00, '/assets/maps/paranoia/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
 
 --
 -- Indexes for dumped tables
@@ -575,7 +584,7 @@ ALTER TABLE `map_layers`
 -- AUTO_INCREMENT for table `map_markers`
 --
 ALTER TABLE `map_markers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=251;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
 
 --
 -- Constraints for dumped tables
