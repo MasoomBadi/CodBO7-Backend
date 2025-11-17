@@ -321,7 +321,24 @@ INSERT INTO `map_markers` (`id`, `map_id`, `category`, `marker_type`, `name`, `c
 (81, 15, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 897.00, 1036.00, '/assets/maps/the_forge/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (82, 15, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 1299.00, 1284.00, '/assets/maps/the_forge/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (83, 15, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1017.00, 298.00, '/assets/maps/the_forge/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
-(84, 15, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 1251.00, 1736.00, '/assets/maps/the_forge/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
+(84, 15, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 1251.00, 1736.00, '/assets/maps/the_forge/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+-- Toshin Map Markers
+(85, 16, 'poiLabel', 'poi', 'Parking', 336.00, 1065.00, '/assets/maps/toshin/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(86, 16, 'poiLabel', 'poi', 'Apartment', 564.00, 1363.00, '/assets/maps/toshin/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(87, 16, 'poiLabel', 'poi', 'Station', 1040.00, 818.00, '/assets/maps/toshin/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(88, 16, 'poiLabel', 'poi', 'Monorail', 1040.00, 1336.00, '/assets/maps/toshin/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(89, 16, 'poiLabel', 'poi', 'Park', 1604.00, 1227.00, '/assets/maps/toshin/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(90, 16, 'multiplayer_objective_domination', 'domination', 'Domination Zone A', 403.00, 911.00, '/assets/maps/toshin/Marker_Objective_Domination.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(91, 16, 'multiplayer_objective_domination', 'domination', 'Domination Zone B', 1044.00, 1175.00, '/assets/maps/toshin/Marker_Objective_Domination.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(92, 16, 'multiplayer_objective_domination', 'domination', 'Domination Zone C', 1604.00, 1049.00, '/assets/maps/toshin/Marker_Objective_Domination.svg', 0, '{\"label\": \"C\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(93, 16, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 1', 1085.00, 1223.00, '/assets/maps/toshin/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"1\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(94, 16, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 2', 715.00, 1373.00, '/assets/maps/toshin/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"2\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(95, 16, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 3', 1277.00, 1164.00, '/assets/maps/toshin/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"3\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(96, 16, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 4', 883.00, 816.00, '/assets/maps/toshin/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"4\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(97, 16, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 1310.00, 806.00, '/assets/maps/toshin/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(98, 16, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 1218.00, 1371.00, '/assets/maps/toshin/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(99, 16, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 171.00, 1096.00, '/assets/maps/toshin/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(100, 16, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 1731.00, 1247.00, '/assets/maps/toshin/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
 
 --
 -- Indexes for dumped tables
@@ -399,7 +416,7 @@ ALTER TABLE `map_layers`
 -- AUTO_INCREMENT for table `map_markers`
 --
 ALTER TABLE `map_markers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- Constraints for dumped tables
