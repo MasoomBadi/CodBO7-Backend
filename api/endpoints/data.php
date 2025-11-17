@@ -61,6 +61,24 @@ try {
                         }
                         break;
 
+                    case 'game_modes':
+                        if (isset($row['is_new'])) {
+                            $row['is_new'] = (int)$row['is_new'];
+                        }
+                        if (isset($row['is_face_off'])) {
+                            $row['is_face_off'] = (int)$row['is_face_off'];
+                        }
+                        if (isset($row['has_scorestreaks'])) {
+                            $row['has_scorestreaks'] = (int)$row['has_scorestreaks'];
+                        }
+                        if (isset($row['has_respawns'])) {
+                            $row['has_respawns'] = (int)$row['has_respawns'];
+                        }
+                        if (isset($row['is_hardcore_available'])) {
+                            $row['is_hardcore_available'] = (int)$row['is_hardcore_available'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -144,6 +162,22 @@ try {
             // Convert boolean fields
             if (isset($row['zombie_playable'])) {
                 $row['zombie_playable'] = (int)$row['zombie_playable'];
+            }
+            // Game modes boolean fields
+            if (isset($row['is_new'])) {
+                $row['is_new'] = (int)$row['is_new'];
+            }
+            if (isset($row['is_face_off'])) {
+                $row['is_face_off'] = (int)$row['is_face_off'];
+            }
+            if (isset($row['has_scorestreaks'])) {
+                $row['has_scorestreaks'] = (int)$row['has_scorestreaks'];
+            }
+            if (isset($row['has_respawns'])) {
+                $row['has_respawns'] = (int)$row['has_respawns'];
+            }
+            if (isset($row['is_hardcore_available'])) {
+                $row['is_hardcore_available'] = (int)$row['is_hardcore_available'];
             }
 
             // Map-related table conversions
