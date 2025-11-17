@@ -141,7 +141,7 @@ CREATE TABLE `maps` (
 
 INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image_url`, `teams`, `modes`, `campaign_map`, `location`, `bounds`) VALUES
 (1, 'blackheart', 'Blackheart', '/assets/maps/blackheart/Blackheart_Tac_Map_BLANK1.webp', '/assets/maps/blackheart/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'Containment', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
-(2, 'cortex', 'Cortex', '/assets/maps/cortex/Cortex_Tac_Map_BLANK.webp', '/assets/maps/cortex/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Mediterranean Sea', '{\"southwest\": [655, 462], \"northeast\": [1386, 1742]}');
+(2, 'cortex', 'Cortex', '/assets/maps/cortex/Cortex_Tac_Map_BLANK.webp', '/assets/maps/cortex/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Mediterranean Sea', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}');
 
 -- --------------------------------------------------------
 
