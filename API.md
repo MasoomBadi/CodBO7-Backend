@@ -54,6 +54,10 @@ GET https://codbo7.masoombadi.top/api/version
 {
   "success": true,
   "data": {
+    "game_modes": {
+      "version": 1,
+      "schemaVersion": 1
+    },
     "icons": {
       "version": 1,
       "schemaVersion": 1
@@ -63,6 +67,10 @@ GET https://codbo7.masoombadi.top/api/version
       "schemaVersion": 1
     },
     "map_markers": {
+      "version": 1,
+      "schemaVersion": 1
+    },
+    "map_tiles": {
       "version": 1,
       "schemaVersion": 1
     },
@@ -271,8 +279,13 @@ GET https://codbo7.masoombadi.top/api/schema/operators
 
 **Available Tables:**
 - `data_versions`
-- `operators`
+- `game_modes`
 - `icons`
+- `operators`
+- `maps`
+- `map_layers`
+- `map_markers`
+- `map_tiles`
 
 **Example: Get data_versions schema**
 ```
@@ -298,6 +311,13 @@ GET https://codbo7.masoombadi.top/api/data/all
   "data": {
     "data_versions": [
       {
+        "category": "game_modes",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-17 00:00:00",
+        "description": "Multiplayer game modes"
+      },
+      {
         "category": "icons",
         "version": 1,
         "schema_version": 1,
@@ -317,6 +337,13 @@ GET https://codbo7.masoombadi.top/api/data/all
         "schema_version": 1,
         "last_updated": "2025-11-16 00:00:00",
         "description": "Interactive map markers and POIs"
+      },
+      {
+        "category": "map_tiles",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-17 00:00:00",
+        "description": "Tiled map data for zombie maps"
       },
       {
         "category": "maps",
@@ -339,6 +366,42 @@ GET https://codbo7.masoombadi.top/api/data/all
         "category": "operators",
         "name": "jsoc",
         "icon_url": "/assets/icons/jsoc.png"
+      }
+    ],
+    "game_modes": [
+      {
+        "id": 1,
+        "name": "overload",
+        "display_name": "Overload",
+        "mode_type": "Standard/Core/HC",
+        "match_time": "Varied",
+        "score_limit": "Varied",
+        "party_size": "1-6",
+        "team_size": "6v6",
+        "description": "Bring the device to enemy zones to sabotage them",
+        "icon_url": "/assets/modes/overload.webp",
+        "is_new": 1,
+        "is_face_off": 0,
+        "has_scorestreaks": 1,
+        "has_respawns": 1,
+        "is_hardcore_available": 1
+      },
+      {
+        "id": 2,
+        "name": "team_deathmatch",
+        "display_name": "Team Deathmatch",
+        "mode_type": "Standard/Core/HC",
+        "match_time": "10 min",
+        "score_limit": "100",
+        "party_size": "1-6",
+        "team_size": "6v6",
+        "description": "Eliminate enemies to earn score for your team",
+        "icon_url": "/assets/modes/team_deathmatch.webp",
+        "is_new": 0,
+        "is_face_off": 0,
+        "has_scorestreaks": 1,
+        "has_respawns": 1,
+        "is_hardcore_available": 1
       }
     ],
     "operators": [
@@ -412,10 +475,12 @@ GET https://codbo7.masoombadi.top/api/data/all
 - `data` (object) - Object with table names as keys
   - `data_versions` (array) - Version tracking data
   - `icons` (array) - Icon data
+  - `game_modes` (array) - Game mode data with match rules and properties
   - `operators` (array) - Operator data
   - `maps` (array) - Map data with teams, modes, campaign info
   - `map_layers` (array) - Map overlay layers (DOM, HP zones)
   - `map_markers` (array) - Map markers with coordinates
+  - `map_tiles` (array) - Tiled map data for large zombie maps
 - `message` (string|null) - Optional message
 
 ---
@@ -472,30 +537,116 @@ GET https://codbo7.masoombadi.top/api/data/operators
 
 **Available Tables:**
 - `data_versions`
-- `operators`
+- `game_modes`
 - `icons`
+- `operators`
 - `maps`
 - `map_layers`
 - `map_markers`
+- `map_tiles`
 
 **Examples:**
 ```
 GET /api/data/operators - Get all operators
 GET /api/data/icons - Get all icons
+GET /api/data/game_modes - Get all game modes (with boolean fields as integers)
 GET /api/data/data_versions - Get version tracking data
 GET /api/data/maps - Get all maps (with bounds as JSON)
 GET /api/data/map_layers - Get all map layers
 GET /api/data/map_markers - Get all map markers (with coordinates as floats, properties as JSON)
+GET /api/data/map_tiles - Get all map tiles
 ```
 
-**Note:** Map-related tables include automatic type conversions:
+**Note:** Tables include automatic type conversions:
+- `game_modes`: Boolean fields (`is_new`, `is_face_off`, `has_scorestreaks`, `has_respawns`, `is_hardcore_available`) as integers, `id` as integer
+- `operators`: `zombie_playable` as integer, `id` as integer
 - `maps`: `bounds` field is parsed as JSON object, `id` as integer
 - `map_layers`: `map_id` and `default_visible` as integers
 - `map_markers`: `map_id` and `hide_on_load` as integers, `coord_x`/`coord_y` as floats, `properties` as JSON object
+- `map_tiles`: `map_id`, `zoom_level`, `tile_x`, `tile_y` as integers
 
 ---
 
-### 7. Get All Maps with Markers
+### 7. Game Modes Data Structure
+
+The `game_modes` table contains all multiplayer game modes with their match rules and properties.
+
+**Endpoint:** `GET /api/data/game_modes`
+
+**Response Example:**
+```json
+{
+  "success": true,
+  "data": {
+    "table": "game_modes",
+    "data": [
+      {
+        "id": 1,
+        "name": "overload",
+        "display_name": "Overload",
+        "mode_type": "Standard/Core/HC",
+        "match_time": "Varied",
+        "score_limit": "Varied",
+        "party_size": "1-6",
+        "team_size": "6v6",
+        "description": "Bring the device to enemy zones to sabotage them",
+        "icon_url": "/assets/modes/overload.webp",
+        "is_new": 1,
+        "is_face_off": 0,
+        "has_scorestreaks": 1,
+        "has_respawns": 1,
+        "is_hardcore_available": 1
+      },
+      {
+        "id": 13,
+        "name": "face_off_domination",
+        "display_name": "Face Off Domination",
+        "mode_type": "Standard/Core/HC",
+        "match_time": "Varied",
+        "score_limit": "Varied",
+        "party_size": "1-6",
+        "team_size": "6v6",
+        "description": "Capture/hold objectives for score",
+        "icon_url": "/assets/modes/domination.webp",
+        "is_new": 0,
+        "is_face_off": 1,
+        "has_scorestreaks": 0,
+        "has_respawns": 1,
+        "is_hardcore_available": 1
+      }
+    ]
+  }
+}
+```
+
+**Game Modes Fields:**
+- `id` (integer) - Unique mode identifier
+- `name` (string) - URL-friendly mode name (e.g., "team_deathmatch", "overload")
+- `display_name` (string) - Human-readable mode name (e.g., "Team Deathmatch", "Overload")
+- `mode_type` (string) - Available variants: "Standard/Core/HC", "Standard/Core", or "-"
+- `match_time` (string) - Match duration (e.g., "10 min", "2 min/round", "Varied")
+- `score_limit` (string) - Score to win (e.g., "100", "6", "Varied")
+- `party_size` (string) - Party size range (e.g., "1-6", "1-2", "1-20")
+- `team_size` (string) - Team configuration (e.g., "6v6", "2v2", "20v20", "1vAll")
+- `description` (text) - Mode objective and rules
+- `icon_url` (string|null) - Path to mode icon image (WebP format)
+- `is_new` (integer) - 1 if new mode (Overload, Skirmish), 0 otherwise
+- `is_face_off` (integer) - 1 for Face Off variants, 0 for main modes
+- `has_scorestreaks` (integer) - 1 if scorestreaks enabled, 0 for Face Off modes
+- `has_respawns` (integer) - 1 for respawn modes, 0 for elimination modes (S&D, Gunfight)
+- `is_hardcore_available` (integer) - 1 if hardcore variant available, 0 for Control/Skirmish/Gunfight
+
+**Total Modes:** 16 (12 main modes + 4 Face Off variants)
+
+**Notable Modes:**
+- **Overload** (NEW) - 6v6 objective mode, bring device to enemy zones
+- **Skirmish** (NEW) - 20v20 large-scale combat
+- **Gunfight** - 2v2 elimination, preset classes, no respawns
+- **Face Off** modes - Small map variants with no Scorestreaks
+
+---
+
+### 8. Get All Maps with Markers
 Get all maps with their markers in GeoJSON format. Use this for initial map data sync.
 
 **Endpoint:** `GET /api/maps/all`
@@ -603,7 +754,7 @@ GET https://codbo7.masoombadi.top/api/maps/all
 
 ---
 
-### 8. Get Specific Map with Markers
+### 9. Get Specific Map with Markers
 Get a single map with its markers in GeoJSON format.
 
 **Endpoint:** `GET /api/maps/{mapName}`
@@ -876,9 +1027,13 @@ Current available categories:
 
 | Category | Description | Version |
 |----------|-------------|---------|
-| operators | Playable characters | 1 |
+| game_modes | Multiplayer game modes with match rules | 1 |
 | icons | Icons and emblems | 1 |
-| maps | Interactive map data and markers | 1 |
+| map_layers | Map overlay layers (DOM, HP zones) | 1 |
+| map_markers | Interactive map markers and POIs | 1 |
+| map_tiles | Tiled map data for large zombie maps | 1 |
+| maps | Interactive map base data | 1 |
+| operators | Playable characters | 1 |
 
 ---
 

@@ -40,6 +40,7 @@ CREATE TABLE `data_versions` (
 --
 
 INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`) VALUES
+('game_modes', 1, 1, '2025-11-17 00:00:00', 'Multiplayer game modes'),
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
 ('map_layers', 1, 1, '2025-11-16 00:00:00', 'Map overlay layers'),
 ('map_markers', 1, 1, '2025-11-16 00:00:00', 'Interactive map markers and POIs'),
@@ -68,6 +69,52 @@ INSERT INTO `icons` (`id`, `category`, `name`, `icon_url`) VALUES
 (1, 'operators', 'jsoc', '/assets/icons/jsoc.png'),
 (2, 'operators', 'guild', '/assets/icons/guild.png'),
 (3, 'operators', 'zombie', '/assets/icons/zombie.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game_modes`
+--
+
+CREATE TABLE `game_modes` (
+  `id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mode_type` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `match_time` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `score_limit` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `party_size` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `team_size` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_new` tinyint(1) NOT NULL DEFAULT '0',
+  `is_face_off` tinyint(1) NOT NULL DEFAULT '0',
+  `has_scorestreaks` tinyint(1) NOT NULL DEFAULT '1',
+  `has_respawns` tinyint(1) NOT NULL DEFAULT '1',
+  `is_hardcore_available` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `game_modes`
+--
+
+INSERT INTO `game_modes` (`id`, `name`, `display_name`, `mode_type`, `match_time`, `score_limit`, `party_size`, `team_size`, `description`, `icon_url`, `is_new`, `is_face_off`, `has_scorestreaks`, `has_respawns`, `is_hardcore_available`) VALUES
+(1, 'overload', 'Overload', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Bring the device to enemy zones to sabotage them', '/assets/modes/overload.webp', 1, 0, 1, 1, 1),
+(2, 'team_deathmatch', 'Team Deathmatch', 'Standard/Core/HC', '10 min', '100', '1-6', '6v6', 'Eliminate enemies to earn score for your team', '/assets/modes/team_deathmatch.webp', 0, 0, 1, 1, 1),
+(3, 'domination', 'Domination', 'Standard/Core/HC', 'Unlimited', '200', '1-6', '6v6', 'Capture, hold, defend objectives for score', '/assets/modes/domination.webp', 0, 0, 1, 1, 1),
+(4, 'search_destroy', 'Search & Destroy', 'Standard/Core/HC', '2 min/round', '6', '1-6', '6v6', 'Teams alternate attacking/defusing a bomb; no respawns', '/assets/modes/search_and_destroy.webp', 0, 0, 1, 0, 1),
+(5, 'kill_confirmed', 'Kill Confirmed', 'Standard/Core/HC', '10 min', '75', '1-6', '6v6', 'Collect dog tags for score, deny enemy score', '/assets/modes/kill_confirmed.webp', 0, 0, 1, 1, 1),
+(6, 'free_for_all', 'Free-For-All', 'Standard/Core/HC', '10 min', '30', '1', '1vAll', 'Every player for themselves; reach score limit to win', '/assets/modes/free_for_all.webp', 0, 0, 1, 1, 1),
+(7, 'hardpoint', 'Hardpoint', 'Standard/Core/HC', '5 min', '250', '1-6', '6v6', 'Capture and hold the Hardpoint area for points', '/assets/modes/hardpoint.webp', 0, 0, 1, 1, 1),
+(8, 'kill_order', 'Kill Order', 'Standard/Core/HC', '10 min', '150', '1-6', '6v6', 'Eliminate enemy HVT, keep yours alive for bonus score', '/assets/modes/kill_order.webp', 0, 0, 1, 1, 1),
+(9, 'control', 'Control', 'Standard/Core', '1.5 min/round', '2', '1-6', '6v6', 'Alternate attacking/defending zones, limited lives', '/assets/modes/control.webp', 0, 0, 1, 1, 0),
+(10, 'face_off_moshpit', 'Face Off Moshpit', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Various 6v6 respawn modes on small maps, Scorestreaks off', '/assets/modes/face_off.webp', 0, 0, 0, 1, 1),
+(11, 'skirmish', 'Skirmish', '-', 'Varied', 'Varied', '1-20', '20v20', 'Two teams of 20, compete for objectives and score', '/assets/modes/skirmish.webp', 1, 0, 1, 1, 0),
+(12, 'gunfight', 'Gunfight', '-', '40 sec', '6', '1-2', '2v2', 'Eliminate all enemies w/ preset classes, no respawns', '/assets/modes/gunfight.webp', 0, 0, 1, 0, 0),
+(13, 'face_off_domination', 'Face Off Domination', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Capture/hold objectives for score', '/assets/modes/domination.webp', 0, 1, 0, 1, 1),
+(14, 'face_off_team_deathmatch', 'Face Off Team Deathmatch', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Eliminate for score', '/assets/modes/team_deathmatch.webp', 0, 1, 0, 1, 1),
+(15, 'face_off_kill_order', 'Face Off Kill Order', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'HVT gameplay', '/assets/modes/kill_order.webp', 0, 1, 0, 1, 1),
+(16, 'face_off_kill_confirmed', 'Face Off Kill Confirmed', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Recover tags for points', '/assets/modes/kill_confirmed.webp', 0, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -158,7 +205,7 @@ INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image
 (14, 'scar', 'Scar', '/assets/maps/scar/Scar_Tac_Map_BLANK.webp', '/assets/maps/scar/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Silverbrook, Alaska, United States of America', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (15, 'the_forge', 'The Forge', '/assets/maps/the_forge/The_Forge_Tac_Map_BLANK.webp', '/assets/maps/the_forge/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'Disruption', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
-(17, 'vandorn_farm', 'Ashes of the Damned', '/assets/maps/vandorn_farm/tiles/{z}/{x}/{y}.png', '/assets/maps/vandorn_farm/cover.webp', 'Zombies', 'Zombies', NULL, 'Germany', '{\"southwest\": [0, 0], \"northeast\": [8192, 8192]}', 'zombie_big');
+(17, 'vandorn_farm', 'Ashes of the Damned', '/assets/maps/vandorn_farm/tiles/{z}/{x}/{y}.png', '/assets/maps/vandorn_farm/cover.webp', 'Zombies', 'Zombies', NULL, 'NA', '{\"southwest\": [0, 0], \"northeast\": [8192, 8192]}', 'zombie_big');
 
 -- --------------------------------------------------------
 
@@ -2012,6 +2059,13 @@ ALTER TABLE `icons`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `game_modes`
+--
+ALTER TABLE `game_modes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `operators`
 --
 ALTER TABLE `operators`
@@ -2056,6 +2110,12 @@ ALTER TABLE `map_markers`
 --
 ALTER TABLE `icons`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `game_modes`
+--
+ALTER TABLE `game_modes`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `operators`
