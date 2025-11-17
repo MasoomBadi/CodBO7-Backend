@@ -207,8 +207,8 @@ INSERT INTO `map_layers` (`id`, `map_id`, `layer_key`, `layer_name`, `layer_type
 (26, 13, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/retrieval/Retrieval_Tac_Map_HP.webp', 0),
 (27, 14, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/scar/Scar_Tac_Map_DOM.webp', 0),
 (28, 14, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/scar/Scar_Tac_Map_HP.webp', 0),
-(29, 15, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/the_forge/The_Forge_Tac_Map_DOM.webp', 0),
-(30, 15, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/the_forge/The_Forge_Tac_Map_HP.webp', 0),
+(29, 15, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/the_forge/Forge_Tac_Map_DOM.webp', 0),
+(30, 15, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/the_forge/Forge_Tac_Map_HP.webp', 0),
 (31, 16, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_DOM.webp', 0),
 (32, 16, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_HP.webp', 0);
 
