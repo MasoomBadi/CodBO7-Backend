@@ -38,7 +38,7 @@ try {
 
             // Determine sort order based on table
             $orderBy = "id";
-            if ($categoryName === 'map_layers' || $categoryName === 'map_markers') {
+            if ($categoryName === 'map_layers' || $categoryName === 'map_markers' || $categoryName === 'map_tiles') {
                 $orderBy = "map_id, id";
             }
 
@@ -93,6 +93,21 @@ try {
                         // Parse JSON properties field
                         if (isset($row['properties'])) {
                             $row['properties'] = json_decode($row['properties'], true);
+                        }
+                        break;
+
+                    case 'map_tiles':
+                        if (isset($row['map_id'])) {
+                            $row['map_id'] = (int)$row['map_id'];
+                        }
+                        if (isset($row['zoom_level'])) {
+                            $row['zoom_level'] = (int)$row['zoom_level'];
+                        }
+                        if (isset($row['tile_x'])) {
+                            $row['tile_x'] = (int)$row['tile_x'];
+                        }
+                        if (isset($row['tile_y'])) {
+                            $row['tile_y'] = (int)$row['tile_y'];
                         }
                         break;
                 }
@@ -155,6 +170,16 @@ try {
             }
             if (isset($row['properties'])) {
                 $row['properties'] = json_decode($row['properties'], true);
+            }
+            // For map_tiles table
+            if (isset($row['zoom_level'])) {
+                $row['zoom_level'] = (int)$row['zoom_level'];
+            }
+            if (isset($row['tile_x'])) {
+                $row['tile_x'] = (int)$row['tile_x'];
+            }
+            if (isset($row['tile_y'])) {
+                $row['tile_y'] = (int)$row['tile_y'];
             }
         }
 

@@ -43,6 +43,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
 ('map_layers', 1, 1, '2025-11-16 00:00:00', 'Map overlay layers'),
 ('map_markers', 1, 1, '2025-11-16 00:00:00', 'Interactive map markers and POIs'),
+('map_tiles', 1, 1, '2025-11-17 00:00:00', 'Tiled map data for zombie maps'),
 ('maps', 1, 1, '2025-11-16 00:00:00', 'Interactive map base data'),
 ('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters');
 
