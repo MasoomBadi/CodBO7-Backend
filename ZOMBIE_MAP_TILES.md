@@ -7,7 +7,7 @@ Zombie maps use a tiled rendering system for large 8192x8192 maps instead of a s
 
 ### `maps` Table
 Zombie maps are distinguished by:
-- `type = 'zombie'` (vs `'core'` for multiplayer)
+- `type = 'zombie_big'` (vs `'core'` for multiplayer)
 - `bounds = {"southwest": [0, 0], "northeast": [8192, 8192]}` (4x larger)
 - `base_image_url` contains tile pattern: `/assets/maps/{map_name}/tiles/{z}/{x}/{y}.png`
 
@@ -20,6 +20,23 @@ CREATE TABLE `map_tiles` (
   `tile_x` int NOT NULL,
   `tile_y` int NOT NULL,
   `tile_url` varchar(255) NOT NULL
+)
+```
+
+### `map_markers` Table
+Zombie markers use the same table structure as multiplayer markers:
+```sql
+CREATE TABLE `map_markers` (
+  `id` int NOT NULL,
+  `map_id` int NOT NULL,
+  `category` varchar(100) NOT NULL,
+  `marker_type` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `coord_x` decimal(10,2) NOT NULL,
+  `coord_y` decimal(10,2) NOT NULL,
+  `icon_url` varchar(255) DEFAULT NULL,
+  `hide_on_load` tinyint(1) DEFAULT 0,
+  `properties` JSON DEFAULT NULL
 )
 ```
 
@@ -37,8 +54,9 @@ Frontend scale (0.5f - 5f) maps to discrete zoom levels (1-5):
 
 **Note:** Not all tiles exist at all zoom levels. Only populated areas have tiles.
 
-## Vandorn Farm (Ashes of the Damned) Tile Distribution
+## Vandorn Farm (Ashes of the Damned) Data
 
+### Tile Distribution
 ```
 Zoom 1: 4 tiles (complete 2x2 grid)
 Zoom 2: 16 tiles (complete 4x4 grid)
@@ -47,6 +65,25 @@ Zoom 4: 9 tiles (sparse - only populated areas)
 Zoom 5: 7 tiles (sparse - highest detail for key areas)
 
 Total: 44 tiles
+```
+
+### Marker Distribution (97 total)
+```
+POI Labels: 6 (Ashwood, Blackwater Lake, Janus Towers Plaza, Vandorn Farm, Exit 115, Zarya Cosmodrome)
+Wall Buys: 27 (Various weapon purchases)
+Perks: 12 (Jugger-Nog, Double Tap, Speed Cola, Quick Revive, Stamin-UP, etc.)
+Fast Travel: 7 locations
+Exfil Points: 5 locations
+Ammo Caches: 15 locations
+Mystery Boxes: 4 locations
+Crafting Tables: 4 locations
+Arsenals: 5 locations
+Armor Vests: 5 locations
+Power Doors: 10 locations
+GobbleGum Machines: 4 locations
+Traps: 3 locations
+
+Total: 97 markers
 ```
 
 ## Frontend Implementation
@@ -88,7 +125,35 @@ const tiles = await fetch(`/api/maps/${mapId}/tiles?zoom=${zoomLevel}`);
 // Gracefully degrade to lower zoom level tiles if needed
 ```
 
-## API Endpoints Needed
+## API Endpoints
+
+### Available Endpoints
+
+```
+GET /api/data/all
+  - Returns all data including map_tiles and map_markers
+  - Includes proper type conversions (int for zoom_level, tile_x, tile_y)
+
+GET /api/data/map_tiles
+  - Returns all map tiles
+  - Sorted by map_id, id
+
+GET /api/data/map_markers
+  - Returns all map markers (multiplayer + zombie)
+  - Sorted by map_id, id
+
+GET /api/maps/{mapName}
+  - Returns map with markers in wrapped GeoJSON format
+  - Example: /api/maps/vandorn_farm
+
+GET /api/geojson/{mapName}
+  - Returns pure GeoJSON FeatureCollection (CoD API compatible)
+  - Content-Type: application/geo+json
+  - Properties include: mode, gameSelection, hideOnLoad, x, y, name, category
+  - Example: /api/geojson/vandorn_farm
+```
+
+### Future Endpoints (Optional)
 
 ```
 GET /api/maps/{mapId}/tiles
@@ -128,32 +193,72 @@ const zombieCoord = { x: 4096, y: 4096 }; // center
  '/assets/maps/vandorn_farm/tiles/{z}/{x}/{y}.png',
  NULL, 'Zombies', 'Zombies', NULL, 'Germany',
  '{"southwest": [0, 0], "northeast": [8192, 8192]}',
- 'zombie')
+ 'zombie_big')
 
 -- Sample tile entries
 (1, 17, 1, 0, 0, '/assets/maps/vandorn_farm/tiles/1/0/0.png')
 (2, 17, 1, 0, 1, '/assets/maps/vandorn_farm/tiles/1/0/1.png')
 ...
+
+-- Sample marker entries
+(1000, 17, 'poiLabel', 'poi', 'Ashwood', 4376, 4600, '/assets/maps/vandorn_farm/Marker_POIs.svg', 0, '[]')
+(1011, 17, 'zombies_perk_juggernog', 'perk', 'Jugger-Nog', 4126, 4519, '/assets/maps/vandorn_farm/ui_icon_perks_zm_juggernaut_lg.png', 0, '[]')
+...
 ```
 
 ## Zombie-Specific Markers
 
-Zombie maps use different marker categories:
-- `zombie_ammo` - Ammo boxes
-- `zombie_armor` - Armor stations
-- `zombie_arsenal` - Arsenal upgrade stations
-- `zombie_crafting` - Crafting tables
-- `zombie_exfil` - Exfil points
-- `zombie_fast_travel` - Fast travel teleporters
-- `zombie_gobble_gum` - GobbleGum machines
-- `zombie_mystery_box` - Mystery box locations
-- `zombie_perk` - Perk machines (with specific perk icon)
-- `zombie_power` - Power switches/doors
-- `zombie_trap` - Trap locations
-- `zombie_wall_buy` - Wall weapon purchases
-- `zombie_poi` - General points of interest
+### Marker Categories and Types
 
-Each perk machine can have a specific icon from:
-- `ui_icon_perks_double_tap_lg.png`
-- `ui_icon_perks_zm_juggernaut_lg.png`
-- etc. (12 total perk icons)
+Zombie maps use different marker categories than multiplayer maps:
+
+| Category | Marker Type | Icon | Count (Vandorn Farm) |
+|----------|-------------|------|----------------------|
+| `poiLabel` | `poi` | `Marker_POIs.svg` | 6 |
+| `zombies_wallBuys` | `wall_buy` | `WallBuy.svg` | 27 |
+| `zombies_fastTravel` | `fast_travel` | `FastTravel.svg` | 7 |
+| `zombies_exfil` | `exfil` | `ExfilRadio.svg` | 5 |
+| `zombies_traps` | `trap` | `Traps.svg` | 3 |
+| `zombies_ammo` | `ammo` | `Ammo.svg` | 15 |
+| `zombies_craftingTables` | `crafting` | `CraftingTable.svg` | 4 |
+| `zombies_mysteryBoxes` | `mystery_box` | `MysteryBox.svg` | 4 |
+| `zombies_arsenals` | `arsenal` | `Arsenal.svg` | 5 |
+| `zombies_armorVests` | `armor` | `Armor.svg` | 5 |
+| `zombies_powerDoors` | `power` | `PowerDoor.svg` | 10 |
+| `zombies_gobbleGumMachines` | `gobble_gum` | `GobbleGum.svg` | 4 |
+
+### Perk Machines
+
+Perk markers use specific category names with individual PNG icons:
+
+| Category | Name | Icon File |
+|----------|------|-----------|
+| `zombies_perk_juggernog` | Jugger-Nog | `ui_icon_perks_zm_juggernaut_lg.png` |
+| `zombies_perk_doubleTap` | Double Tap | `ui_icon_perks_double_tap_lg.png` |
+| `zombies_perk_speedCola` | Speed Cola | `ui_icon_perks_zm_speedloader_lg.png` |
+| `zombies_perk_quickRevive` | Quick Revive | `ui_icon_perks_zm_quickrevive_lg.png` |
+| `zombies_perk_staminUp` | Stamin-UP | `ui_icon_perks_zm_staminup_lg.png` |
+| `zombies_perk_vultureAid` | Vulture Aid | `ui_icon_perks_vulture_aid_lg.png` |
+| `zombies_perk_meleeMacchiato` | Melee Macchiato | `ui_icon_perks_melee_macchiato_lg.png` |
+| `zombies_perk_deathPerception` | Death Perception | `ui_icon_perks_zm_deathperception_lg.png` |
+| `zombies_perk_elementalPop` | Elemental Pop | `ui_icon_perks_zm_elemental_pop_lg.png` |
+| `zombies_perk_deadshotDaiquiri` | Deadshot Daiquiri | `ui_icon_perks_zm_deadshot_lg.png` |
+| `zombies_perk_wispTea` | Wisp Tea | `ui_icon_perks_wisp_tea_lg.png` |
+| `zombies_perk_phdFlopper` | PhD Flopper | `ui_icon_perks_zm_phdslider_lg.png` |
+
+All perk markers use `marker_type = 'perk'`
+
+## Parsing GeoJSON Markers
+
+Use the provided script to parse markers from official CoD GeoJSON format:
+
+```bash
+cd /home/user/CodBO7-Backend/scripts
+php parse_zombie_markers.php < vandorn_farm_markers.json > vandorn_farm_markers.sql
+```
+
+The script automatically:
+- Maps categories to marker types and icon URLs
+- Generates SQL INSERT statements with proper IDs
+- Handles perk-specific icon assignments
+- Updates AUTO_INCREMENT values
