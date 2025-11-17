@@ -392,7 +392,24 @@ INSERT INTO `map_markers` (`id`, `map_id`, `category`, `marker_type`, `name`, `c
 (148, 12, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 969.00, 1207.00, '/assets/maps/raid/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (149, 12, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 920.00, 639.00, '/assets/maps/raid/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (150, 12, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 366.00, 930.00, '/assets/maps/raid/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
-(151, 12, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 1679.00, 886.00, '/assets/maps/raid/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
+(151, 12, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 1679.00, 886.00, '/assets/maps/raid/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+-- Homestead Map Markers
+(152, 9, 'poiLabel', 'poi', 'Ambush', 628.00, 462.00, '/assets/maps/homestead/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(153, 9, 'poiLabel', 'poi', 'Cabin', 961.00, 905.00, '/assets/maps/homestead/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(154, 9, 'poiLabel', 'poi', 'Water', 703.00, 1375.00, '/assets/maps/homestead/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(155, 9, 'poiLabel', 'poi', 'Boathouse', 1248.00, 1378.00, '/assets/maps/homestead/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(156, 9, 'multiplayer_objective_domination', 'domination', 'Domination Zone A', 1078.00, 1101.00, '/assets/maps/homestead/Marker_Objective_Domination.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(157, 9, 'multiplayer_objective_domination', 'domination', 'Domination Zone B', 980.00, 765.00, '/assets/maps/homestead/Marker_Objective_Domination.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(158, 9, 'multiplayer_objective_domination', 'domination', 'Domination Zone C', 682.00, 583.00, '/assets/maps/homestead/Marker_Objective_Domination.svg', 0, '{\"label\": \"C\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(159, 9, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 1', 1021.00, 801.00, '/assets/maps/homestead/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"1\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(160, 9, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 2', 716.00, 1022.00, '/assets/maps/homestead/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"2\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(161, 9, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 3', 1137.00, 880.00, '/assets/maps/homestead/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"3\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(162, 9, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 4', 780.00, 586.00, '/assets/maps/homestead/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"4\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(163, 9, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 5', 1342.00, 1068.00, '/assets/maps/homestead/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"5\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(164, 9, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 1321.00, 1068.00, '/assets/maps/homestead/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(165, 9, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 656.00, 998.00, '/assets/maps/homestead/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(166, 9, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1267.00, 1563.00, '/assets/maps/homestead/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(167, 9, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 429.00, 357.00, '/assets/maps/homestead/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
 
 --
 -- Indexes for dumped tables
@@ -470,7 +487,7 @@ ALTER TABLE `map_layers`
 -- AUTO_INCREMENT for table `map_markers`
 --
 ALTER TABLE `map_markers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
 
 --
 -- Constraints for dumped tables
