@@ -183,7 +183,33 @@ INSERT INTO `map_layers` (`id`, `map_id`, `layer_key`, `layer_name`, `layer_type
 (3, 2, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/cortex/Cortex_Tac_Map_DOM.webp', 0),
 (4, 2, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/cortex/Cortex_Tac_Map_HP.webp', 0),
 (5, 3, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/exposure/Exposure_Tac_Map_DOM.webp', 0),
-(6, 3, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/exposure/Exposure_Tac_Map_HP.webp', 0);
+(6, 3, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/exposure/Exposure_Tac_Map_HP.webp', 0),
+(7, 4, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/colossus/Colossus_Tac_Map_DOM.webp', 0),
+(8, 4, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/colossus/Colossus_Tac_Map_HP.webp', 0),
+(9, 5, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/den/Den_Tac_Map_DOM.webp', 0),
+(10, 5, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/den/Den_Tac_Map_HP.webp', 0),
+(11, 6, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/express/Express_Tac_Map_DOM.webp', 0),
+(12, 6, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/express/Express_Tac_Map_HP.webp', 0),
+(13, 7, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/flagship/Flagship_Tac_Map_DOM.webp', 0),
+(14, 7, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/flagship/Flagship_Tac_Map_HP.webp', 0),
+(15, 8, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/hijacked/Hijacked_Tac_Map_DOM.webp', 0),
+(16, 8, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/hijacked/Hijacked_Tac_Map_HP.webp', 0),
+(17, 9, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/homestead/Homestead_Tac_Map_DOM.webp', 0),
+(18, 9, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/homestead/Homestead_Tac_Map_HP.webp', 0),
+(19, 10, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/imprint/Imprint_Tac_Map_DOM.webp', 0),
+(20, 10, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/imprint/Imprint_Tac_Map_HP.webp', 0),
+(21, 11, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/paranoia/Paranoia_Tac_Map_DOM.webp', 0),
+(22, 11, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/paranoia/Paranoia_Tac_Map_HP.webp', 0),
+(23, 12, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/raid/Raid_Tac_Map_DOM.webp', 0),
+(24, 12, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/raid/Raid_Tac_Map_HP.webp', 0),
+(25, 13, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/retrieval/Retrieval_Tac_Map_DOM.webp', 0),
+(26, 13, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/retrieval/Retrieval_Tac_Map_HP.webp', 0),
+(27, 14, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/scar/Scar_Tac_Map_DOM.webp', 0),
+(28, 14, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/scar/Scar_Tac_Map_HP.webp', 0),
+(29, 15, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/the_forge/The_Forge_Tac_Map_DOM.webp', 0),
+(30, 15, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/the_forge/The_Forge_Tac_Map_HP.webp', 0),
+(31, 16, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_DOM.webp', 0),
+(32, 16, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_HP.webp', 0);
 
 -- --------------------------------------------------------
 
@@ -331,7 +357,7 @@ ALTER TABLE `maps`
 -- AUTO_INCREMENT for table `map_layers`
 --
 ALTER TABLE `map_layers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `map_markers`
