@@ -48,11 +48,11 @@ Frontend scale (0.5f - 5f) maps to discrete zoom levels (1-5):
 |----------------|------------|-----------|-------------|
 | 0.5 - 1.0 | 1 | 2x2 (4 tiles) | Minimum zoom - overview |
 | 1.0 - 1.5 | 2 | 4x4 (16 tiles) | Low detail |
-| 1.5 - 2.5 | 3 | 8x8 (64 tiles max) | Medium detail |
-| 2.5 - 4.0 | 4 | 16x16 (256 tiles max) | High detail |
-| 4.0 - 5.0 | 5 | 32x32 (1024 tiles max) | Maximum zoom |
+| 1.5 - 2.5 | 3 | 8x8 (64 tiles) | Medium detail |
+| 2.5 - 4.0 | 4 | 16x16 (256 tiles) | High detail |
+| 4.0 - 5.0 | 5 | 32x32 (1,024 tiles) | Maximum zoom |
 
-**Note:** Not all tiles exist at all zoom levels. Only populated areas have tiles.
+**Note:** Vandorn Farm has complete tile coverage at all zoom levels for full map rendering without black areas.
 
 ## Vandorn Farm (Ashes of the Damned) Data
 
@@ -60,11 +60,11 @@ Frontend scale (0.5f - 5f) maps to discrete zoom levels (1-5):
 ```
 Zoom 1: 4 tiles (complete 2x2 grid)
 Zoom 2: 16 tiles (complete 4x4 grid)
-Zoom 3: 8 tiles (sparse - only populated areas)
-Zoom 4: 9 tiles (sparse - only populated areas)
-Zoom 5: 7 tiles (sparse - highest detail for key areas)
+Zoom 3: 64 tiles (complete 8x8 grid)
+Zoom 4: 256 tiles (complete 16x16 grid)
+Zoom 5: 1,024 tiles (complete 32x32 grid)
 
-Total: 44 tiles
+Total: 1,364 tiles
 ```
 
 ### Marker Distribution (97 total)
