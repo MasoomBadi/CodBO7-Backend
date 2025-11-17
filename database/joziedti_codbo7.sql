@@ -142,7 +142,20 @@ CREATE TABLE `maps` (
 INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image_url`, `teams`, `modes`, `campaign_map`, `location`, `bounds`) VALUES
 (1, 'blackheart', 'Blackheart', '/assets/maps/blackheart/Blackheart_Tac_Map_BLANK1.webp', '/assets/maps/blackheart/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'Containment', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
 (2, 'cortex', 'Cortex', '/assets/maps/cortex/Cortex_Tac_Map_BLANK.webp', '/assets/maps/cortex/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Mediterranean Sea', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
-(3, 'exposure', 'Exposure', '/assets/maps/exposure/Exposure_Tac_Map_BLANK.webp', '/assets/maps/exposure/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Outback, Australia', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}');
+(3, 'exposure', 'Exposure', '/assets/maps/exposure/Exposure_Tac_Map_BLANK.webp', '/assets/maps/exposure/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Outback, Australia', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(4, 'colossus', 'Colossus', '/assets/maps/colossus/Colossus_Tac_Map_BLANK.webp', '/assets/maps/colossus/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(5, 'den', 'Den', '/assets/maps/den/Den_Tac_Map_BLANK.webp', '/assets/maps/den/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(6, 'express', 'Express', '/assets/maps/express/Express_Tac_Map_BLANK.webp', '/assets/maps/express/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(7, 'flagship', 'Flagship', '/assets/maps/flagship/Flagship_Tac_Map_BLANK.webp', '/assets/maps/flagship/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(8, 'hijacked', 'Hijacked', '/assets/maps/hijacked/Hijacked_Tac_Map_BLANK.webp', '/assets/maps/hijacked/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(9, 'homestead', 'Homestead', '/assets/maps/homestead/Homestead_Tac_Map_BLANK.webp', '/assets/maps/homestead/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(10, 'imprint', 'Imprint', '/assets/maps/imprint/Imprint_Tac_Map_BLANK.webp', '/assets/maps/imprint/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(11, 'paranoia', 'Paranoia', '/assets/maps/paranoia/Paranoia_Tac_Map_BLANK.webp', '/assets/maps/paranoia/cover.webp', 'JSOC vs The Guilds', 'Domination only', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(12, 'raid', 'Raid', '/assets/maps/raid/Raid_Tac_Map_BLANK.webp', '/assets/maps/raid/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(13, 'retrieval', 'Retrieval', '/assets/maps/retrieval/Retrieval_Tac_Map_BLANK.webp', '/assets/maps/retrieval/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(14, 'scar', 'Scar', '/assets/maps/scar/Scar_Tac_Map_BLANK.webp', '/assets/maps/scar/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(15, 'the_forge', 'The Forge', '/assets/maps/the_forge/The_Forge_Tac_Map_BLANK.webp', '/assets/maps/the_forge/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}');
 
 -- --------------------------------------------------------
 
@@ -312,7 +325,7 @@ ALTER TABLE `operators`
 -- AUTO_INCREMENT for table `maps`
 --
 ALTER TABLE `maps`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `map_layers`
