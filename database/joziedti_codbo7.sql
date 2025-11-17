@@ -43,6 +43,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
 ('map_layers', 1, 1, '2025-11-16 00:00:00', 'Map overlay layers'),
 ('map_markers', 1, 1, '2025-11-16 00:00:00', 'Interactive map markers and POIs'),
+('map_tiles', 1, 1, '2025-11-17 00:00:00', 'Tiled map data for zombie maps'),
 ('maps', 1, 1, '2025-11-16 00:00:00', 'Interactive map base data'),
 ('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters');
 
@@ -156,7 +157,8 @@ INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image
 (13, 'retrieval', 'Retrieval', '/assets/maps/retrieval/Retrieval_Tac_Map_BLANK.webp', '/assets/maps/retrieval/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Alaska, United States of America', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (14, 'scar', 'Scar', '/assets/maps/scar/Scar_Tac_Map_BLANK.webp', '/assets/maps/scar/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Silverbrook, Alaska, United States of America', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (15, 'the_forge', 'The Forge', '/assets/maps/the_forge/The_Forge_Tac_Map_BLANK.webp', '/assets/maps/the_forge/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'Disruption', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
-(16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core');
+(16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
+(17, 'vandorn_farm', 'Ashes of the Damned', '/assets/maps/vandorn_farm/tiles/{z}/{x}/{y}.png', NULL, 'Zombies', 'Zombies', NULL, 'Germany', '{\"southwest\": [0, 0], \"northeast\": [8192, 8192]}', 'zombie_big');
 
 -- --------------------------------------------------------
 
@@ -207,10 +209,75 @@ INSERT INTO `map_layers` (`id`, `map_id`, `layer_key`, `layer_name`, `layer_type
 (26, 13, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/retrieval/Retrieval_Tac_Map_HP.webp', 0),
 (27, 14, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/scar/Scar_Tac_Map_DOM.webp', 0),
 (28, 14, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/scar/Scar_Tac_Map_HP.webp', 0),
-(29, 15, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/the_forge/The_Forge_Tac_Map_DOM.webp', 0),
-(30, 15, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/the_forge/The_Forge_Tac_Map_HP.webp', 0),
+(29, 15, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/the_forge/Forge_Tac_Map_DOM.webp', 0),
+(30, 15, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/the_forge/Forge_Tac_Map_HP.webp', 0),
 (31, 16, 'domination_zone', 'Domination Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_DOM.webp', 0),
 (32, 16, 'hardpoint_zone', 'Hardpoint Zone', 'overlay', '/assets/maps/toshin/Toshin_Tac_Map_HP.webp', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `map_tiles`
+--
+
+CREATE TABLE `map_tiles` (
+  `id` int NOT NULL,
+  `map_id` int NOT NULL,
+  `zoom_level` int NOT NULL,
+  `tile_x` int NOT NULL,
+  `tile_y` int NOT NULL,
+  `tile_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `map_tiles`
+--
+
+INSERT INTO `map_tiles` (`id`, `map_id`, `zoom_level`, `tile_x`, `tile_y`, `tile_url`) VALUES
+(1, 17, 1, 0, 0, '/assets/maps/vandorn_farm/tiles/1/0/0.png'),
+(2, 17, 1, 0, 1, '/assets/maps/vandorn_farm/tiles/1/0/1.png'),
+(3, 17, 1, 1, 0, '/assets/maps/vandorn_farm/tiles/1/1/0.png'),
+(4, 17, 1, 1, 1, '/assets/maps/vandorn_farm/tiles/1/1/1.png'),
+(5, 17, 2, 0, 0, '/assets/maps/vandorn_farm/tiles/2/0/0.png'),
+(6, 17, 2, 0, 1, '/assets/maps/vandorn_farm/tiles/2/0/1.png'),
+(7, 17, 2, 0, 2, '/assets/maps/vandorn_farm/tiles/2/0/2.png'),
+(8, 17, 2, 0, 3, '/assets/maps/vandorn_farm/tiles/2/0/3.png'),
+(9, 17, 2, 1, 0, '/assets/maps/vandorn_farm/tiles/2/1/0.png'),
+(10, 17, 2, 1, 1, '/assets/maps/vandorn_farm/tiles/2/1/1.png'),
+(11, 17, 2, 1, 2, '/assets/maps/vandorn_farm/tiles/2/1/2.png'),
+(12, 17, 2, 1, 3, '/assets/maps/vandorn_farm/tiles/2/1/3.png'),
+(13, 17, 2, 2, 0, '/assets/maps/vandorn_farm/tiles/2/2/0.png'),
+(14, 17, 2, 2, 1, '/assets/maps/vandorn_farm/tiles/2/2/1.png'),
+(15, 17, 2, 2, 2, '/assets/maps/vandorn_farm/tiles/2/2/2.png'),
+(16, 17, 2, 2, 3, '/assets/maps/vandorn_farm/tiles/2/2/3.png'),
+(17, 17, 2, 3, 0, '/assets/maps/vandorn_farm/tiles/2/3/0.png'),
+(18, 17, 2, 3, 1, '/assets/maps/vandorn_farm/tiles/2/3/1.png'),
+(19, 17, 2, 3, 2, '/assets/maps/vandorn_farm/tiles/2/3/2.png'),
+(20, 17, 2, 3, 3, '/assets/maps/vandorn_farm/tiles/2/3/3.png'),
+(21, 17, 3, 0, 6, '/assets/maps/vandorn_farm/tiles/3/0/6.png'),
+(22, 17, 3, 2, 4, '/assets/maps/vandorn_farm/tiles/3/2/4.png'),
+(23, 17, 3, 2, 5, '/assets/maps/vandorn_farm/tiles/3/2/5.png'),
+(24, 17, 3, 2, 6, '/assets/maps/vandorn_farm/tiles/3/2/6.png'),
+(25, 17, 3, 4, 4, '/assets/maps/vandorn_farm/tiles/3/4/4.png'),
+(26, 17, 3, 4, 6, '/assets/maps/vandorn_farm/tiles/3/4/6.png'),
+(27, 17, 3, 5, 5, '/assets/maps/vandorn_farm/tiles/3/5/5.png'),
+(28, 17, 3, 5, 6, '/assets/maps/vandorn_farm/tiles/3/5/6.png'),
+(29, 17, 4, 4, 13, '/assets/maps/vandorn_farm/tiles/4/4/13.png'),
+(30, 17, 4, 4, 14, '/assets/maps/vandorn_farm/tiles/4/4/14.png'),
+(31, 17, 4, 5, 13, '/assets/maps/vandorn_farm/tiles/4/5/13.png'),
+(32, 17, 4, 5, 14, '/assets/maps/vandorn_farm/tiles/4/5/14.png'),
+(33, 17, 4, 6, 13, '/assets/maps/vandorn_farm/tiles/4/6/13.png'),
+(34, 17, 4, 6, 14, '/assets/maps/vandorn_farm/tiles/4/6/14.png'),
+(35, 17, 4, 7, 12, '/assets/maps/vandorn_farm/tiles/4/7/12.png'),
+(36, 17, 4, 7, 13, '/assets/maps/vandorn_farm/tiles/4/7/13.png'),
+(37, 17, 4, 8, 13, '/assets/maps/vandorn_farm/tiles/4/8/13.png'),
+(38, 17, 5, 11, 3, '/assets/maps/vandorn_farm/tiles/5/11/3.png'),
+(39, 17, 5, 16, 22, '/assets/maps/vandorn_farm/tiles/5/16/22.png'),
+(40, 17, 5, 18, 23, '/assets/maps/vandorn_farm/tiles/5/18/23.png'),
+(41, 17, 5, 21, 25, '/assets/maps/vandorn_farm/tiles/5/21/25.png'),
+(42, 17, 5, 23, 24, '/assets/maps/vandorn_farm/tiles/5/23/24.png'),
+(43, 17, 5, 5, 2, '/assets/maps/vandorn_farm/tiles/5/5/2.png'),
+(44, 17, 5, 9, 6, '/assets/maps/vandorn_farm/tiles/5/9/6.png');
 
 -- --------------------------------------------------------
 
@@ -507,7 +574,106 @@ INSERT INTO `map_markers` (`id`, `map_id`, `category`, `marker_type`, `name`, `c
 (255, 11, 'multiplayer_objective_domination', 'domination', 'Domination Zone B', 1027.00, 1005.00, '/assets/maps/paranoia/Marker_Objective_Domination.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (256, 11, 'multiplayer_objective_domination', 'domination', 'Domination Zone C', 675.00, 938.00, '/assets/maps/paranoia/Marker_Objective_Domination.svg', 0, '{\"label\": \"C\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (257, 11, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1669.00, 1250.00, '/assets/maps/paranoia/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
-(258, 11, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 417.00, 842.00, '/assets/maps/paranoia/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
+(258, 11, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 417.00, 842.00, '/assets/maps/paranoia/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+
+-- Vandorn Farm Zombie Map Markers (97 total)
+(1000, 17, 'poiLabel', 'poi', 'Ashwood', 4376, 4600, '/assets/maps/vandorn_farm/Marker_POIs.svg', 0, '[]'),
+(1001, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (CODA 9 Pistol)', 3969, 498, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1002, 17, 'zombies_fastTravel', 'fast_travel', 'Fast Travel', 4048, 4668, '/assets/maps/vandorn_farm/FastTravel.svg', 0, '[]'),
+(1003, 17, 'zombies_exfil', 'exfil', 'Exfil', 4051, 4697, '/assets/maps/vandorn_farm/ExfilRadio.svg', 0, '[]'),
+(1004, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (M34 Novaline)', 4139, 4586, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1005, 17, 'zombies_traps', 'trap', 'Trap', 4057, 4460, '/assets/maps/vandorn_farm/Traps.svg', 0, '[]'),
+(1006, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 4392, 4672, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1007, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 4097, 4589, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1008, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 4743, 4669, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1009, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (X9 Maverick)', 4173, 4632, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1010, 17, 'zombies_craftingTables', 'crafting', 'Crafting Table', 4012, 4463, '/assets/maps/vandorn_farm/CraftingTable.svg', 0, '[]'),
+(1011, 17, 'zombies_perk_juggernog', 'perk', 'Jugger-Nog', 4126, 4519, '/assets/maps/vandorn_farm/ui_icon_perks_zm_juggernaut_lg.png', 0, '[]'),
+(1012, 17, 'zombies_fastTravel', 'fast_travel', 'Fast Travel', 4587, 4788, '/assets/maps/vandorn_farm/FastTravel.svg', 0, '[]'),
+(1013, 17, 'zombies_perk_doubleTap', 'perk', 'Double Tap', 4687, 4673, '/assets/maps/vandorn_farm/ui_icon_perks_double_tap_lg.png', 0, '[]'),
+(1014, 17, 'zombies_mysteryBoxes', 'mystery_box', 'Mystery Box', 4389, 4550, '/assets/maps/vandorn_farm/MysteryBox.svg', 0, '[]'),
+(1015, 17, 'zombies_arsenals', 'arsenal', 'Arsenal', 4754, 4543, '/assets/maps/vandorn_farm/Arsenal.svg', 0, '[]'),
+(1016, 17, 'zombies_armorVests', 'armor', 'Armor Vest', 4596, 4493, '/assets/maps/vandorn_farm/Armor.svg', 0, '[]'),
+(1017, 17, 'zombies_perk_vultureAid', 'perk', 'Vulture Aid', 4730, 4384, '/assets/maps/vandorn_farm/ui_icon_perks_vulture_aid_lg.png', 0, '[]'),
+(1018, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (VS Recon)', 4590, 4630, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1019, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (Akita)', 4716, 4322, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1020, 17, 'zombies_powerDoors', 'power', 'Power Door', 4566, 4893, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]'),
+(1021, 17, 'zombies_powerDoors', 'power', 'Power Door', 4478, 4188, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]'),
+(1022, 17, 'zombies_powerDoors', 'power', 'Power Door', 4259, 4203, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]'),
+(1023, 17, 'zombies_powerDoors', 'power', 'Power Door', 4261, 4881, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]'),
+(1024, 17, 'poiLabel', 'poi', 'Blackwater Lake', 3819, 2537, '/assets/maps/vandorn_farm/Marker_POIs.svg', 0, '[]'),
+(1025, 17, 'zombies_armorVests', 'armor', 'Armor Vest', 3690, 2466, '/assets/maps/vandorn_farm/Armor.svg', 0, '[]'),
+(1026, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (Dravec 45)', 3695, 2695, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1027, 17, 'zombies_perk_speedCola', 'perk', 'Speed Cola', 3697, 2591, '/assets/maps/vandorn_farm/ui_icon_perks_zm_speedloader_lg.png', 0, '[]'),
+(1028, 17, 'zombies_gobbleGumMachines', 'gobble_gum', 'GobbleGum Machine', 3683, 2722, '/assets/maps/vandorn_farm/GobbleGum.svg', 0, '[]'),
+(1029, 17, 'zombies_arsenals', 'arsenal', 'Arsenal', 3659, 2684, '/assets/maps/vandorn_farm/Arsenal.svg', 0, '[]'),
+(1030, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 3591, 2580, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1031, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 3771, 2725, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1032, 17, 'zombies_perk_meleeMacchiato', 'perk', 'Melee Macchiato', 3738, 2729, '/assets/maps/vandorn_farm/ui_icon_perks_melee_macchiato_lg.png', 0, '[]'),
+(1033, 17, 'zombies_fastTravel', 'fast_travel', 'Fast Travel', 3819, 2804, '/assets/maps/vandorn_farm/FastTravel.svg', 0, '[]'),
+(1034, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (M10 Breacher)', 3597, 2784, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1035, 17, 'zombies_craftingTables', 'crafting', 'Crafting Table', 3563, 2763, '/assets/maps/vandorn_farm/CraftingTable.svg', 0, '[]'),
+(1036, 17, 'zombies_mysteryBoxes', 'mystery_box', 'Mystery Box', 3476, 2616, '/assets/maps/vandorn_farm/MysteryBox.svg', 0, '[]'),
+(1037, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (M8A1)', 3526, 2469, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1038, 17, 'zombies_exfil', 'exfil', 'Exfil', 3978, 2707, '/assets/maps/vandorn_farm/ExfilRadio.svg', 0, '[]'),
+(1039, 17, 'zombies_powerDoors', 'power', 'Power Door', 3715, 3030, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]'),
+(1040, 17, 'poiLabel', 'poi', 'Janus Towers Plaza', 4049, 692, '/assets/maps/vandorn_farm/Marker_POIs.svg', 0, '[]'),
+(1041, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (CODA 9)', 3969, 498, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1042, 17, 'zombies_gobbleGumMachines', 'gobble_gum', 'GobbleGum Machine', 4118, 550, '/assets/maps/vandorn_farm/GobbleGum.svg', 0, '[]'),
+(1043, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 4044, 883, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1044, 17, 'zombies_perk_quickRevive', 'perk', 'Quick Revive', 4227, 885, '/assets/maps/vandorn_farm/ui_icon_perks_zm_quickrevive_lg.png', 0, '[]'),
+(1045, 17, 'zombies_fastTravel', 'fast_travel', 'Fast Travel', 3962, 624, '/assets/maps/vandorn_farm/FastTravel.svg', 0, '[]'),
+(1046, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (Warden 308)', 3915, 758, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1047, 17, 'poiLabel', 'poi', 'Vandorn Farm', 5089, 2438, '/assets/maps/vandorn_farm/Marker_POIs.svg', 0, '[]'),
+(1048, 17, 'zombies_fastTravel', 'fast_travel', 'Fast Travel', 4910, 2344, '/assets/maps/vandorn_farm/FastTravel.svg', 0, '[]'),
+(1049, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (Echo 12)', 4746, 2376, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1050, 17, 'zombies_armorVests', 'armor', 'Armor Vest', 4680, 2457, '/assets/maps/vandorn_farm/Armor.svg', 0, '[]'),
+(1051, 17, 'zombies_gobbleGumMachines', 'gobble_gum', 'GobbleGum Machine', 4745, 2582, '/assets/maps/vandorn_farm/GobbleGum.svg', 0, '[]'),
+(1052, 17, 'zombies_perk_staminUp', 'perk', 'Stamin-UP', 4750, 2643, '/assets/maps/vandorn_farm/ui_icon_perks_zm_staminup_lg.png', 0, '[]'),
+(1053, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (Peacekeeper MK1)', 4678, 2683, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1054, 17, 'zombies_traps', 'trap', 'Saw Blade Trap', 4936, 2536, '/assets/maps/vandorn_farm/Traps.svg', 0, '[]'),
+(1055, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (Ryden 45K)', 4952, 2631, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1056, 17, 'zombies_traps', 'trap', 'Crafting Table', 5018, 2632, '/assets/maps/vandorn_farm/Traps.svg', 0, '[]'),
+(1057, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 5046, 2681, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1058, 17, 'zombies_exfil', 'exfil', 'Exfil', 4627, 2509, '/assets/maps/vandorn_farm/ExfilRadio.svg', 0, '[]'),
+(1059, 17, 'zombies_perk_deathPerception', 'perk', 'Death Perception', 4981, 2734, '/assets/maps/vandorn_farm/ui_icon_perks_zm_deathperception_lg.png', 0, '[]'),
+(1060, 17, 'zombies_mysteryBoxes', 'mystery_box', 'Mystery Box', 4649, 2422, '/assets/maps/vandorn_farm/MysteryBox.svg', 0, '[]'),
+(1061, 17, 'zombies_powerDoors', 'power', 'Power Door', 5212, 2630, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]'),
+(1062, 17, 'zombies_arsenals', 'arsenal', 'Arsenal', 4706, 2654, '/assets/maps/vandorn_farm/Arsenal.svg', 0, '[]'),
+(1063, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (MK.78)', 4712, 2622, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1064, 17, 'poiLabel', 'poi', 'Exit 115', 3448, 7555, '/assets/maps/vandorn_farm/Marker_POIs.svg', 0, '[]'),
+(1065, 17, 'poiLabel', 'poi', 'Zarya Cosmodrome', 5052, 6675, '/assets/maps/vandorn_farm/Marker_POIs.svg', 0, '[]'),
+(1066, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 3515, 7261, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1067, 17, 'zombies_perk_elementalPop', 'perk', 'Elemental Pop', 3410, 7328, '/assets/maps/vandorn_farm/ui_icon_perks_zm_elemental_pop_lg.png', 0, '[]'),
+(1068, 17, 'zombies_traps', 'trap', 'Saw Blade Trap', 3556, 7341, '/assets/maps/vandorn_farm/Traps.svg', 0, '[]'),
+(1069, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (AK-27)', 3545, 7375, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1070, 17, 'zombies_gobbleGumMachines', 'gobble_gum', 'GobbleGum Machine', 3406, 7403, '/assets/maps/vandorn_farm/GobbleGum.svg', 0, '[]'),
+(1071, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 3482, 7666, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1072, 17, 'zombies_arsenals', 'arsenal', 'Arsenal', 3643, 7414, '/assets/maps/vandorn_farm/Arsenal.svg', 0, '[]'),
+(1073, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (Shadow SK)', 3265, 7418, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1074, 17, 'zombies_fastTravel', 'fast_travel', 'Fast Travel', 3270, 7473, '/assets/maps/vandorn_farm/FastTravel.svg', 0, '[]'),
+(1075, 17, 'zombies_craftingTables', 'crafting', 'Crafting Table', 3340, 7585, '/assets/maps/vandorn_farm/CraftingTable.svg', 0, '[]'),
+(1076, 17, 'zombies_perk_deadshotDaiquiri', 'perk', 'Deadshot Daiquiri', 3313, 7642, '/assets/maps/vandorn_farm/ui_icon_perks_zm_deadshot_lg.png', 0, '[]'),
+(1077, 17, 'zombies_armorVests', 'armor', 'Armor Vest', 3349, 7673, '/assets/maps/vandorn_farm/Armor.svg', 0, '[]'),
+(1078, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (XM325)', 3635, 7635, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1079, 17, 'zombies_exfil', 'exfil', 'Exfil', 3623, 7728, '/assets/maps/vandorn_farm/ExfilRadio.svg', 0, '[]'),
+(1080, 17, 'zombies_powerDoors', 'power', 'Power Door', 3482, 7106, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]'),
+(1081, 17, 'zombies_armorVests', 'armor', 'Armor Vest', 5238, 6384, '/assets/maps/vandorn_farm/Armor.svg', 0, '[]'),
+(1082, 17, 'zombies_perk_wispTea', 'perk', 'Wisp Tea', 5219, 6443, '/assets/maps/vandorn_farm/ui_icon_perks_wisp_tea_lg.png', 0, '[]'),
+(1083, 17, 'zombies_fastTravel', 'fast_travel', 'Fast Travel', 5132, 6464, '/assets/maps/vandorn_farm/FastTravel.svg', 0, '[]'),
+(1084, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 5153, 6528, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1085, 17, 'zombies_gobbleGumMachines', 'gobble_gum', 'GobbleGum Machine', 5154, 6568, '/assets/maps/vandorn_farm/GobbleGum.svg', 0, '[]'),
+(1086, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 5012, 6819, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1087, 17, 'zombies_ammo', 'ammo', 'Ammo Cache', 5412, 6761, '/assets/maps/vandorn_farm/Ammo.svg', 0, '[]'),
+(1088, 17, 'zombies_mysteryBoxes', 'mystery_box', 'Mystery Box', 5104, 6632, '/assets/maps/vandorn_farm/MysteryBox.svg', 0, '[]'),
+(1089, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (XR-3 ION)', 5423, 6674, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1090, 17, 'zombies_arsenals', 'arsenal', 'Arsenal', 5435, 6814, '/assets/maps/vandorn_farm/Arsenal.svg', 0, '[]'),
+(1091, 17, 'zombies_perk_phdFlopper', 'perk', 'PhD Flopper', 5370, 6861, '/assets/maps/vandorn_farm/ui_icon_perks_zm_phdslider_lg.png', 0, '[]'),
+(1092, 17, 'zombies_craftingTables', 'crafting', 'Crafting Table', 5188, 6628, '/assets/maps/vandorn_farm/CraftingTable.svg', 0, '[]'),
+(1093, 17, 'zombies_exfil', 'exfil', 'Exfil', 5074, 6757, '/assets/maps/vandorn_farm/ExfilRadio.svg', 0, '[]'),
+(1094, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (M15 Mod 0)', 5013, 6758, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1095, 17, 'zombies_wallBuys', 'wall_buy', 'Wall Buy (DS20 Mirage)', 5248, 6703, '/assets/maps/vandorn_farm/WallBuy.svg', 0, '[]'),
+(1096, 17, 'zombies_powerDoors', 'power', 'Power Door', 5448, 6306, '/assets/maps/vandorn_farm/PowerDoor.svg', 0, '[]');
 
 --
 -- Indexes for dumped tables
@@ -546,6 +712,14 @@ ALTER TABLE `map_layers`
   ADD KEY `map_id` (`map_id`);
 
 --
+-- Indexes for table `map_tiles`
+--
+ALTER TABLE `map_tiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `map_id` (`map_id`),
+  ADD KEY `zoom_level` (`zoom_level`);
+
+--
 -- Indexes for table `map_markers`
 --
 ALTER TABLE `map_markers`
@@ -573,7 +747,7 @@ ALTER TABLE `operators`
 -- AUTO_INCREMENT for table `maps`
 --
 ALTER TABLE `maps`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `map_layers`
@@ -582,10 +756,16 @@ ALTER TABLE `map_layers`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT for table `map_tiles`
+--
+ALTER TABLE `map_tiles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
 -- AUTO_INCREMENT for table `map_markers`
 --
 ALTER TABLE `map_markers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=259;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1097;
 
 --
 -- Constraints for dumped tables
@@ -596,6 +776,12 @@ ALTER TABLE `map_markers`
 --
 ALTER TABLE `map_layers`
   ADD CONSTRAINT `map_layers_ibfk_1` FOREIGN KEY (`map_id`) REFERENCES `maps` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `map_tiles`
+--
+ALTER TABLE `map_tiles`
+  ADD CONSTRAINT `map_tiles_ibfk_1` FOREIGN KEY (`map_id`) REFERENCES `maps` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `map_markers`
