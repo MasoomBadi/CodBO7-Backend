@@ -35,6 +35,10 @@ try {
     // Handle maps endpoint (e.g., /api/maps/all or /api/maps/blackheart)
     elseif ($path === 'maps' || strpos($path, 'maps/') === 0) {
         require __DIR__ . '/endpoints/maps.php';
+    }
+    // Handle geojson endpoint (e.g., /api/geojson/vandorn_farm)
+    elseif ($path === 'geojson' || strpos($path, 'geojson/') === 0) {
+        require __DIR__ . '/endpoints/geojson.php';
     } else {
         switch ($path) {
             case 'version':
@@ -54,7 +58,8 @@ try {
                         'GET /api/data/all' => 'Get all table data',
                         'GET /api/data/{tableName}' => 'Get data for a specific table',
                         'GET /api/maps/all' => 'Get all maps with markers in GeoJSON format',
-                        'GET /api/maps/{mapName}' => 'Get specific map with markers in GeoJSON format'
+                        'GET /api/maps/{mapName}' => 'Get specific map with markers in GeoJSON format',
+                        'GET /api/geojson/{mapName}' => 'Get pure GeoJSON FeatureCollection for map markers (CoD API compatible)'
                     ]
                 ], 'API is running');
                 break;
