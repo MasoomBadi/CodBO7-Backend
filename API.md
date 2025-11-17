@@ -364,6 +364,7 @@ GET https://codbo7.masoombadi.top/api/data/all
         "teams": "JSOC vs The Guilds",
         "modes": "All (except Skirmish)",
         "campaign_map": "Containment",
+        "location": "NA",
         "bounds": {"southwest": [0, 0], "northeast": [2048, 2048]}
       }
     ],
@@ -517,6 +518,7 @@ GET https://codbo7.masoombadi.top/api/maps/all
       "teams": "JSOC vs The Guilds",
       "modes": "All (except Skirmish)",
       "campaignMap": "Containment",
+      "location": "NA",
       "bounds": {
         "southwest": [0, 0],
         "northeast": [2048, 2048]
@@ -583,6 +585,7 @@ GET https://codbo7.masoombadi.top/api/maps/all
   - `{mapName}.teams` (string) - Team matchup (e.g., "JSOC vs The Guilds")
   - `{mapName}.modes` (string) - Available game modes
   - `{mapName}.campaignMap` (string) - Associated campaign map
+  - `{mapName}.location` (string) - Map location/region
   - `{mapName}.bounds` (object) - Map boundary coordinates
   - `{mapName}.layers` (array) - Overlay layers (DOM/HP zones)
   - `{mapName}.filters` (array) - Filter metadata for building toggle UI
@@ -622,6 +625,7 @@ GET https://codbo7.masoombadi.top/api/maps/blackheart
     "teams": "JSOC vs The Guilds",
     "modes": "All (except Skirmish)",
     "campaignMap": "Containment",
+    "location": "NA",
     "bounds": {
       "southwest": [0, 0],
       "northeast": [2048, 2048]
@@ -721,6 +725,7 @@ GET https://codbo7.masoombadi.top/api/maps/blackheart
 - `data.teams` (string) - Team matchup
 - `data.modes` (string) - Available game modes
 - `data.campaignMap` (string) - Associated campaign map
+- `data.location` (string) - Map location/region
 - `data.bounds` (object) - Map boundary coordinates for scaling
 - `data.layers` (array) - Overlay layers for toggling
 - `data.filters` (array) - Filter metadata for UI
