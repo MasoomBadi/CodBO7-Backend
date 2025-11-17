@@ -99,22 +99,22 @@ CREATE TABLE `game_modes` (
 --
 
 INSERT INTO `game_modes` (`id`, `name`, `display_name`, `mode_type`, `match_time`, `score_limit`, `party_size`, `team_size`, `description`, `icon_url`, `is_new`, `is_face_off`, `has_scorestreaks`, `has_respawns`, `is_hardcore_available`) VALUES
-(1, 'overload', 'Overload', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Bring the device to enemy zones to sabotage them', '/assets/modes/overload.png', 1, 0, 1, 1, 1),
-(2, 'team_deathmatch', 'Team Deathmatch', 'Standard/Core/HC', '10 min', '100', '1-6', '6v6', 'Eliminate enemies to earn score for your team', '/assets/modes/team_deathmatch.png', 0, 0, 1, 1, 1),
-(3, 'domination', 'Domination', 'Standard/Core/HC', 'Unlimited', '200', '1-6', '6v6', 'Capture, hold, defend objectives for score', '/assets/modes/domination.png', 0, 0, 1, 1, 1),
-(4, 'search_destroy', 'Search & Destroy', 'Standard/Core/HC', '2 min/round', '6', '1-6', '6v6', 'Teams alternate attacking/defusing a bomb; no respawns', '/assets/modes/search_destroy.png', 0, 0, 1, 0, 1),
-(5, 'kill_confirmed', 'Kill Confirmed', 'Standard/Core/HC', '10 min', '75', '1-6', '6v6', 'Collect dog tags for score, deny enemy score', '/assets/modes/kill_confirmed.png', 0, 0, 1, 1, 1),
-(6, 'free_for_all', 'Free-For-All', 'Standard/Core/HC', '10 min', '30', '1', '1vAll', 'Every player for themselves; reach score limit to win', '/assets/modes/free_for_all.png', 0, 0, 1, 1, 1),
-(7, 'hardpoint', 'Hardpoint', 'Standard/Core/HC', '5 min', '250', '1-6', '6v6', 'Capture and hold the Hardpoint area for points', '/assets/modes/hardpoint.png', 0, 0, 1, 1, 1),
-(8, 'kill_order', 'Kill Order', 'Standard/Core/HC', '10 min', '150', '1-6', '6v6', 'Eliminate enemy HVT, keep yours alive for bonus score', '/assets/modes/kill_order.png', 0, 0, 1, 1, 1),
-(9, 'control', 'Control', 'Standard/Core', '1.5 min/round', '2', '1-6', '6v6', 'Alternate attacking/defending zones, limited lives', '/assets/modes/control.png', 0, 0, 1, 1, 0),
-(10, 'face_off_moshpit', 'Face Off Moshpit', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Various 6v6 respawn modes on small maps, Scorestreaks off', '/assets/modes/face_off_moshpit.png', 0, 0, 0, 1, 1),
-(11, 'skirmish', 'Skirmish', '-', 'Varied', 'Varied', '1-20', '20v20', 'Two teams of 20, compete for objectives and score', '/assets/modes/skirmish.png', 1, 0, 1, 1, 0),
-(12, 'gunfight', 'Gunfight', '-', '40 sec', '6', '1-2', '2v2', 'Eliminate all enemies w/ preset classes, no respawns', '/assets/modes/gunfight.png', 0, 0, 1, 0, 0),
-(13, 'face_off_domination', 'Face Off Domination', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Capture/hold objectives for score', NULL, 0, 1, 0, 1, 1),
-(14, 'face_off_team_deathmatch', 'Face Off Team Deathmatch', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Eliminate for score', NULL, 0, 1, 0, 1, 1),
-(15, 'face_off_kill_order', 'Face Off Kill Order', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'HVT gameplay', NULL, 0, 1, 0, 1, 1),
-(16, 'face_off_kill_confirmed', 'Face Off Kill Confirmed', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Recover tags for points', NULL, 0, 1, 0, 1, 1);
+(1, 'overload', 'Overload', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Bring the device to enemy zones to sabotage them', '/assets/modes/overload.webp', 1, 0, 1, 1, 1),
+(2, 'team_deathmatch', 'Team Deathmatch', 'Standard/Core/HC', '10 min', '100', '1-6', '6v6', 'Eliminate enemies to earn score for your team', '/assets/modes/team_deathmatch.webp', 0, 0, 1, 1, 1),
+(3, 'domination', 'Domination', 'Standard/Core/HC', 'Unlimited', '200', '1-6', '6v6', 'Capture, hold, defend objectives for score', '/assets/modes/domination.webp', 0, 0, 1, 1, 1),
+(4, 'search_destroy', 'Search & Destroy', 'Standard/Core/HC', '2 min/round', '6', '1-6', '6v6', 'Teams alternate attacking/defusing a bomb; no respawns', '/assets/modes/search_and_destroy.webp', 0, 0, 1, 0, 1),
+(5, 'kill_confirmed', 'Kill Confirmed', 'Standard/Core/HC', '10 min', '75', '1-6', '6v6', 'Collect dog tags for score, deny enemy score', '/assets/modes/kill_confirmed.webp', 0, 0, 1, 1, 1),
+(6, 'free_for_all', 'Free-For-All', 'Standard/Core/HC', '10 min', '30', '1', '1vAll', 'Every player for themselves; reach score limit to win', '/assets/modes/free_for_all.webp', 0, 0, 1, 1, 1),
+(7, 'hardpoint', 'Hardpoint', 'Standard/Core/HC', '5 min', '250', '1-6', '6v6', 'Capture and hold the Hardpoint area for points', '/assets/modes/hardpoint.webp', 0, 0, 1, 1, 1),
+(8, 'kill_order', 'Kill Order', 'Standard/Core/HC', '10 min', '150', '1-6', '6v6', 'Eliminate enemy HVT, keep yours alive for bonus score', '/assets/modes/kill_order.webp', 0, 0, 1, 1, 1),
+(9, 'control', 'Control', 'Standard/Core', '1.5 min/round', '2', '1-6', '6v6', 'Alternate attacking/defending zones, limited lives', '/assets/modes/control.webp', 0, 0, 1, 1, 0),
+(10, 'face_off_moshpit', 'Face Off Moshpit', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Various 6v6 respawn modes on small maps, Scorestreaks off', '/assets/modes/face_off.webp', 0, 0, 0, 1, 1),
+(11, 'skirmish', 'Skirmish', '-', 'Varied', 'Varied', '1-20', '20v20', 'Two teams of 20, compete for objectives and score', '/assets/modes/skirmish.webp', 1, 0, 1, 1, 0),
+(12, 'gunfight', 'Gunfight', '-', '40 sec', '6', '1-2', '2v2', 'Eliminate all enemies w/ preset classes, no respawns', '/assets/modes/gunfight.webp', 0, 0, 1, 0, 0),
+(13, 'face_off_domination', 'Face Off Domination', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Capture/hold objectives for score', '/assets/modes/domination.webp', 0, 1, 0, 1, 1),
+(14, 'face_off_team_deathmatch', 'Face Off Team Deathmatch', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Eliminate for score', '/assets/modes/team_deathmatch.webp', 0, 1, 0, 1, 1),
+(15, 'face_off_kill_order', 'Face Off Kill Order', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'HVT gameplay', '/assets/modes/kill_order.webp', 0, 1, 0, 1, 1),
+(16, 'face_off_kill_confirmed', 'Face Off Kill Confirmed', 'Standard/Core/HC', 'Varied', 'Varied', '1-6', '6v6', 'Recover tags for points', '/assets/modes/kill_confirmed.webp', 0, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
