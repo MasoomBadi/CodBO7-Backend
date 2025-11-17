@@ -154,7 +154,7 @@ INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image
 (12, 'raid', 'Raid', '/assets/maps/raid/Raid_Tac_Map_BLANK.webp', '/assets/maps/raid/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
 (13, 'retrieval', 'Retrieval', '/assets/maps/retrieval/Retrieval_Tac_Map_BLANK.webp', '/assets/maps/retrieval/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
 (14, 'scar', 'Scar', '/assets/maps/scar/Scar_Tac_Map_BLANK.webp', '/assets/maps/scar/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
-(15, 'the_forge', 'The Forge', '/assets/maps/the_forge/The_Forge_Tac_Map_BLANK.webp', '/assets/maps/the_forge/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
+(15, 'the_forge', 'The Forge', '/assets/maps/the_forge/The_Forge_Tac_Map_BLANK.webp', '/assets/maps/the_forge/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'Disruption', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}'),
 (16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'NA', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}');
 
 -- --------------------------------------------------------
