@@ -18,7 +18,7 @@ try {
         $allMaps = [];
 
         // Get all maps
-        $stmt = $db->query("SELECT id, name, display_name, base_image_url, cover_image_url, teams, modes, campaign_map, bounds FROM maps ORDER BY name");
+        $stmt = $db->query("SELECT id, name, display_name, base_image_url, cover_image_url, teams, modes, campaign_map, location, bounds FROM maps ORDER BY name");
         $maps = $stmt->fetchAll();
 
         foreach ($maps as $map) {
@@ -94,6 +94,7 @@ try {
                 'teams' => $map['teams'],
                 'modes' => $map['modes'],
                 'campaignMap' => $map['campaign_map'],
+                'location' => $map['location'],
                 'bounds' => json_decode($map['bounds'], true),
                 'layers' => $layersData,
                 'filters' => array_values($filterConfig),
@@ -110,7 +111,7 @@ try {
         // Return specific map with layers and markers
 
         // Get map details
-        $stmt = $db->prepare("SELECT id, name, display_name, base_image_url, cover_image_url, teams, modes, campaign_map, bounds FROM maps WHERE name = ?");
+        $stmt = $db->prepare("SELECT id, name, display_name, base_image_url, cover_image_url, teams, modes, campaign_map, location, bounds FROM maps WHERE name = ?");
         $stmt->execute([$mapName]);
         $map = $stmt->fetch();
 
@@ -189,6 +190,7 @@ try {
             'teams' => $map['teams'],
             'modes' => $map['modes'],
             'campaignMap' => $map['campaign_map'],
+            'location' => $map['location'],
             'bounds' => json_decode($map['bounds'], true),
             'layers' => $layersData,
             'filters' => array_values($filterConfig),
