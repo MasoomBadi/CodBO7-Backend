@@ -409,7 +409,24 @@ INSERT INTO `map_markers` (`id`, `map_id`, `category`, `marker_type`, `name`, `c
 (164, 9, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 1321.00, 1068.00, '/assets/maps/homestead/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (165, 9, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 656.00, 998.00, '/assets/maps/homestead/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
 (166, 9, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 1267.00, 1563.00, '/assets/maps/homestead/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
-(167, 9, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 429.00, 357.00, '/assets/maps/homestead/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
+(167, 9, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 429.00, 357.00, '/assets/maps/homestead/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+-- Retrieval Map Markers
+(168, 13, 'poiLabel', 'poi', 'River', 510.00, 985.00, '/assets/maps/retrieval/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(169, 13, 'poiLabel', 'poi', 'Hillside', 952.00, 790.00, '/assets/maps/retrieval/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(170, 13, 'poiLabel', 'poi', 'Wing', 976.00, 1103.00, '/assets/maps/retrieval/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(171, 13, 'poiLabel', 'poi', 'Shoreline', 985.00, 1283.00, '/assets/maps/retrieval/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(172, 13, 'poiLabel', 'poi', 'Glacier', 1496.00, 1078.00, '/assets/maps/retrieval/Marker_POIs.svg', 0, '{\"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(173, 13, 'multiplayer_objective_domination', 'domination', 'Domination Zone A', 732.00, 918.00, '/assets/maps/retrieval/Marker_Objective_Domination.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(174, 13, 'multiplayer_objective_domination', 'domination', 'Domination Zone B', 1060.00, 1067.00, '/assets/maps/retrieval/Marker_Objective_Domination.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(175, 13, 'multiplayer_objective_domination', 'domination', 'Domination Zone C', 1368.00, 1007.00, '/assets/maps/retrieval/Marker_Objective_Domination.svg', 0, '{\"label\": \"C\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(176, 13, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 1', 1097.00, 1113.00, '/assets/maps/retrieval/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"1\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(177, 13, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 2', 775.00, 961.00, '/assets/maps/retrieval/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"2\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(178, 13, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 3', 1257.00, 1231.00, '/assets/maps/retrieval/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"3\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(179, 13, 'multiplayer_objective_hardpoint', 'hardpoint', 'Hardpoint 4', 1132.00, 782.00, '/assets/maps/retrieval/Marker_Objective_Hardpoint.svg', 0, '{\"label\": \"4\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(180, 13, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site A', 1247.00, 1261.00, '/assets/maps/retrieval/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"A\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(181, 13, 'multiplayer_objective_searchAndDestroy', 'snd', 'Search and Destroy Site B', 1067.00, 929.00, '/assets/maps/retrieval/Marker_Objective_SearchAndDestroy.svg', 0, '{\"label\": \"B\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(182, 13, 'multiplayer_mainSpawnLocation', 'spawn', 'JSOC Spawn', 355.00, 914.00, '/assets/maps/retrieval/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"JSOC\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}'),
+(183, 13, 'multiplayer_mainSpawnLocation', 'spawn', 'GUILD Spawn', 1674.00, 1150.00, '/assets/maps/retrieval/Marker_MainSpawnLocations.svg', 0, '{\"team\": \"Guild\", \"mode\": \"multiplayer\", \"gameSelection\": \"bo7\"}');
 
 --
 -- Indexes for dumped tables
@@ -487,7 +504,7 @@ ALTER TABLE `map_layers`
 -- AUTO_INCREMENT for table `map_markers`
 --
 ALTER TABLE `map_markers`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=168;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 
 --
 -- Constraints for dumped tables
