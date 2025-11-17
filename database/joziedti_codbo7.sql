@@ -205,7 +205,7 @@ INSERT INTO `maps` (`id`, `name`, `display_name`, `base_image_url`, `cover_image
 (14, 'scar', 'Scar', '/assets/maps/scar/Scar_Tac_Map_BLANK.webp', '/assets/maps/scar/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Silverbrook, Alaska, United States of America', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (15, 'the_forge', 'The Forge', '/assets/maps/the_forge/The_Forge_Tac_Map_BLANK.webp', '/assets/maps/the_forge/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'Disruption', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
 (16, 'toshin', 'Toshin', '/assets/maps/toshin/Toshin_Tac_Map_BLANK.webp', '/assets/maps/toshin/cover.webp', 'JSOC vs The Guilds', 'All (except Skirmish)', 'NA', 'Japan', '{\"southwest\": [0, 0], \"northeast\": [2048, 2048]}', 'core'),
-(17, 'vandorn_farm', 'Ashes of the Damned', '/assets/maps/vandorn_farm/tiles/{z}/{x}/{y}.png', '/assets/maps/vandorn_farm/cover.webp', 'Zombies', 'Zombies', NULL, 'Germany', '{\"southwest\": [0, 0], \"northeast\": [8192, 8192]}', 'zombie_big');
+(17, 'vandorn_farm', 'Ashes of the Damned', '/assets/maps/vandorn_farm/tiles/{z}/{x}/{y}.png', '/assets/maps/vandorn_farm/cover.webp', 'Zombies', 'Zombies', NULL, 'NA', '{\"southwest\": [0, 0], \"northeast\": [8192, 8192]}', 'zombie_big');
 
 -- --------------------------------------------------------
 
