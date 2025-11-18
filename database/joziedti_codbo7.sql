@@ -50,7 +50,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters'),
 ('perks', 1, 1, '2025-11-18 00:00:00', 'Multiplayer perk system for loadout customization'),
 ('scorestreaks', 1, 1, '2025-11-18 00:00:00', 'Scorestreaks with overclock upgrades'),
-('tacticals_mp', 1, 1, '2025-11-18 00:00:00', 'Multiplayer tactical equipment with overclock upgrades'),
+('tacticals_mp', 1, 1, '2025-11-18 00:00:00', 'Tactical equipment for multiplayer and zombies modes'),
 ('wildcards', 1, 1, '2025-11-18 00:00:00', 'Wildcards for loadout customization');
 
 -- --------------------------------------------------------
@@ -353,6 +353,8 @@ CREATE TABLE `tacticals_mp` (
   `id` int NOT NULL,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `available_multiplayer` tinyint(1) NOT NULL DEFAULT '0',
+  `available_zombies` tinyint(1) NOT NULL DEFAULT '0',
   `unlock_level` int NOT NULL,
   `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -369,16 +371,18 @@ CREATE TABLE `tacticals_mp` (
 -- Dumping data for table `tacticals_mp`
 --
 
-INSERT INTO `tacticals_mp` (`id`, `name`, `display_name`, `unlock_level`, `unlock_label`, `description`, `overclock_1`, `overclock_2`, `icon_url`, `icon_hud_url`, `icon_o1_url`, `icon_o2_url`, `sort_order`) VALUES
-(1, 'emp_grenade', 'EMP Grenade', 0, 'Default', 'Disables or destroys electronics. Effective against Equipment, Scorestreaks, and players.', 'Increased disruption radius.', 'Cook for extra EMP bursts.', '/assets/tacticals_mp/emp_grenade.webp', '/assets/tacticals_mp/emp_grenade_hud.webp', '/assets/tacticals_mp/emp_grenade_o1.webp', '/assets/tacticals_mp/emp_grenade_o2.webp', 1),
-(2, 'stun_grenade', 'Stun Grenade', 0, 'Default', 'Slows victim\'s movement and aiming.', 'Increased stun duration.', 'Slows enemy movement speed when stunned.', '/assets/tacticals_mp/stun_grenade.webp', '/assets/tacticals_mp/stun_grenade_hud.webp', '/assets/tacticals_mp/stun_grenade_o1.webp', '/assets/tacticals_mp/stun_grenade_o2.webp', 2),
-(3, 'flashbang', 'Flashbang', 6, 'Level 6', 'Blinds and deafens targets.', 'Wider full flash angle; harder to counter by looking away.', 'Adds ability to cook for additional detonations.', '/assets/tacticals_mp/flashbang.webp', '/assets/tacticals_mp/flashbang_hud.webp', '/assets/tacticals_mp/flashbang_o1.webp', '/assets/tacticals_mp/flashbang_o2.webp', 3),
-(4, 'pinpoint_grenade', 'Pinpoint Grenade', 8, 'Level 8', 'Detects enemies within range; close targets shot with tracking devices removable by victims.', 'AI chip increases grenade lifetime and detection radius.', 'Tagged enemies appear on allied minimaps.', '/assets/tacticals_mp/pinpoint_grenade.webp', '/assets/tacticals_mp/pinpoint_grenade_hud.webp', '/assets/tacticals_mp/pinpoint_grenade_o1.webp', '/assets/tacticals_mp/pinpoint_grenade_o2.webp', 4),
-(5, 'stim_shot', 'Stim Shot', 21, 'Level 21', 'Military stimulant that quickly heals combat wounds.', 'Adds ability to remove player debuffs.', 'Adds a move speed boost.', '/assets/tacticals_mp/stim_shot.webp', '/assets/tacticals_mp/stim_shot_hud.webp', '/assets/tacticals_mp/stim_shot_o1.webp', '/assets/tacticals_mp/stim_shot_o2.webp', 5),
-(6, 'psych_grenade', 'Psych Grenade', 29, 'Level 29', 'Explodes on impact releasing hallucinogenic gas cloud.', 'Increases duration enemies are affected by gas.', 'Gas deals damage over time.', '/assets/tacticals_mp/psych_grenade.webp', '/assets/tacticals_mp/psych_grenade_hud.webp', '/assets/tacticals_mp/psych_grenade_o1.webp', '/assets/tacticals_mp/psych_grenade_o2.webp', 6),
-(7, 'smoke', 'Smoke Grenade', 35, 'Level 35', 'Deploys a smoke screen that blocks vision and automated targeting systems.', NULL, NULL, '/assets/tacticals_mp/smoke.webp', NULL, NULL, NULL, 7),
-(8, 'hunter_bot', 'Hunter Bot', 42, 'Level 42', 'Personal defense drone; targets enemy equipment, field upgrades, and Scorestreaks. Counters grenades.', NULL, NULL, '/assets/tacticals_mp/hunter_bot.webp', NULL, NULL, NULL, 8),
-(9, 'decoy', 'Decoy Grenade', 50, 'Level 50', 'Grenade that simulates gunfire sounds to confuse enemies. Sticks to surfaces.', NULL, NULL, '/assets/tacticals_mp/decoy.webp', NULL, NULL, NULL, 9);
+INSERT INTO `tacticals_mp` (`id`, `name`, `display_name`, `available_multiplayer`, `available_zombies`, `unlock_level`, `unlock_label`, `description`, `overclock_1`, `overclock_2`, `icon_url`, `icon_hud_url`, `icon_o1_url`, `icon_o2_url`, `sort_order`) VALUES
+(1, 'emp_grenade', 'EMP Grenade', 1, 1, 0, 'Default', 'Disables or destroys electronics. Effective against Equipment, Scorestreaks, and players.', 'Increased disruption radius.', 'Cook for up to three extra EMP bursts.', '/assets/tacticals_mp/emp_grenade.webp', '/assets/tacticals_mp/emp_grenade_hud.webp', '/assets/tacticals_mp/emp_grenade_o1.webp', '/assets/tacticals_mp/emp_grenade_o2.webp', 1),
+(2, 'stun_grenade', 'Stun Grenade', 1, 1, 0, 'Default', 'Slows victim\'s movement and aiming.', 'Increased stun duration.', 'Slows enemy movement speed when stunned.', '/assets/tacticals_mp/stun_grenade.webp', '/assets/tacticals_mp/stun_grenade_hud.webp', '/assets/tacticals_mp/stun_grenade_o1.webp', '/assets/tacticals_mp/stun_grenade_o2.webp', 2),
+(3, 'flashbang', 'Flashbang', 1, 0, 6, 'Level 6', 'Blinds and deafens targets.', 'Wider full flash angle; harder to counter by looking away.', 'Adds ability to cook for additional detonations.', '/assets/tacticals_mp/flashbang.webp', '/assets/tacticals_mp/flashbang_hud.webp', '/assets/tacticals_mp/flashbang_o1.webp', '/assets/tacticals_mp/flashbang_o2.webp', 3),
+(4, 'pinpoint_grenade', 'Pinpoint Grenade', 1, 0, 8, 'Level 8', 'Detects enemies within range; close targets shot with tracking devices removable by victims.', 'AI chip increases grenade lifetime and detection radius.', 'Tagged enemies appear on allied minimaps.', '/assets/tacticals_mp/pinpoint_grenade.webp', '/assets/tacticals_mp/pinpoint_grenade_hud.webp', '/assets/tacticals_mp/pinpoint_grenade_o1.webp', '/assets/tacticals_mp/pinpoint_grenade_o2.webp', 4),
+(5, 'stim_shot', 'Stim Shot', 1, 1, 21, 'Level 21', 'Military stimulant that quickly heals combat wounds.', 'Adds ability to remove player debuffs.', 'Adds a move speed boost.', '/assets/tacticals_mp/stim_shot.webp', '/assets/tacticals_mp/stim_shot_hud.webp', '/assets/tacticals_mp/stim_shot_o1.webp', '/assets/tacticals_mp/stim_shot_o2.webp', 5),
+(6, 'psych_grenade', 'Psych Grenade', 1, 1, 29, 'Level 29', 'Explodes on impact releasing hallucinogenic gas cloud.', 'Increases duration enemies are affected by gas.', 'Gas deals damage over time.', '/assets/tacticals_mp/psych_grenade.webp', '/assets/tacticals_mp/psych_grenade_hud.webp', '/assets/tacticals_mp/psych_grenade_o1.webp', '/assets/tacticals_mp/psych_grenade_o2.webp', 6),
+(7, 'smoke', 'Smoke Grenade', 1, 0, 35, 'Level 35', 'Deploys a smoke screen that blocks vision and automated targeting systems.', NULL, NULL, '/assets/tacticals_mp/smoke.webp', NULL, NULL, NULL, 7),
+(8, 'hunter_bot', 'Hunter Bot', 1, 1, 42, 'Level 42', 'Personal defense drone; targets enemy equipment, field upgrades, and Scorestreaks. Counters grenades.', NULL, NULL, '/assets/tacticals_mp/hunter_bot.webp', NULL, NULL, NULL, 8),
+(9, 'decoy', 'Decoy Grenade', 1, 1, 50, 'Level 50', 'Grenade that simulates gunfire sounds to confuse enemies. Sticks to surfaces.', NULL, NULL, '/assets/tacticals_mp/decoy.webp', NULL, NULL, NULL, 9),
+(10, 'cymbal_monkey', 'Cymbal Monkey', 0, 1, 24, 'Level 24', 'Attracts zombies for a short duration before exploding.', NULL, NULL, '/assets/tacticals_mp/cymbal_monkey.webp', NULL, NULL, NULL, 10),
+(11, 'kazimir', 'LT53 Kazimir', 0, 1, 47, 'Level 47', 'Creates a small singularity that pulls in and kills enemies.', NULL, NULL, '/assets/tacticals_mp/kazimir_hud.webp', '/assets/tacticals_mp/kazimir_hud.webp', NULL, NULL, 11);
 
 
 --
@@ -2401,7 +2405,7 @@ ALTER TABLE `scorestreaks`
 -- AUTO_INCREMENT for table `tacticals_mp`
 --
 ALTER TABLE `tacticals_mp`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `maps`
