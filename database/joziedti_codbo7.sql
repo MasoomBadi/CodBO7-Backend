@@ -48,7 +48,8 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('map_tiles', 1, 1, '2025-11-17 00:00:00', 'Tiled map data for zombie maps'),
 ('maps', 1, 1, '2025-11-16 00:00:00', 'Interactive map base data'),
 ('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters'),
-('perks', 1, 1, '2025-11-18 00:00:00', 'Multiplayer perk system for loadout customization');
+('perks', 1, 1, '2025-11-18 00:00:00', 'Multiplayer perk system for loadout customization'),
+('wildcards', 1, 1, '2025-11-18 00:00:00', 'Wildcards for loadout customization');
 
 -- --------------------------------------------------------
 
@@ -254,6 +255,38 @@ INSERT INTO `combat_specialties` (`id`, `name`, `display_name`, `specialty_type`
 (4, 'scout', 'Scout', 'hybrid', 'hybrid', 'Mix of Red and Blue Perks (2 + 1)', 'red:2,blue:1', 'Offense and stealth hybrid. When you get a bullet elimination, stay completely hidden from enemy minimaps for 5 seconds. Additional eliminations reset the timer.', '/assets/combat_specialities/scout.webp', 4),
 (5, 'tactician', 'Tactician', 'hybrid', 'hybrid', 'Mix of Red and Green Perks (2 + 1)', 'red:2,green:1', 'Support and offense hybrid. When you earn assists, earn bonus score from bullet eliminations for 10 seconds.', '/assets/combat_specialities/tactician.webp', 5),
 (6, 'operative', 'Operative', 'hybrid', 'hybrid', 'Mix of Blue and Green Perks (2 + 1)', 'blue:2,green:1', 'Stealth and support hybrid. Earn Field Upgrade charge from stealthy eliminations such as suppressed weapons, melee, or out of line of sight.', '/assets/combat_specialities/operative.webp', 6);
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wildcards`
+--
+
+CREATE TABLE `wildcards` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wildcards`
+--
+
+INSERT INTO `wildcards` (`id`, `name`, `display_name`, `description`, `icon_url`, `sort_order`) VALUES
+(1, 'tac_expert', 'Tac Expert', 'Spawn with an extra Tactical.', '/assets/wildcards/tac_expert.webp', 1),
+(2, 'overkill', 'Overkill', 'Equip any non-melee weapon in Primary and Secondary slots.', '/assets/wildcards/overkill.webp', 2),
+(3, 'danger_close', 'Danger Close', 'Spawn with an extra lethal.', '/assets/wildcards/danger_close.webp', 3),
+(4, 'gunfighter', 'Gunfighter', 'Get 3 extra attachment points for your Primary weapon.', '/assets/wildcards/gunfighter.webp', 4),
+(5, 'perk_greed', 'Perk Greed', 'Equip an extra Perk.', '/assets/wildcards/perk_greed.webp', 5),
+(6, 'prepper', 'Prepper', 'Equip two different Field Upgrades.', '/assets/wildcards/prepper.webp', 6),
+(7, 'flyswatter', 'Flyswatter', 'Replace the melee in your Dedicated Melee Slot with a Launcher.', '/assets/wildcards/flyswatter.webp', 7),
+(8, 'high_roller', 'High Roller', 'Equip a fourth Scorestreak.', '/assets/wildcards/high_roller.webp', 8),
+(9, 'specialist', 'Specialist', 'Replace your Scorestreaks with three Perks. You earn them at 200, 400, and 600 Score. Earn all remaining eligible Perks at 1200 Score. Perks equipped by using Wildcards do not count towards Combat Specialty.', '/assets/wildcards/specialist.webp', 9);
 
 
 --
@@ -2176,6 +2209,13 @@ ALTER TABLE `combat_specialties`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `wildcards`
+--
+ALTER TABLE `wildcards`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2238,6 +2278,12 @@ ALTER TABLE `perks`
 --
 ALTER TABLE `combat_specialties`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `wildcards`
+--
+ALTER TABLE `wildcards`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `maps`

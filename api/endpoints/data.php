@@ -97,6 +97,12 @@ try {
                         }
                         break;
 
+                    case 'wildcards':
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -204,7 +210,7 @@ try {
             if (isset($row['unlock_level'])) {
                 $row['unlock_level'] = (int)$row['unlock_level'];
             }
-            // Sort order (perks and combat_specialties)
+            // Sort order (perks, combat_specialties, and wildcards)
             if (isset($row['sort_order'])) {
                 $row['sort_order'] = (int)$row['sort_order'];
             }
