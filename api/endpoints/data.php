@@ -98,6 +98,9 @@ try {
                         break;
 
                     case 'wildcards':
+                        if (isset($row['unlock_level'])) {
+                            $row['unlock_level'] = (int)$row['unlock_level'];
+                        }
                         if (isset($row['sort_order'])) {
                             $row['sort_order'] = (int)$row['sort_order'];
                         }

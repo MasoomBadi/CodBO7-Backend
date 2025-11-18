@@ -268,6 +268,8 @@ CREATE TABLE `wildcards` (
   `id` int NOT NULL,
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unlock_level` int NOT NULL,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `sort_order` int NOT NULL
@@ -277,16 +279,16 @@ CREATE TABLE `wildcards` (
 -- Dumping data for table `wildcards`
 --
 
-INSERT INTO `wildcards` (`id`, `name`, `display_name`, `description`, `icon_url`, `sort_order`) VALUES
-(1, 'tac_expert', 'Tac Expert', 'Spawn with an extra Tactical.', '/assets/wildcards/tac_expert.webp', 1),
-(2, 'overkill', 'Overkill', 'Equip any non-melee weapon in Primary and Secondary slots.', '/assets/wildcards/overkill.webp', 2),
-(3, 'danger_close', 'Danger Close', 'Spawn with an extra lethal.', '/assets/wildcards/danger_close.webp', 3),
-(4, 'gunfighter', 'Gunfighter', 'Get 3 extra attachment points for your Primary weapon.', '/assets/wildcards/gunfighter.webp', 4),
-(5, 'perk_greed', 'Perk Greed', 'Equip an extra Perk.', '/assets/wildcards/perk_greed.webp', 5),
-(6, 'prepper', 'Prepper', 'Equip two different Field Upgrades.', '/assets/wildcards/prepper.webp', 6),
-(7, 'flyswatter', 'Flyswatter', 'Replace the melee in your Dedicated Melee Slot with a Launcher.', '/assets/wildcards/flyswatter.webp', 7),
-(8, 'high_roller', 'High Roller', 'Equip a fourth Scorestreak.', '/assets/wildcards/high_roller.webp', 8),
-(9, 'specialist', 'Specialist', 'Replace your Scorestreaks with three Perks. You earn them at 200, 400, and 600 Score. Earn all remaining eligible Perks at 1200 Score. Perks equipped by using Wildcards do not count towards Combat Specialty.', '/assets/wildcards/specialist.webp', 9);
+INSERT INTO `wildcards` (`id`, `name`, `display_name`, `unlock_level`, `unlock_label`, `description`, `icon_url`, `sort_order`) VALUES
+(1, 'tac_expert', 'Tac Expert', 15, 'Level 15', 'Spawn with an extra Tactical.', '/assets/wildcards/tac_expert.webp', 1),
+(2, 'overkill', 'Overkill', 20, 'Level 20', 'Equip any non-melee weapon in Primary and Secondary slots.', '/assets/wildcards/overkill.webp', 2),
+(3, 'danger_close', 'Danger Close', 24, 'Level 24', 'Spawn with an extra lethal.', '/assets/wildcards/danger_close.webp', 3),
+(4, 'gunfighter', 'Gunfighter', 29, 'Level 29', 'Get 3 extra attachment points for your Primary weapon.', '/assets/wildcards/gunfighter.webp', 4),
+(5, 'perk_greed', 'Perk Greed', 33, 'Level 33', 'Equip an extra Perk.', '/assets/wildcards/perk_greed.webp', 5),
+(6, 'prepper', 'Prepper', 38, 'Level 38', 'Equip two different Field Upgrades.', '/assets/wildcards/prepper.webp', 6),
+(7, 'flyswatter', 'Flyswatter', 41, 'Level 41', 'Replace the melee in your Dedicated Melee Slot with a Launcher.', '/assets/wildcards/flyswatter.webp', 7),
+(8, 'high_roller', 'High Roller', 48, 'Level 48', 'Equip a fourth Scorestreak.', '/assets/wildcards/high_roller.webp', 8),
+(9, 'specialist', 'Specialist', 53, 'Level 53', 'Replace your Scorestreaks with three Perks. You earn them at 200, 400, and 600 Score. Earn all remaining eligible Perks at 1200 Score. Perks equipped by using Wildcards do not count towards Combat Specialty.', '/assets/wildcards/specialist.webp', 9);
 
 
 --
