@@ -43,6 +43,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('combat_specialties', 1, 1, '2025-11-18 00:00:00', 'Combat specialties for multiplayer loadouts'),
 ('game_modes', 1, 1, '2025-11-17 00:00:00', 'Multiplayer game modes'),
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
+('lethals', 1, 1, '2025-11-18 00:00:00', 'Lethal equipment for multiplayer and zombies modes'),
 ('map_layers', 1, 1, '2025-11-16 00:00:00', 'Map overlay layers'),
 ('map_markers', 1, 1, '2025-11-16 00:00:00', 'Interactive map markers and POIs'),
 ('map_tiles', 1, 1, '2025-11-17 00:00:00', 'Tiled map data for zombie maps'),
@@ -383,6 +384,44 @@ INSERT INTO `tacticals_mp` (`id`, `name`, `display_name`, `available_multiplayer
 (9, 'decoy', 'Decoy Grenade', 1, 1, 50, 'Level 50', 'Grenade that simulates gunfire sounds to confuse enemies. Sticks to surfaces.', NULL, NULL, '/assets/tacticals_mp/decoy.webp', NULL, NULL, NULL, 9),
 (10, 'cymbal_monkey', 'Cymbal Monkey', 0, 1, 24, 'Level 24', 'Attracts zombies for a short duration before exploding.', NULL, NULL, '/assets/tacticals_mp/cymbal_monkey.webp', NULL, NULL, NULL, 10),
 (11, 'kazimir', 'LT53 Kazimir', 0, 1, 47, 'Level 47', 'Creates a small singularity that pulls in and kills enemies.', NULL, NULL, '/assets/tacticals_mp/kazimir_hud.webp', '/assets/tacticals_mp/kazimir_hud.webp', NULL, NULL, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lethals`
+--
+
+CREATE TABLE `lethals` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `available_multiplayer` tinyint(1) NOT NULL DEFAULT '0',
+  `available_zombies` tinyint(1) NOT NULL DEFAULT '0',
+  `unlock_level` int NOT NULL,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `overclock_1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `overclock_2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_hud_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_o1_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_o2_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `lethals`
+--
+
+INSERT INTO `lethals` (`id`, `name`, `display_name`, `available_multiplayer`, `available_zombies`, `unlock_level`, `unlock_label`, `description`, `overclock_1`, `overclock_2`, `icon_url`, `icon_hud_url`, `icon_o1_url`, `icon_o2_url`, `sort_order`) VALUES
+(1, 'frag', 'Frag', 1, 1, 0, 'Default', 'Cookable fragmentation grenade.', 'High density explosive material improves lethality.', 'Increased throw distance; cooking shows arc indicator.', '/assets/lethals/frag.webp', '/assets/lethals/frag_hud.webp', '/assets/lethals/frag_o1.webp', '/assets/lethals/frag_o2.webp', 1),
+(2, 'cluster_grenade', 'Cluster Grenade', 1, 1, 5, 'Level 5', 'Grenade that scatters smaller explosives when detonated.', 'Adds ability to cook the fuse.', 'Additional mini grenade.', '/assets/lethals/cluster_grenade.webp', '/assets/lethals/cluster_grenade_hud.webp', '/assets/lethals/cluster_grenade_o1.webp', '/assets/lethals/cluster_grenade_o2.webp', 2),
+(3, 'sticky_grenade', 'Sticky Grenade', 1, 1, 12, 'Level 12', 'Timed sticky grenade.', 'High density explosive material improves lethality.', 'Adds ability to cook the fuse.', '/assets/lethals/sticky_grenade.webp', '/assets/lethals/sticky_grenade_hud.webp', '/assets/lethals/sticky_grenade_o1.webp', '/assets/lethals/sticky_grenade_o2.webp', 3),
+(4, 'needle_drone', 'Needle Drone', 1, 0, 18, 'Level 18', 'Small flying drone that explodes on impact; manual/auto control toggle.', 'High density explosive material improves lethality.', 'Adds ability to boost dart manually.', '/assets/lethals/needle_drone.webp', '/assets/lethals/needle_drone_hud.webp', '/assets/lethals/needle_drone_o1.webp', '/assets/lethals/needle_drone_o2.webp', 4),
+(5, 'molotov', 'Molotov', 1, 1, 26, 'Level 26', 'Thrown incendiary weapon creating a patch of flames.', NULL, NULL, '/assets/lethals/molotov.webp', '/assets/lethals/molotov_hud.webp', NULL, NULL, 5),
+(6, 'point_turret', 'Point Turret', 1, 1, 33, 'Level 33', 'Small deployable turret that automatically shoots at enemies.', 'Increased turret firing rate.', 'Orientation sensors for wall/ceiling mount.', '/assets/lethals/point_turret.webp', '/assets/lethals/point_turret_hud.webp', '/assets/lethals/point_turret_o1.webp', '/assets/lethals/point_turret_o2.webp', 6),
+(7, 'c4', 'C4', 1, 1, 41, 'Level 41', 'Large explosive sticks to surfaces; detonated remotely or immediately.', NULL, NULL, '/assets/lethals/c4.webp', '/assets/lethals/c4_hud.webp', NULL, NULL, 7),
+(8, 'combat_axe', 'Combat Axe', 1, 1, 54, 'Level 54', 'Thrown axe kills enemies in one hit; bounces off surfaces.', 'Faster raise speed.', 'Throw axe farther and faster.', '/assets/lethals/combat_axe.webp', '/assets/lethals/combat_axe_hud.webp', '/assets/lethals/combat_axe_o1.webp', '/assets/lethals/combat_axe_o2.webp', 8);
 
 
 --
@@ -2326,6 +2365,13 @@ ALTER TABLE `tacticals_mp`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `lethals`
+--
+ALTER TABLE `lethals`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2406,6 +2452,12 @@ ALTER TABLE `scorestreaks`
 --
 ALTER TABLE `tacticals_mp`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `lethals`
+--
+ALTER TABLE `lethals`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `maps`
