@@ -41,6 +41,7 @@ CREATE TABLE `data_versions` (
 
 INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`) VALUES
 ('combat_specialties', 1, 1, '2025-11-18 00:00:00', 'Combat specialties for multiplayer loadouts'),
+('field_upgrades', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for multiplayer mode'),
 ('game_modes', 1, 1, '2025-11-17 00:00:00', 'Multiplayer game modes'),
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
 ('lethals', 1, 1, '2025-11-18 00:00:00', 'Lethal equipment for multiplayer and zombies modes'),
@@ -422,6 +423,46 @@ INSERT INTO `lethals` (`id`, `name`, `display_name`, `available_multiplayer`, `a
 (6, 'point_turret', 'Point Turret', 1, 1, 33, 'Level 33', 'Small deployable turret that automatically shoots at enemies.', 'Increased turret firing rate.', 'Orientation sensors for wall/ceiling mount.', '/assets/lethals/point_turret.webp', '/assets/lethals/point_turret_hud.webp', '/assets/lethals/point_turret_o1.webp', '/assets/lethals/point_turret_o2.webp', 6),
 (7, 'c4', 'C4', 1, 1, 41, 'Level 41', 'Large explosive sticks to surfaces; detonated remotely or immediately.', NULL, NULL, '/assets/lethals/c4.webp', '/assets/lethals/c4_hud.webp', NULL, NULL, 7),
 (8, 'combat_axe', 'Combat Axe', 1, 1, 54, 'Level 54', 'Thrown axe kills enemies in one hit; bounces off surfaces.', 'Faster raise speed.', 'Throw axe farther and faster.', '/assets/lethals/combat_axe.webp', '/assets/lethals/combat_axe_hud.webp', '/assets/lethals/combat_axe_o1.webp', '/assets/lethals/combat_axe_o2.webp', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `field_upgrades`
+--
+
+CREATE TABLE `field_upgrades` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `available_multiplayer` tinyint(1) NOT NULL DEFAULT '0',
+  `available_zombies` tinyint(1) NOT NULL DEFAULT '0',
+  `unlock_level` int NOT NULL,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `overclock_1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `overclock_2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_hud_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_o1_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_o2_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `field_upgrades`
+--
+
+INSERT INTO `field_upgrades` (`id`, `name`, `display_name`, `available_multiplayer`, `available_zombies`, `unlock_level`, `unlock_label`, `description`, `overclock_1`, `overclock_2`, `icon_url`, `icon_hud_url`, `icon_o1_url`, `icon_o2_url`, `sort_order`) VALUES
+(1, 'assault_pack', 'Assault Pack', 1, 0, 0, 'Default', 'Extra ammo and equipment to resupply your team.', 'Faster charge time', 'Additional score on eliminations', '/assets/field_upgrade/assault_pack.webp', '/assets/field_upgrade/assault_pack_hud.webp', '/assets/field_upgrade/assault_pack_o1.webp', '/assets/field_upgrade/assault_pack_o2.webp', 1),
+(2, 'drone_pod', 'Drone Pod', 1, 0, 6, 'Level 6', 'Deployable device that launches aerial drones. Drones seek out enemies and explode.', 'Drones launch much faster', 'Leave minimap icon at detonation points', '/assets/field_upgrade/drone_pod.webp', '/assets/field_upgrade/drone_pod_hud.webp', '/assets/field_upgrade/drone_pod_o1.webp', '/assets/field_upgrade/drone_pod_o2.webp', 2),
+(3, 'trophy_system', 'Trophy System', 1, 0, 9, 'Level 9', 'Area defense system that destroys enemy projectiles in the air.', 'Faster charge time', '+2 explosive charge ammo', '/assets/field_upgrade/trophy_system.webp', '/assets/field_upgrade/trophy_system_hud.webp', '/assets/field_upgrade/trophy_system_o1.webp', '/assets/field_upgrade/trophy_system_o2.webp', 3),
+(4, 'mute_field', 'Mute Field', 1, 0, 14, 'Level 14', 'A stealth device that reduces your footstep volume, hides you from enemy minimaps, and prevents you from being targeted by enemy Scorestreaks for a limited time.', NULL, NULL, '/assets/field_upgrade/mute_field.webp', NULL, NULL, NULL, 4),
+(5, 'squad_link', 'Squad Link', 1, 0, 20, 'Level 20', 'Deployed device that boosts score and improves effectiveness of allied Operators and gadgets in range.', 'Expands coverage area', 'Increases nearby allies\' Field Upgrade recharge speed and doubles earned score', '/assets/field_upgrade/squad_link.webp', '/assets/field_upgrade/squad_link_hud.webp', '/assets/field_upgrade/squad_link_o1.webp', '/assets/field_upgrade/squad_link_o2.webp', 5),
+(6, 'echo_unit', 'Echo Unit', 1, 0, 27, 'Level 27', 'Holographic soldier decoy tricks enemies and captures and holds objectives.', 'Hologram flashes when enemies come near', 'Faster charge time', '/assets/field_upgrade/echo_unit.webp', '/assets/field_upgrade/echo_unit_hud.webp', '/assets/field_upgrade/echo_unit_o1.webp', '/assets/field_upgrade/echo_unit_o2.webp', 6),
+(7, 'fear_trap', 'Fear Trap', 1, 0, 32, 'Level 32', 'A deployed trap which emits a neurotoxic gas cloud, causing hallucinations and disorienting victims.', NULL, NULL, '/assets/field_upgrade/fear_trap.webp', '/assets/field_upgrade/fear_trap_hud.webp', NULL, NULL, 7),
+(8, 'black_hat', 'Black Hat', 1, 0, 38, 'Level 38', 'Hack enemies, equipment, and vehicles. Hacked targets are disabled, destroyed, or converted to fight for you.', NULL, NULL, '/assets/field_upgrade/black_hat.webp', NULL, NULL, NULL, 8),
+(9, 'scrambler', 'Scrambler', 1, 0, 45, 'Level 45', 'Creates an area that scrambles enemy equipment, field upgrades, scorestreaks and minimaps.', NULL, NULL, '/assets/field_upgrade/scrambler.webp', NULL, NULL, NULL, 9),
+(10, 'active_camo', 'Active Camo', 1, 0, 51, 'Level 51', 'Become partially invisible for a short period of time.', 'Increased duration and faster charge time', 'Gunfire reveals you temporarily instead of ending ability', '/assets/field_upgrade/active_camo.webp', '/assets/field_upgrade/active_camo_hud.webp', '/assets/field_upgrade/active_camo_o1.webp', '/assets/field_upgrade/active_camo_o2.webp', 10);
 
 
 --
@@ -2372,6 +2413,13 @@ ALTER TABLE `lethals`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `field_upgrades`
+--
+ALTER TABLE `field_upgrades`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2458,6 +2506,12 @@ ALTER TABLE `tacticals_mp`
 --
 ALTER TABLE `lethals`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `field_upgrades`
+--
+ALTER TABLE `field_upgrades`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `maps`
