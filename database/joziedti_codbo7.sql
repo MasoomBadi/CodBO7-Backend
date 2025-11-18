@@ -50,6 +50,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters'),
 ('perks', 1, 1, '2025-11-18 00:00:00', 'Multiplayer perk system for loadout customization'),
 ('scorestreaks', 1, 1, '2025-11-18 00:00:00', 'Scorestreaks with overclock upgrades'),
+('tacticals_mp', 1, 1, '2025-11-18 00:00:00', 'Multiplayer tactical equipment with overclock upgrades'),
 ('wildcards', 1, 1, '2025-11-18 00:00:00', 'Wildcards for loadout customization');
 
 -- --------------------------------------------------------
@@ -341,6 +342,43 @@ INSERT INTO `scorestreaks` (`id`, `name`, `display_name`, `description`, `score_
 (19, 'harp', 'HARP', 'High altitude recon vehicle reveals enemy position and direction on the minimap in real time.', 1400, 47, 'Level 47', 'Deploys flares against incoming lock-on rockets.', 'Lower score cost.', '/assets/scorestreak/harp.webp', '/assets/scorestreak/harp_o1.webp', '/assets/scorestreak/harp_o2.webp', 19),
 (20, 'emp', 'EMP Systems', 'Massive electromagnetic pulse weapon disrupts enemies and destroys all hostile equipment and vehicles.', 1450, 44, 'Level 44', 'Lower score cost.', 'Prevents enemies from using Scorestreaks and Field Upgrades for a long duration.', '/assets/scorestreak/emp.webp', '/assets/scorestreak/emp_o1.webp', '/assets/scorestreak/emp_o2.webp', 20),
 (21, 'legion', 'Legion', 'Large autonomous drone cluster patrols the skies, automatically seeking targets and exploding on impact.', 1500, 0, 'Default', 'Launches multiple drones in quick succession to overwhelm a target.', 'Extended flight duration for drones.', '/assets/scorestreak/legion.webp', '/assets/scorestreak/legion_o1.webp', '/assets/scorestreak/legion_o2.webp', 21);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tacticals_mp`
+--
+
+CREATE TABLE `tacticals_mp` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unlock_level` int NOT NULL,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `overclock_1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `overclock_2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_hud_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_o1_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_o2_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `tacticals_mp`
+--
+
+INSERT INTO `tacticals_mp` (`id`, `name`, `display_name`, `unlock_level`, `unlock_label`, `description`, `overclock_1`, `overclock_2`, `icon_url`, `icon_hud_url`, `icon_o1_url`, `icon_o2_url`, `sort_order`) VALUES
+(1, 'emp_grenade', 'EMP Grenade', 0, 'Default', 'Disables or destroys electronics. Effective against Equipment, Scorestreaks, and players.', 'Increased disruption radius.', 'Cook for extra EMP bursts.', '/assets/tacticals_mp/emp_grenade.webp', '/assets/tacticals_mp/emp_grenade_hud.webp', '/assets/tacticals_mp/emp_grenade_o1.webp', '/assets/tacticals_mp/emp_grenade_o2.webp', 1),
+(2, 'stun_grenade', 'Stun Grenade', 0, 'Default', 'Slows victim\'s movement and aiming.', 'Increased stun duration.', 'Slows enemy movement speed when stunned.', '/assets/tacticals_mp/stun_grenade.webp', '/assets/tacticals_mp/stun_grenade_hud.webp', '/assets/tacticals_mp/stun_grenade_o1.webp', '/assets/tacticals_mp/stun_grenade_o2.webp', 2),
+(3, 'flashbang', 'Flashbang', 6, 'Level 6', 'Blinds and deafens targets.', 'Wider full flash angle; harder to counter by looking away.', 'Adds ability to cook for additional detonations.', '/assets/tacticals_mp/flashbang.webp', '/assets/tacticals_mp/flashbang_hud.webp', '/assets/tacticals_mp/flashbang_o1.webp', '/assets/tacticals_mp/flashbang_o2.webp', 3),
+(4, 'pinpoint_grenade', 'Pinpoint Grenade', 8, 'Level 8', 'Detects enemies within range; close targets shot with tracking devices removable by victims.', 'AI chip increases grenade lifetime and detection radius.', 'Tagged enemies appear on allied minimaps.', '/assets/tacticals_mp/pinpoint_grenade.webp', '/assets/tacticals_mp/pinpoint_grenade_hud.webp', '/assets/tacticals_mp/pinpoint_grenade_o1.webp', '/assets/tacticals_mp/pinpoint_grenade_o2.webp', 4),
+(5, 'stim_shot', 'Stim Shot', 21, 'Level 21', 'Military stimulant that quickly heals combat wounds.', 'Adds ability to remove player debuffs.', 'Adds a move speed boost.', '/assets/tacticals_mp/stim_shot.webp', '/assets/tacticals_mp/stim_shot_hud.webp', '/assets/tacticals_mp/stim_shot_o1.webp', '/assets/tacticals_mp/stim_shot_o2.webp', 5),
+(6, 'psych_grenade', 'Psych Grenade', 29, 'Level 29', 'Explodes on impact releasing hallucinogenic gas cloud.', 'Increases duration enemies are affected by gas.', 'Gas deals damage over time.', '/assets/tacticals_mp/psych_grenade.webp', '/assets/tacticals_mp/psych_grenade_hud.webp', '/assets/tacticals_mp/psych_grenade_o1.webp', '/assets/tacticals_mp/psych_grenade_o2.webp', 6),
+(7, 'smoke', 'Smoke Grenade', 35, 'Level 35', 'Deploys a smoke screen that blocks vision and automated targeting systems.', NULL, NULL, '/assets/tacticals_mp/smoke.webp', NULL, NULL, NULL, 7),
+(8, 'hunter_bot', 'Hunter Bot', 42, 'Level 42', 'Personal defense drone; targets enemy equipment, field upgrades, and Scorestreaks. Counters grenades.', NULL, NULL, '/assets/tacticals_mp/hunter_bot.webp', NULL, NULL, NULL, 8),
+(9, 'decoy', 'Decoy Grenade', 50, 'Level 50', 'Grenade that simulates gunfire sounds to confuse enemies. Sticks to surfaces.', NULL, NULL, '/assets/tacticals_mp/decoy.webp', NULL, NULL, NULL, 9);
 
 
 --
@@ -2277,6 +2315,13 @@ ALTER TABLE `scorestreaks`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `tacticals_mp`
+--
+ALTER TABLE `tacticals_mp`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2351,6 +2396,12 @@ ALTER TABLE `wildcards`
 --
 ALTER TABLE `scorestreaks`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `tacticals_mp`
+--
+ALTER TABLE `tacticals_mp`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `maps`
