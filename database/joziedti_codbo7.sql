@@ -40,6 +40,7 @@ CREATE TABLE `data_versions` (
 --
 
 INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`) VALUES
+('combat_specialties', 1, 1, '2025-11-18 00:00:00', 'Combat specialties for multiplayer loadouts'),
 ('game_modes', 1, 1, '2025-11-17 00:00:00', 'Multiplayer game modes'),
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
 ('map_layers', 1, 1, '2025-11-16 00:00:00', 'Map overlay layers'),
@@ -220,6 +221,39 @@ INSERT INTO `perks` (`id`, `name`, `display_name`, `slot`, `category`, `category
 (25, 'quartermaster', 'Quartermaster', 3, 'strategist', 'green', 8, 'Level 8', 'Recharge equipment over time.', '/assets/perks_mp/quartermaster.webp', 25),
 (26, 'charge_link', 'Charge Link', 3, 'strategist', 'green', 12, 'Level 12', 'Increased Field Upgrade charge rate from ally Field Upgrade use.', '/assets/perks_mp/charge_link.webp', 26),
 (27, 'guardian', 'Guardian', 3, 'strategist', 'green', 0, 'Default', 'Can take an additional hit while at full health in Hardcore modes. Taking damage scrambles the minimap of nearby enemies.', '/assets/perks_mp/guardian.webp', 27);
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `combat_specialties`
+--
+
+CREATE TABLE `combat_specialties` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `specialty_type` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_color` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `required_perks` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `perk_combination` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `effect_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `combat_specialties`
+--
+
+INSERT INTO `combat_specialties` (`id`, `name`, `display_name`, `specialty_type`, `category_color`, `required_perks`, `perk_combination`, `effect_description`, `icon_url`, `sort_order`) VALUES
+(1, 'enforcer', 'Enforcer', 'core', 'red', 'Three Red (Enforcer) Perks', 'red:3', 'After each elimination, gain a buff to movement speed and health regen for a short time.', '/assets/combat_specialities/enforcer.webp', 1),
+(2, 'recon', 'Recon', 'core', 'blue', 'Three Blue (Recon) Perks', 'blue:3', 'On respawn, see the direction of the closest enemy on the minimap. Edge of HUD pulses for enemies outside view. No death skulls shown.', '/assets/combat_specialities/recon.webp', 2),
+(3, 'strategist', 'Strategist', 'core', 'green', 'Three Green (Strategist) Perks', 'green:3', 'Increased score for objectives and sabotage. Deploy equipment faster. See enemy content through walls at short distance.', '/assets/combat_specialities/strategist.webp', 3),
+(4, 'scout', 'Scout', 'hybrid', 'hybrid', 'Mix of Red and Blue Perks (2 + 1)', 'red:2,blue:1', 'Offense and stealth hybrid. When you get a bullet elimination, stay completely hidden from enemy minimaps for 5 seconds. Additional eliminations reset the timer.', '/assets/combat_specialities/scout.webp', 4),
+(5, 'tactician', 'Tactician', 'hybrid', 'hybrid', 'Mix of Red and Green Perks (2 + 1)', 'red:2,green:1', 'Support and offense hybrid. When you earn assists, earn bonus score from bullet eliminations for 10 seconds.', '/assets/combat_specialities/tactician.webp', 5),
+(6, 'operative', 'Operative', 'hybrid', 'hybrid', 'Mix of Blue and Green Perks (2 + 1)', 'blue:2,green:1', 'Stealth and support hybrid. Earn Field Upgrade charge from stealthy eliminations such as suppressed weapons, melee, or out of line of sight.', '/assets/combat_specialities/operative.webp', 6);
 
 
 --
@@ -2135,6 +2169,13 @@ ALTER TABLE `perks`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `combat_specialties`
+--
+ALTER TABLE `combat_specialties`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2191,6 +2232,12 @@ ALTER TABLE `operators`
 --
 ALTER TABLE `perks`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `combat_specialties`
+--
+ALTER TABLE `combat_specialties`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `maps`
