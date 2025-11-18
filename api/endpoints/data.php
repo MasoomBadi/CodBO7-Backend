@@ -163,6 +163,21 @@ try {
                         }
                         break;
 
+                    case 'perk_a_cola':
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
+                    case 'perk_a_cola_augments':
+                        if (isset($row['perk_id'])) {
+                            $row['perk_id'] = (int)$row['perk_id'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
