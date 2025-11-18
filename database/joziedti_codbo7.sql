@@ -49,6 +49,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('maps', 1, 1, '2025-11-16 00:00:00', 'Interactive map base data'),
 ('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters'),
 ('perks', 1, 1, '2025-11-18 00:00:00', 'Multiplayer perk system for loadout customization'),
+('scorestreaks', 1, 1, '2025-11-18 00:00:00', 'Scorestreaks with overclock upgrades'),
 ('wildcards', 1, 1, '2025-11-18 00:00:00', 'Wildcards for loadout customization');
 
 -- --------------------------------------------------------
@@ -289,6 +290,57 @@ INSERT INTO `wildcards` (`id`, `name`, `display_name`, `unlock_level`, `unlock_l
 (7, 'flyswatter', 'Flyswatter', 41, 'Level 41', 'Replace the melee in your Dedicated Melee Slot with a Launcher.', '/assets/wildcards/flyswatter.webp', 7),
 (8, 'high_roller', 'High Roller', 48, 'Level 48', 'Equip a fourth Scorestreak.', '/assets/wildcards/high_roller.webp', 8),
 (9, 'specialist', 'Specialist', 53, 'Level 53', 'Replace your Scorestreaks with three Perks. You earn them at 200, 400, and 600 Score. Earn all remaining eligible Perks at 1200 Score. Perks equipped by using Wildcards do not count towards Combat Specialty.', '/assets/wildcards/specialist.webp', 9);
+
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `scorestreaks`
+--
+
+CREATE TABLE `scorestreaks` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `score_cost` int NOT NULL,
+  `unlock_level` int NOT NULL,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `overclock_1` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `overclock_2` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_o1_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_o2_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `scorestreaks`
+--
+
+INSERT INTO `scorestreaks` (`id`, `name`, `display_name`, `description`, `score_cost`, `unlock_level`, `unlock_label`, `overclock_1`, `overclock_2`, `icon_url`, `icon_o1_url`, `icon_o2_url`, `sort_order`) VALUES
+(1, 'scout_pulse', 'Scout Pulse', 'Radar ping that reveals nearby enemies on the user\'s minimap.', 350, 0, 'Default', 'Lower score cost.', 'Radar ping shows directional arrows instead of red dots.', '/assets/scorestreak/scout_pulse.webp', '/assets/scorestreak/scout_pulse_o1.webp', '/assets/scorestreak/scout_pulse_o2.webp', 1),
+(2, 'rc_xd', 'RC-XD', 'Deploy a small remote controlled, remote detonated explosive vehicle.', 400, 5, 'Level 5', 'Increased Resistance to enemy gunfire.', 'See target indicators on occluded enemies in medium range.', '/assets/scorestreak/rc_xd.webp', '/assets/scorestreak/rc_xd_o1.webp', '/assets/scorestreak/rc_xd_o2.webp', 2),
+(3, 'uav', 'UAV', 'UAV recon ship that reveals enemy locations on the minimap.', 500, 11, 'Level 11', 'Lower score cost.', 'Counters the first lock-on missile with a flare. Increases bullet resistance.', '/assets/scorestreak/uav.webp', '/assets/scorestreak/uav_o1.webp', '/assets/scorestreak/uav_o2.webp', 3),
+(4, 'skewer', 'Skewer', 'Fire and forget air-to-ground projectile for precision eliminations. Bladed design minimizes collateral damage.', 525, 0, 'Default', 'Increased velocity.', 'Skewer targets higher priority enemies when possible.', '/assets/scorestreak/skewer.webp', '/assets/scorestreak/skewer_o1.webp', '/assets/scorestreak/skewer_o2.webp', 4),
+(5, 'care_package', 'Care Package', 'Call in an airdrop that contains a random Scorestreak.', 550, 26, 'Level 26', 'Re-roll a Care Package drop one time.', 'Lower score cost.', '/assets/scorestreak/care_package.webp', '/assets/scorestreak/care_package_o1.webp', '/assets/scorestreak/care_package_o2.webp', 5),
+(6, 'counter_uav', 'Counter UAV', 'A drone that scrambles all enemy minimaps.', 600, 20, 'Level 20', 'Lower score cost.', 'Counters the first lock-on missile with a flare. Increases bullet resistance.', '/assets/scorestreak/counter_uav.webp', '/assets/scorestreak/counter_uav_o1.webp', '/assets/scorestreak/counter_uav_o2.webp', 6),
+(7, 'napalm_strike', 'Napalm Strike', 'Launch a targeted carpet bomb strike of explosive napalm.', 700, 33, 'Level 33', 'Reveals enemies longer and displays their movement directions while aiming a strike.', 'Flames burn longer.', '/assets/scorestreak/napalm_strike.webp', '/assets/scorestreak/napalm_strike_o1.webp', '/assets/scorestreak/napalm_strike_o2.webp', 7),
+(8, 'lgm', 'LGM', 'Launch a continuous bombardment of explosive shells at a targeted area.', 725, 38, 'Level 38', 'Marks a second target location. Reduced payload per zone.', 'Rains down extra projectiles.', '/assets/scorestreak/lgm.webp', '/assets/scorestreak/lgm_o1.webp', '/assets/scorestreak/lgm_o2.webp', 8),
+(9, 'sentry_turret', 'Sentry Turret', 'Automated turret that scans for and attacks nearby enemies in a forward-facing cone.', 750, 21, 'Level 21', 'Increased turret rotation for greater coverage.', 'Adds ability to control remotely.', '/assets/scorestreak/sentry_turrent.webp', '/assets/scorestreak/sentry_turrent_o1.webp', '/assets/scorestreak/sentry_turrent_o2.webp', 9),
+(10, 'hand_canon', 'Hand Cannon', 'Powerful large caliber handgun with high bullet damage and penetration.', 800, 42, 'Level 42', 'More ammo in clip.', 'Dual Hand Cannons.', '/assets/scorestreak/hand_canon.webp', '/assets/scorestreak/hand_canon_o1.webp', '/assets/scorestreak/hand_canon_o2.webp', 10),
+(11, 'hellstorm', 'Hellstorm', 'Control a long-range cruise missile with boost capabilities and secondary missiles.', 850, 9, 'Level 9', 'Additional cluster missile.', 'Missiles can lock onto Scorestreaks.', '/assets/scorestreak/hellstorm.webp', '/assets/scorestreak/hellstorm_o1.webp', '/assets/scorestreak/hellstorm_o2.webp', 11),
+(12, 'watchdog_helo', 'Watchdog Helo', 'Close air support escort chopper that pings and attacks enemies in your area.', 950, 23, 'Level 23', 'Improved durability against enemy attack.', 'Direct Watchdog Helo to guard an area.', '/assets/scorestreak/watchdog_helo.webp', '/assets/scorestreak/watchdog_helo_o1.webp', '/assets/scorestreak/watchdog_helo_o2.webp', 12),
+(13, 'gravemaker', 'Gravemaker', 'Assemble a portable, one-hit-kill sniper rifle that can reveal and eliminate targets behind cover.', 1000, 17, 'Level 17', 'A larger magazine provides more ammo.', 'Reduced charge time before firing.', '/assets/scorestreak/gravemaker.webp', '/assets/scorestreak/gravemaker_o1.webp', '/assets/scorestreak/gravemaker_o2.webp', 13),
+(14, 'interceptors', 'Interceptors', 'Call in a group of five jets to destroy enemy flying targets.', 1025, 51, 'Level 51', 'Deploy Interceptors without detected threats.', 'Lower score cost.', '/assets/scorestreak/interceptors.webp', '/assets/scorestreak/interceptors_o1.webp', '/assets/scorestreak/interceptors_o2.webp', 14),
+(15, 'dawg', 'D.A.W.G.', 'Deployable Armored Weaponized Groundcraft featuring a large caliber turret and rocket pod. Very effective against infantry targets.', 1050, 0, 'Default', 'Longer active duration.', 'Adds Sentry Mode. D.A.W.G. hunkers down, guarding an area and deploying a supply pack and integrated Trophy System.', '/assets/scorestreak/dawg.webp', '/assets/scorestreak/dawg_o1.webp', '/assets/scorestreak/dawg_o2.webp', 15),
+(16, 'hkds', 'HKDS', 'Aerial payload delivers wheeled Hunter Kill Drones which seek targets and explode.', 1200, 30, 'Level 30', 'Improved durability against enemy attack.', 'Deploy additional GDU drop pods.', '/assets/scorestreak/hkds.webp', '/assets/scorestreak/hkds_o1.webp', '/assets/scorestreak/hkds_o2.webp', 16),
+(17, 'rhino', 'Rhino', 'Remotely control an armored robotic soldier equipped with a deadly minigun.', 1250, 54, 'Level 54', 'Extended runtime for Rhino.', 'Reveals nearby enemy location on Rhino\'s minimap. Enhanced radar length and duration.', '/assets/scorestreak/rhino.webp', '/assets/scorestreak/rhino_o1.webp', '/assets/scorestreak/rhino_o2.webp', 17),
+(18, 'vtol_warship', 'VTOL Warship', 'Control a VTOL Warship armed with a turret and air-to-land missiles.', 1350, 48, 'Level 48', 'Increased durability.', 'Adds ability to boost in a direction, breaking enemy rocket lock-on.', '/assets/scorestreak/vtol_warship.webp', '/assets/scorestreak/vtol_warship_o1.webp', '/assets/scorestreak/vtol_warship_o2.webp', 18),
+(19, 'harp', 'HARP', 'High altitude recon vehicle reveals enemy position and direction on the minimap in real time.', 1400, 47, 'Level 47', 'Deploys flares against incoming lock-on rockets.', 'Lower score cost.', '/assets/scorestreak/harp.webp', '/assets/scorestreak/harp_o1.webp', '/assets/scorestreak/harp_o2.webp', 19),
+(20, 'emp', 'EMP Systems', 'Massive electromagnetic pulse weapon disrupts enemies and destroys all hostile equipment and vehicles.', 1450, 44, 'Level 44', 'Lower score cost.', 'Prevents enemies from using Scorestreaks and Field Upgrades for a long duration.', '/assets/scorestreak/emp.webp', '/assets/scorestreak/emp_o1.webp', '/assets/scorestreak/emp_o2.webp', 20),
+(21, 'legion', 'Legion', 'Large autonomous drone cluster patrols the skies, automatically seeking targets and exploding on impact.', 1500, 0, 'Default', 'Launches multiple drones in quick succession to overwhelm a target.', 'Extended flight duration for drones.', '/assets/scorestreak/legion.webp', '/assets/scorestreak/legion_o1.webp', '/assets/scorestreak/legion_o2.webp', 21);
 
 
 --
@@ -2218,6 +2270,13 @@ ALTER TABLE `wildcards`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `scorestreaks`
+--
+ALTER TABLE `scorestreaks`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2286,6 +2345,12 @@ ALTER TABLE `combat_specialties`
 --
 ALTER TABLE `wildcards`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `scorestreaks`
+--
+ALTER TABLE `scorestreaks`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `maps`

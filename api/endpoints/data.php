@@ -106,6 +106,18 @@ try {
                         }
                         break;
 
+                    case 'scorestreaks':
+                        if (isset($row['score_cost'])) {
+                            $row['score_cost'] = (int)$row['score_cost'];
+                        }
+                        if (isset($row['unlock_level'])) {
+                            $row['unlock_level'] = (int)$row['unlock_level'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -213,7 +225,11 @@ try {
             if (isset($row['unlock_level'])) {
                 $row['unlock_level'] = (int)$row['unlock_level'];
             }
-            // Sort order (perks, combat_specialties, and wildcards)
+            // Scorestreaks score cost
+            if (isset($row['score_cost'])) {
+                $row['score_cost'] = (int)$row['score_cost'];
+            }
+            // Sort order (perks, combat_specialties, wildcards, and scorestreaks)
             if (isset($row['sort_order'])) {
                 $row['sort_order'] = (int)$row['sort_order'];
             }
