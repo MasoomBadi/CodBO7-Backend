@@ -148,6 +148,21 @@ try {
                         }
                         break;
 
+                    case 'field_upgrades':
+                        if (isset($row['available_multiplayer'])) {
+                            $row['available_multiplayer'] = (int)$row['available_multiplayer'];
+                        }
+                        if (isset($row['available_zombies'])) {
+                            $row['available_zombies'] = (int)$row['available_zombies'];
+                        }
+                        if (isset($row['unlock_level'])) {
+                            $row['unlock_level'] = (int)$row['unlock_level'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -248,7 +263,7 @@ try {
             if (isset($row['is_hardcore_available'])) {
                 $row['is_hardcore_available'] = (int)$row['is_hardcore_available'];
             }
-            // Tacticals and Lethals boolean fields
+            // Tacticals, Lethals, and Field Upgrades boolean fields
             if (isset($row['available_multiplayer'])) {
                 $row['available_multiplayer'] = (int)$row['available_multiplayer'];
             }
