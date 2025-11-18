@@ -54,6 +54,10 @@ GET https://codbo7.masoombadi.top/api/version
 {
   "success": true,
   "data": {
+    "combat_specialties": {
+      "version": 1,
+      "schemaVersion": 1
+    },
     "game_modes": {
       "version": 1,
       "schemaVersion": 1
@@ -79,6 +83,10 @@ GET https://codbo7.masoombadi.top/api/version
       "schemaVersion": 1
     },
     "operators": {
+      "version": 1,
+      "schemaVersion": 1
+    },
+    "perks": {
       "version": 1,
       "schemaVersion": 1
     }
@@ -311,6 +319,13 @@ GET https://codbo7.masoombadi.top/api/data/all
   "data": {
     "data_versions": [
       {
+        "category": "combat_specialties",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-18 00:00:00",
+        "description": "Combat specialties for multiplayer loadouts"
+      },
+      {
         "category": "game_modes",
         "version": 1,
         "schema_version": 1,
@@ -358,6 +373,13 @@ GET https://codbo7.masoombadi.top/api/data/all
         "schema_version": 1,
         "last_updated": "2025-11-14 00:39:23",
         "description": "Playable characters"
+      },
+      {
+        "category": "perks",
+        "version": 1,
+        "schema_version": 1,
+        "last_updated": "2025-11-18 00:00:00",
+        "description": "Multiplayer perk system for loadout customization"
       }
     ],
     "icons": [
@@ -558,8 +580,10 @@ GET /api/data/map_tiles - Get all map tiles
 ```
 
 **Note:** Tables include automatic type conversions:
+- `combat_specialties`: `sort_order` as integer, `id` as integer
 - `game_modes`: Boolean fields (`is_new`, `is_face_off`, `has_scorestreaks`, `has_respawns`, `is_hardcore_available`) as integers, `id` as integer
 - `operators`: `zombie_playable` as integer, `id` as integer
+- `perks`: `slot`, `unlock_level`, `sort_order` as integers, `id` as integer
 - `maps`: `bounds` field is parsed as JSON object, `id` as integer
 - `map_layers`: `map_id` and `default_visible` as integers
 - `map_markers`: `map_id` and `hide_on_load` as integers, `coord_x`/`coord_y` as floats, `properties` as JSON object
@@ -643,6 +667,140 @@ The `game_modes` table contains all multiplayer game modes with their match rule
 - **Skirmish** (NEW) - 20v20 large-scale combat
 - **Gunfight** - 2v2 elimination, preset classes, no respawns
 - **Face Off** modes - Small map variants with no Scorestreaks
+
+---
+
+### 7a. Perks Data Structure
+
+The `perks` table contains all multiplayer perks for loadout customization across 3 slots and 3 categories.
+
+**Endpoint:** `GET /api/data/perks`
+
+**Response Example:**
+```json
+{
+  "success": true,
+  "data": {
+    "table": "perks",
+    "data": [
+      {
+        "id": 1,
+        "name": "gung_ho",
+        "display_name": "Gung Ho",
+        "slot": 1,
+        "category": "enforcer",
+        "category_color": "red",
+        "unlock_level": 18,
+        "unlock_label": "Level 18",
+        "description": "Fire while sprinting. Improved movement speed while reloading or using equipment.",
+        "icon_url": "/assets/perks_mp/gung_ho.webp",
+        "sort_order": 1
+      },
+      {
+        "id": 4,
+        "name": "cold_blooded",
+        "display_name": "Cold Blooded",
+        "slot": 1,
+        "category": "recon",
+        "category_color": "blue",
+        "unlock_level": 0,
+        "unlock_label": "Default",
+        "description": "Immune to AI targeting systems and thermal optics. Immune to detection from Recon Combat Specialty.",
+        "icon_url": "/assets/perks_mp/cold_blooded.webp",
+        "sort_order": 4
+      }
+    ]
+  }
+}
+```
+
+**Perks Fields:**
+- `id` (integer) - Unique perk identifier
+- `name` (string) - URL-friendly perk name (e.g., "gung_ho", "cold_blooded")
+- `display_name` (string) - Human-readable perk name (e.g., "Gung Ho", "Cold Blooded")
+- `slot` (integer) - Perk slot: 1, 2, or 3
+- `category` (string) - Perk category: "enforcer", "recon", or "strategist"
+- `category_color` (string) - Color code: "red" (Enforcer), "blue" (Recon), "green" (Strategist)
+- `unlock_level` (integer) - Unlock level (0 for default perks, 5-54 for unlockable perks)
+- `unlock_label` (string) - Display label: "Default" or "Level X"
+- `description` (text) - Perk effect and abilities
+- `icon_url` (string) - Path to perk icon image (WebP format)
+- `sort_order` (integer) - Display order within the perk list
+
+**Total Perks:** 27 (9 per slot)
+
+**Categories:**
+- **Enforcer (Red)** - Offensive perks focused on aggression and combat
+- **Recon (Blue)** - Stealth and intel perks
+- **Strategist (Green)** - Support and tactical perks
+
+---
+
+### 7b. Combat Specialties Data Structure
+
+The `combat_specialties` table contains combat specialties activated by perk combinations.
+
+**Endpoint:** `GET /api/data/combat_specialties`
+
+**Response Example:**
+```json
+{
+  "success": true,
+  "data": {
+    "table": "combat_specialties",
+    "data": [
+      {
+        "id": 1,
+        "name": "enforcer",
+        "display_name": "Enforcer",
+        "specialty_type": "core",
+        "category_color": "red",
+        "required_perks": "Three Red (Enforcer) Perks",
+        "perk_combination": "red:3",
+        "effect_description": "After each elimination, gain a buff to movement speed and health regen for a short time.",
+        "icon_url": "/assets/combat_specialities/enforcer.webp",
+        "sort_order": 1
+      },
+      {
+        "id": 4,
+        "name": "scout",
+        "display_name": "Scout",
+        "specialty_type": "hybrid",
+        "category_color": "hybrid",
+        "required_perks": "Mix of Red and Blue Perks (2 + 1)",
+        "perk_combination": "red:2,blue:1",
+        "effect_description": "Offense and stealth hybrid. When you get a bullet elimination, stay completely hidden from enemy minimaps for 5 seconds. Additional eliminations reset the timer.",
+        "icon_url": "/assets/combat_specialities/scout.webp",
+        "sort_order": 4
+      }
+    ]
+  }
+}
+```
+
+**Combat Specialties Fields:**
+- `id` (integer) - Unique specialty identifier
+- `name` (string) - URL-friendly specialty name (e.g., "enforcer", "scout", "tactician")
+- `display_name` (string) - Human-readable specialty name (e.g., "Enforcer", "Scout", "Tactician")
+- `specialty_type` (string) - Type: "core" (single color) or "hybrid" (mixed colors)
+- `category_color` (string) - Color: "red", "blue", "green", or "hybrid"
+- `required_perks` (string) - Human-readable perk requirement
+- `perk_combination` (string) - Structured perk formula (e.g., "red:3", "red:2,blue:1")
+- `effect_description` (text) - Specialty effect and abilities
+- `icon_url` (string) - Path to specialty icon image (WebP format)
+- `sort_order` (integer) - Display order
+
+**Total Specialties:** 6 (3 core + 3 hybrid)
+
+**Core Specialties (Single Color):**
+- **Enforcer (red:3)** - Movement speed & health regen after eliminations
+- **Recon (blue:3)** - Enemy direction on minimap, HUD pulse
+- **Strategist (green:3)** - Objective score bonus, faster equipment deploy
+
+**Hybrid Specialties (Mixed Colors):**
+- **Scout (red:2, blue:1)** - Hidden from minimaps after bullet eliminations
+- **Tactician (red:2, green:1)** - Bonus score from eliminations after assists
+- **Operative (blue:2, green:1)** - Field Upgrade charge from stealth kills
 
 ---
 
@@ -1027,6 +1185,7 @@ Current available categories:
 
 | Category | Description | Version |
 |----------|-------------|---------|
+| combat_specialties | Combat specialties for multiplayer loadouts | 1 |
 | game_modes | Multiplayer game modes with match rules | 1 |
 | icons | Icons and emblems | 1 |
 | map_layers | Map overlay layers (DOM, HP zones) | 1 |
@@ -1034,6 +1193,7 @@ Current available categories:
 | map_tiles | Tiled map data for large zombie maps | 1 |
 | maps | Interactive map base data | 1 |
 | operators | Playable characters | 1 |
+| perks | Multiplayer perk system for loadout customization | 1 |
 
 ---
 
