@@ -46,7 +46,8 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('map_markers', 1, 1, '2025-11-16 00:00:00', 'Interactive map markers and POIs'),
 ('map_tiles', 1, 1, '2025-11-17 00:00:00', 'Tiled map data for zombie maps'),
 ('maps', 1, 1, '2025-11-16 00:00:00', 'Interactive map base data'),
-('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters');
+('operators', 1, 1, '2025-11-14 00:39:23', 'Playable characters'),
+('perks', 1, 1, '2025-11-18 00:00:00', 'Multiplayer perk system for loadout customization');
 
 -- --------------------------------------------------------
 
@@ -165,6 +166,61 @@ INSERT INTO `operators` (`id`, `short_name`, `full_name`, `nationality`, `diviso
 (24, 'Weaver', 'Grigori Weaver', 'Soviet, American', 'jsoc', 1, 'Grigori Weaver is a Ranger-trained CIA operative whose combat skill and espionage expertise have carried him through countless covert missions. After his mother defected from the Soviet Union, he devoted himself to clandestine service, driven by past mistakes and a need to fight for something that matters.\\n\\nThe fall of Janus Towers changed him. No longer just a shadowy handler, Weaver has become a hardened leader shaped by sacrifice. With Requiem in ruins, he''s determined to pull the pieces to', 'Unlocked immediately', '/assets/operators/weaver.webp');
 
 -- --------------------------------------------------------
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `perks`
+--
+
+CREATE TABLE `perks` (
+  `id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slot` int NOT NULL,
+  `category` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_color` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unlock_level` int NOT NULL,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `perks`
+--
+
+INSERT INTO `perks` (`id`, `name`, `display_name`, `slot`, `category`, `category_color`, `unlock_level`, `unlock_label`, `description`, `icon_url`, `sort_order`) VALUES
+(1, 'gung_ho', 'Gung Ho', 1, 'enforcer', 'red', 18, 'Level 18', 'Fire while sprinting. Improved movement speed while reloading or using equipment.', '/assets/perks_mp/gung_ho.webp', 1),
+(2, 'dexterity', 'Dexterity', 1, 'enforcer', 'red', 22, 'Level 22', 'Reduced flinch while aiming down sights.', '/assets/perks_mp/dexterity.webp', 2),
+(3, 'lightweight', 'Lightweight', 1, 'enforcer', 'red', 36, 'Level 36', 'Increased movement and swim speed.', '/assets/perks_mp/lightweight.webp', 3),
+(4, 'cold_blooded', 'Cold Blooded', 1, 'recon', 'blue', 0, 'Default', 'Immune to AI targeting systems and thermal optics. Immune to detection from Recon Combat Specialty.', '/assets/perks_mp/cold_blooded.webp', 4),
+(5, 'ghost', 'Ghost', 1, 'recon', 'blue', 10, 'Level 10', 'Undetectable by UAV and Intel abilities while moving, planting, or defusing bombs, or controlling Scorestreaks.', '/assets/perks_mp/ghost.webp', 5),
+(6, 'ninja', 'Ninja', 1, 'recon', 'blue', 44, 'Level 44', 'Dampened footstep and equipment sounds. Reduced detection range on Spy Cam while crouched or prone.', '/assets/perks_mp/ninja.webp', 6),
+(7, 'tech_mask', 'Tech Mask', 1, 'strategist', 'green', 26, 'Level 26', 'Reduced duration on effects from Gas Grenades and Flash Grenades.', '/assets/perks_mp/tech_mask.webp', 7),
+(8, 'flak_jacket', 'Flak Jacket', 1, 'strategist', 'green', 50, 'Level 50', 'Reduced damage from explosives and fire. Immune to Molotov slow effect. Incoming Frag Grenades are displayed on minimap.', '/assets/perks_mp/flak_jacket.webp', 8),
+(9, 'shadow', 'Shadow', 1, 'strategist', 'green', 54, 'Level 54', 'Immune to UAVs while moving, planting, or defusing bombs, or controlling Scorestreaks. Enemies within 10 meters are revealed on minimap.', '/assets/perks_mp/shadow.webp', 9),
+(10, 'scavenger', 'Scavenger', 2, 'enforcer', 'red', 0, 'Default', 'Replenish ammo from fallen players.', '/assets/perks_mp/scavenger.webp', 10),
+(11, 'assassin', 'Assassin', 2, 'enforcer', 'red', 30, 'Level 30', 'Increased movement and aim down sights speed. Improved target flinch.', '/assets/perks_mp/assassin.webp', 11),
+(12, 'close_shave', 'Close Shave', 2, 'enforcer', 'red', 48, 'Level 48', 'Regenerate health while near enemies.', '/assets/perks_mp/close_shave.webp', 12),
+(13, 'hunter_instinct', 'Hunter Instinct', 2, 'recon', 'blue', 14, 'Level 14', 'Minimap shows a larger area. Faster and more accurate aim when aiming down sights at enemies detected by your Intel.', '/assets/perks_mp/hunter_instinct.webp', 13),
+(14, 'vigilance', 'Vigilance', 2, 'recon', 'blue', 38, 'Level 38', 'Enemies who damage you are shown on your minimap. Suppressed enemy gunfire is visible on minimap.', '/assets/perks_mp/vigilance.webp', 14),
+(15, 'blast_link', 'Blast Link', 2, 'recon', 'blue', 46, 'Level 46', 'Enemies near your recently placed C4, Proximity Mine, or Drill Charge are revealed on minimap.', '/assets/perks_mp/blast_link.webp', 15),
+(16, 'engineer', 'Engineer', 2, 'strategist', 'green', 0, 'Default', 'Detect enemy equipment and Scorestreaks through walls. Equipment kills give Intel.', '/assets/perks_mp/engineer.webp', 16),
+(17, 'fast_hands', 'Fast Hands', 2, 'strategist', 'green', 5, 'Level 5', 'Faster weapon swap and equipment use.', '/assets/perks_mp/fast_hands.webp', 17),
+(18, 'gearhead', 'Gearhead', 2, 'strategist', 'green', 42, 'Level 42', 'Reduced cooldown on Field Upgrades.', '/assets/perks_mp/gearhead.webp', 18),
+(19, 'tac_sprinter', 'Tac Sprinter', 3, 'enforcer', 'red', 6, 'Level 6', 'Reduced Tactical Sprint cooldown and increased Tactical Sprint duration.', '/assets/perks_mp/tac_sprinter.webp', 19),
+(20, 'bankroll', 'Bankroll', 3, 'enforcer', 'red', 16, 'Level 16', 'Start with additional Score. Gain Score faster.', '/assets/perks_mp/bankroll.webp', 20),
+(21, 'bruiser', 'Bruiser', 3, 'enforcer', 'red', 24, 'Level 24', 'Increased melee quickness and damage.', '/assets/perks_mp/bruiser.webp', 21),
+(22, 'looper', 'Looper', 3, 'recon', 'blue', 0, 'Default', 'Toss back Frag Grenades and reset Frag Grenade fuses. Can carry two Lethal Equipment.', '/assets/perks_mp/looper.webp', 22),
+(23, 'vendetta', 'Vendetta', 3, 'recon', 'blue', 32, 'Level 32', 'Grant additional Score when streaking and revenge kills.', '/assets/perks_mp/vendetta.webp', 23),
+(24, 'tracker', 'Tracker', 3, 'recon', 'blue', 52, 'Level 52', 'See a preview of enemy footsteps. Reset Tracker on kills.', '/assets/perks_mp/tracker.webp', 24),
+(25, 'quartermaster', 'Quartermaster', 3, 'strategist', 'green', 8, 'Level 8', 'Recharge equipment over time.', '/assets/perks_mp/quartermaster.webp', 25),
+(26, 'charge_link', 'Charge Link', 3, 'strategist', 'green', 12, 'Level 12', 'Increased Field Upgrade charge rate from ally Field Upgrade use.', '/assets/perks_mp/charge_link.webp', 26),
+(27, 'guardian', 'Guardian', 3, 'strategist', 'green', 0, 'Default', 'Can take an additional hit while at full health in Hardcore modes. Taking damage scrambles the minimap of nearby enemies.', '/assets/perks_mp/guardian.webp', 27);
+
 
 --
 -- Table structure for table `maps`
@@ -2072,6 +2128,13 @@ ALTER TABLE `operators`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `perks`
+--
+ALTER TABLE `perks`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2122,6 +2185,12 @@ ALTER TABLE `game_modes`
 --
 ALTER TABLE `operators`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `perks`
+--
+ALTER TABLE `perks`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `maps`

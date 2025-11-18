@@ -79,6 +79,18 @@ try {
                         }
                         break;
 
+                    case 'perks':
+                        if (isset($row['slot'])) {
+                            $row['slot'] = (int)$row['slot'];
+                        }
+                        if (isset($row['unlock_level'])) {
+                            $row['unlock_level'] = (int)$row['unlock_level'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -178,6 +190,16 @@ try {
             }
             if (isset($row['is_hardcore_available'])) {
                 $row['is_hardcore_available'] = (int)$row['is_hardcore_available'];
+            }
+            // Perks integer fields
+            if (isset($row['slot'])) {
+                $row['slot'] = (int)$row['slot'];
+            }
+            if (isset($row['unlock_level'])) {
+                $row['unlock_level'] = (int)$row['unlock_level'];
+            }
+            if (isset($row['sort_order'])) {
+                $row['sort_order'] = (int)$row['sort_order'];
             }
 
             // Map-related table conversions
