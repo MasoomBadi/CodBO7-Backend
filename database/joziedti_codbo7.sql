@@ -816,7 +816,7 @@ INSERT INTO `field_upgrade_zm_augments` (`id`, `field_upgrade_id`, `name`, `type
 (22, 3, 'Fists of Frenzy', 'Major', 'While Frenzied, fists annihilate enemies.', 4),
 (23, 3, 'Repair Boost', 'Minor', 'Repair more armor per kill.', 5),
 (24, 3, 'Extension', 'Minor', 'Increase Frenzied Guard duration.', 6),
-(25, 3, 'Rally', 'Minor', 'Activation repairs nearby allies' armor.', 7),
+(25, 3, 'Rally', 'Minor', 'Activation repairs nearby allies\' armor.', 7),
 (26, 3, 'Dual Layer', 'Minor', 'Armor durability increased while active.', 8),
 (27, 3, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9),
 (28, 4, 'Resilience', 'Major', 'Reduce regen delay; increase healing rate.', 1),
