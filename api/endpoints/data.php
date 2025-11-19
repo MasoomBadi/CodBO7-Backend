@@ -187,6 +187,15 @@ try {
                         }
                         break;
 
+                    case 'ammo_mod_augments':
+                        if (isset($row['ammo_mod_id'])) {
+                            $row['ammo_mod_id'] = (int)$row['ammo_mod_id'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
