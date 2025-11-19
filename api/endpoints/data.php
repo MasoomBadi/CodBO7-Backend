@@ -196,6 +196,24 @@ try {
                         }
                         break;
 
+                    case 'field_upgrades_zm':
+                        if (isset($row['unlock_level'])) {
+                            $row['unlock_level'] = (int)$row['unlock_level'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
+                    case 'field_upgrade_zm_augments':
+                        if (isset($row['field_upgrade_id'])) {
+                            $row['field_upgrade_id'] = (int)$row['field_upgrade_id'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {

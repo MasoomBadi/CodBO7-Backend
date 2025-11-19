@@ -44,6 +44,8 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('ammo_mod_augments', 1, 1, '2025-11-18 00:00:00', 'Augments for Ammo Mods'),
 ('combat_specialties', 1, 1, '2025-11-18 00:00:00', 'Combat specialties for multiplayer loadouts'),
 ('field_upgrades', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for multiplayer mode'),
+('field_upgrades_zm', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for zombies mode'),
+('field_upgrade_zm_augments', 1, 1, '2025-11-18 00:00:00', 'Augments for Zombies Field Upgrades'),
 ('game_modes', 1, 1, '2025-11-17 00:00:00', 'Multiplayer game modes'),
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
 ('lethals', 1, 1, '2025-11-18 00:00:00', 'Lethal equipment for multiplayer and zombies modes'),
@@ -737,6 +739,113 @@ INSERT INTO `ammo_mod_augments` (`id`, `ammo_mod_id`, `name`, `type`, `effect`, 
 (52, 6, 'Symbiosis', 'Major', 'You heal slightly when your turned allies damage enemies.', 7),
 (53, 6, 'Mind Control', 'Minor', 'Turned enemies prioritize attacking stronger enemy types.', 8),
 (54, 6, 'Mutation', 'Major', 'Turned enemies explode when their duration expires, dealing toxic damage.', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `field_upgrades_zm`
+--
+
+CREATE TABLE `field_upgrades_zm` (
+  `id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unlock_level` int NOT NULL DEFAULT 0,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fire_mode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_ammo` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gun_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `flow_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `field_upgrades_zm`
+--
+
+INSERT INTO `field_upgrades_zm` (`id`, `name`, `description`, `unlock_level`, `unlock_label`, `fire_mode`, `max_ammo`, `icon_url`, `gun_url`, `flow_url`, `sort_order`) VALUES
+(1, 'Dark Flare', 'Generate an energy beam that deals lethal shadow damage and penetrates everything in its path.', 0, 'Default', 'Single-Use', '1 Charge (Base), 2 Charges (Extra Charge Minor Augment)', '/assets/field_upgrade_zm/icons/dark_flare.webp', '/assets/field_upgrade_zm/gun/dark_flare.png', '/assets/field_upgrade_zm/flow/dark_flare.webp', 1),
+(2, 'Energy Mine', 'Create a mine of pure energy that detonates 3 times, dealing lethal damage.', 0, 'Default', 'Single-Use', '1 Charge (Base), 2 Charges (Extra Charge Minor Augment)', '/assets/field_upgrade_zm/icons/energy_mine.webp', '/assets/field_upgrade_zm/gun/energy_mine.png', '/assets/field_upgrade_zm/flow/energy_mine.webp', 2),
+(3, 'Frenzied Guard', 'Repair armor to full and force all enemies in the area to temporarily target you. Armor takes all damage and repairs your armor.', 8, 'Level 8', 'Single-Use', '1 Charge', '/assets/field_upgrade_zm/icons/frenzied_guard.webp', '/assets/field_upgrade_zm/gun/frenzied_guard.png', '/assets/field_upgrade_zm/flow/frenzied_guard.webp', 3),
+(4, 'Healing Aura', 'Heal all nearby players immediately by summoning beams of energy to revive and restore full health.', 17, 'Level 17', 'Single-Use', '1 Charge', '/assets/field_upgrade_zm/icons/healing_aura.webp', '/assets/field_upgrade_zm/gun/healing_aura.png', '/assets/field_upgrade_zm/flow/healing_aura.webp', 4),
+(5, 'Toxic Growth', 'Summon deadly thorns; enemies moving through are slowed and take Toxic damage.', 29, 'Level 29', 'Single-Use', '1 Charge (Base), 2 Charges (Extra Charge Minor Augment)', '/assets/field_upgrade_zm/icons/toxic_growth.webp', '/assets/field_upgrade_zm/gun/toxic_growth.png', '/assets/field_upgrade_zm/flow/toxic_growth.webp', 5),
+(6, 'Aether Shroud', 'Phase into the Dark Aether and become hidden from enemy detection.', 48, 'Level 48', 'Single-Use', '1 Charge (Base), 2 Charges (Extra Charge Minor Augment)', '/assets/field_upgrade_zm/icons/aether_shroud.webp', '/assets/field_upgrade_zm/gun/aether_shroud.png', '/assets/field_upgrade_zm/flow/aether_shroud.webp', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `field_upgrade_zm_augments`
+--
+
+CREATE TABLE `field_upgrade_zm_augments` (
+  `id` int NOT NULL,
+  `field_upgrade_id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('Major','Minor') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `effect` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `field_upgrade_zm_augments`
+--
+
+INSERT INTO `field_upgrade_zm_augments` (`id`, `field_upgrade_id`, `name`, `type`, `effect`, `sort_order`) VALUES
+(1, 1, 'Extension', 'Major', 'Significantly increase Dark Flare duration.', 1),
+(2, 1, 'Supernova', 'Major', 'Beam replaced with a damaging sphere that detonates at end.', 2),
+(3, 1, 'Dark Pact', 'Major', 'Beam heals and revives allies; faster revive speed.', 3),
+(4, 1, 'Muzzle Blast', 'Major', 'Beam deals additional cone damage in front of you.', 4),
+(5, 1, 'Broad Beam', 'Minor', 'Increase beam size.', 5),
+(6, 1, 'Heavy Gloom', 'Minor', 'Beam slows enemies.', 6),
+(7, 1, 'Extra Charge', 'Minor', 'Increase maximum charges by one.', 7),
+(8, 1, 'Dusk Flame', 'Minor', 'Beam applies Shadow damage over time.', 8),
+(9, 1, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9),
+(10, 2, 'Scatter', 'Major', 'Mine splits into three mines after first detonation.', 1),
+(11, 2, 'Turret', 'Major', 'Mine becomes a turret firing at enemies.', 2),
+(12, 2, 'Carousel', 'Major', 'Three mines orbit you and detonate near enemies.', 3),
+(13, 2, 'Smart Mine', 'Major', 'More detonations, waits for multiple enemies per blast.', 4),
+(14, 2, 'Frequency Boost', 'Minor', 'Increase detonation count and duration.', 5),
+(15, 2, 'Extra Charge', 'Minor', 'Increase maximum charges by one.', 6),
+(16, 2, 'Siren', 'Minor', 'Mine attracts nearby Normal Enemies.', 7),
+(17, 2, 'Recycle', 'Minor', 'Recycle mine for Field Upgrade charge.', 8),
+(18, 2, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9),
+(19, 3, 'Phalanx', 'Major', 'Allies near you also repair armor from kills.', 1),
+(20, 3, 'Retribution', 'Major', 'Explosion on activation; melee attackers damaged and knocked.', 2),
+(21, 3, 'Frenzy Fire', 'Major', 'Use ammo from stock.', 3),
+(22, 3, 'Fists of Frenzy', 'Major', 'While Frenzied, fists annihilate enemies.', 4),
+(23, 3, 'Repair Boost', 'Minor', 'Repair more armor per kill.', 5),
+(24, 3, 'Extension', 'Minor', 'Increase Frenzied Guard duration.', 6),
+(25, 3, 'Rally', 'Minor', 'Activation repairs nearby allies' armor.', 7),
+(26, 3, 'Dual Layer', 'Minor', 'Armor durability increased while active.', 8),
+(27, 3, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9),
+(28, 4, 'Resilience', 'Major', 'Reduce regen delay; increase healing rate.', 1),
+(29, 4, 'Enduring Radiance', 'Major', 'Healing beams persist briefly after leaving area.', 2),
+(30, 4, 'Persistence', 'Major', 'Revived players keep perks on bleed-out bar.', 3),
+(31, 4, 'Necromancer', 'Major', 'Can revive dead allies.', 4),
+(32, 4, 'Inner Strength', 'Minor', 'Affected player damage increased.', 5),
+(33, 4, 'Protection', 'Minor', 'Healing players take less damage.', 6),
+(34, 4, 'Stoic Presence', 'Minor', 'Stuns elites/specials; knocks normal enemies.', 7),
+(35, 4, 'Cornucopia', 'Minor', 'Players gain temporary health overcharge.', 8),
+(36, 4, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9),
+(37, 5, 'Urticant', 'Major', 'Wider area; enemies stay slowed after leaving.', 1),
+(38, 5, 'Cordyception', 'Major', 'First enemy becomes charmed and attacks others.', 2),
+(39, 5, 'Pollination', 'Major', 'Killed enemies explode with Toxic damage.', 3),
+(40, 5, 'Zoochory', 'Major', 'First enemy becomes the Toxic Growth.', 4),
+(41, 5, 'Ankle Shredder', 'Minor', 'Enemies slowed more.', 5),
+(42, 5, 'Green Thumb', 'Minor', 'Increase Toxic Growth health.', 6),
+(43, 5, 'Extra Charge', 'Minor', 'Increase maximum charges by one.', 7),
+(44, 5, 'Plant Food', 'Minor', 'Chance to drop healing fruit on kill.', 8),
+(45, 5, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9),
+(46, 6, 'Group Shroud', 'Major', 'Nearby players are cloaked too.', 1),
+(47, 6, 'Burst Dash', 'Major', 'Warp forward killing Normal Enemies.', 2),
+(48, 6, 'Void Sheath', 'Major', 'Dark Aether melee; kills extend duration.', 3),
+(49, 6, 'Afterimage', 'Major', 'Creates a Dark Aether clone that distracts enemies.', 4),
+(50, 6, 'Instant Reload', 'Minor', 'Instant reload current weapon.', 5),
+(51, 6, 'Extra Charge', 'Minor', 'Increase maximum charges by one.', 6),
+(52, 6, 'Extension', 'Minor', 'Duration significantly increased.', 7),
+(53, 6, 'Impulse', 'Minor', 'Deal Shadow damage & gain movement speed.', 8),
+(54, 6, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9);
 
 -- --------------------------------------------------------
 
@@ -2723,6 +2832,20 @@ ALTER TABLE `ammo_mod_augments`
   ADD KEY `ammo_mod_id` (`ammo_mod_id`);
 
 --
+-- Indexes for table `field_upgrades_zm`
+--
+ALTER TABLE `field_upgrades_zm`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `field_upgrade_zm_augments`
+--
+ALTER TABLE `field_upgrade_zm_augments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `field_upgrade_id` (`field_upgrade_id`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2841,6 +2964,18 @@ ALTER TABLE `ammo_mod_augments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
+-- AUTO_INCREMENT for table `field_upgrades_zm`
+--
+ALTER TABLE `field_upgrades_zm`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `field_upgrade_zm_augments`
+--
+ALTER TABLE `field_upgrade_zm_augments`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
 -- AUTO_INCREMENT for table `maps`
 --
 ALTER TABLE `maps`
@@ -2879,6 +3014,12 @@ ALTER TABLE `perk_a_cola_augments`
 --
 ALTER TABLE `ammo_mod_augments`
   ADD CONSTRAINT `ammo_mod_augments_ibfk_1` FOREIGN KEY (`ammo_mod_id`) REFERENCES `ammo_mods` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `field_upgrade_zm_augments`
+--
+ALTER TABLE `field_upgrade_zm_augments`
+  ADD CONSTRAINT `field_upgrade_zm_augments_ibfk_1` FOREIGN KEY (`field_upgrade_id`) REFERENCES `field_upgrades_zm` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `map_layers`
