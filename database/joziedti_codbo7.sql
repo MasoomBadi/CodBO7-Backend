@@ -40,6 +40,8 @@ CREATE TABLE `data_versions` (
 --
 
 INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`) VALUES
+('ammo_mods', 1, 1, '2025-11-18 00:00:00', 'Ammo Mods for zombies mode'),
+('ammo_mod_augments', 1, 1, '2025-11-18 00:00:00', 'Augments for Ammo Mods'),
 ('combat_specialties', 1, 1, '2025-11-18 00:00:00', 'Combat specialties for multiplayer loadouts'),
 ('field_upgrades', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for multiplayer mode'),
 ('game_modes', 1, 1, '2025-11-17 00:00:00', 'Multiplayer game modes'),
@@ -630,6 +632,111 @@ INSERT INTO `perk_a_cola_augments` (`id`, `perk_id`, `name`, `type`, `effect`, `
 (106, 12, 'Haste', 'Minor', 'Decrease the cooldown before a Wisp can be summoned.', 7),
 (107, 12, 'Mask of Wrath', 'Major', 'The Demon does more damage.', 8),
 (108, 12, 'Extension', 'Minor', 'Increase the Wisp''s lifetime.', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ammo_mods`
+--
+
+CREATE TABLE `ammo_mods` (
+  `id` int NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unlock_level` int NOT NULL DEFAULT 0,
+  `unlock_label` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `box_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `recipe_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ammo_mods`
+--
+
+INSERT INTO `ammo_mods` (`id`, `name`, `description`, `unlock_level`, `unlock_label`, `icon_url`, `box_url`, `recipe_url`, `sort_order`) VALUES
+(1, 'Dead Wire', 'Bullets deal electric damage. Each bullet has a chance to stun a normal or special enemy, causing them to generate an electric damage field.', 0, 'Default', '/assets/ammo_mods/icons/dead_wire.webp', '/assets/ammo_mods/box/dead_wire.png', '/assets/ammo_mods/recipe/dead_wire.webp', 1),
+(2, 'Cryo Freeze', 'Bullets deal frost damage. Each bullet has a chance to slow a normal or special enemy and increase the damage they receive.', 12, 'Level 12', '/assets/ammo_mods/icons/cryo_freeze.webp', '/assets/ammo_mods/box/cryo_freeze.png', '/assets/ammo_mods/recipe/cryo_freeze.webp', 2),
+(3, 'Fire Works', 'Each bullet that hits a Normal or Special Enemy has a chance to launch fireworks that target enemies.', 18, 'Level 18', '/assets/ammo_mods/icons/firework.webp', '/assets/ammo_mods/box/firework.png', '/assets/ammo_mods/recipe/firework.webp', 3),
+(4, 'Napalm Burst', 'Bullets deal fire damage. Each bullet has a chance to apply a burn on normal and special enemies, dealing damage over time.', 35, 'Level 35', '/assets/ammo_mods/icons/napalm_burst.webp', '/assets/ammo_mods/box/napalm_burst.png', '/assets/ammo_mods/recipe/napalm_burst.webp', 4),
+(5, 'Shadow Rift', 'Bullets deal shadow damage. Each bullet has a chance to spawn a black hole on a normal or special enemy, warping away those nearby and dropping some from the air at lethal speed.', 44, 'Level 44', '/assets/ammo_mods/icons/shadow_rift.webp', '/assets/ammo_mods/box/shadow_rift.png', '/assets/ammo_mods/recipe/shadow_rift.webp', 5),
+(6, 'Brain Rot', 'Bullets deal toxic damage. Each bullet has a chance to temporarily turn a normal or special enemy into an ally.', 51, 'Level 51', '/assets/ammo_mods/icons/brain_rot.webp', '/assets/ammo_mods/box/brain_rot.png', '/assets/ammo_mods/recipe/brain_rot.webp', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ammo_mod_augments`
+--
+
+CREATE TABLE `ammo_mod_augments` (
+  `id` int NOT NULL,
+  `ammo_mod_id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('Major','Minor') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `effect` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `ammo_mod_augments`
+--
+
+INSERT INTO `ammo_mod_augments` (`id`, `ammo_mod_id`, `name`, `type`, `effect`, `sort_order`) VALUES
+(1, 1, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 1),
+(2, 1, 'Shock Value', 'Major', 'Increases the damage dealt by the electric damage field.', 2),
+(3, 1, 'Chain Reaction', 'Minor', 'Increases the radius of the electric damage field.', 3),
+(4, 1, 'Overload', 'Minor', 'Increases the duration of the electric damage field.', 4),
+(5, 1, 'Short Circuit', 'Minor', 'Increases the frequency of the stun effect.', 5),
+(6, 1, 'Power Surge', 'Major', 'Enemies killed by the electric field explode, dealing damage to nearby enemies.', 6),
+(7, 1, 'Static Discharge', 'Major', 'The electric field chains to additional nearby enemies.', 7),
+(8, 1, 'Electrocution', 'Minor', 'Increases the damage multiplier against stunned enemies.', 8),
+(9, 1, 'Tesla Coil', 'Major', 'The electric field periodically emits powerful lightning bolts.', 9),
+(10, 2, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 1),
+(11, 2, 'Deep Freeze', 'Major', 'Frozen enemies take increased damage from all sources.', 2),
+(12, 2, 'Slow and Steady', 'Minor', 'Increases the duration of the slow effect.', 3),
+(13, 2, 'Permafrost', 'Minor', 'Increases the slow percentage.', 4),
+(14, 2, 'Ice Age', 'Minor', 'Increases the frequency of the slow effect.', 5),
+(15, 2, 'Shatter', 'Major', 'Killing a slowed enemy causes them to shatter, dealing damage to nearby enemies.', 6),
+(16, 2, 'Frostbite', 'Major', 'Slowed enemies continuously take damage over time.', 7),
+(17, 2, 'Absolute Zero', 'Minor', 'Increases the damage multiplier against slowed enemies.', 8),
+(18, 2, 'Glacial Advance', 'Major', 'Slowed enemies have a chance to freeze completely for a short duration.', 9),
+(19, 3, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 1),
+(20, 3, 'Grand Finale', 'Major', 'Increases the damage dealt by each firework.', 2),
+(21, 3, 'Pyrotechnics', 'Minor', 'Increases the number of fireworks launched.', 3),
+(22, 3, 'Rapid Fire', 'Minor', 'Increases the frequency of firework launches.', 4),
+(23, 3, 'Explosive Payload', 'Minor', 'Increases the explosion radius of each firework.', 5),
+(24, 3, 'Chain Detonation', 'Major', 'Fireworks that hit enemies launch additional smaller fireworks.', 6),
+(25, 3, 'Smart Targeting', 'Major', 'Fireworks prioritize Special and Elite enemies.', 7),
+(26, 3, 'Cluster Bomb', 'Minor', 'Each firework splits into multiple smaller projectiles.', 8),
+(27, 3, 'Sky Show', 'Major', 'Killing an enemy with fireworks launches a massive barrage.', 9),
+(28, 4, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 1),
+(29, 4, 'Inferno', 'Major', 'Increases the damage dealt by the burn effect.', 2),
+(30, 4, 'Wildfire', 'Minor', 'Burn spreads to nearby enemies.', 3),
+(31, 4, 'Scorched Earth', 'Minor', 'Increases the duration of the burn effect.', 4),
+(32, 4, 'Accelerant', 'Minor', 'Increases the frequency of the burn effect.', 5),
+(33, 4, 'Backdraft', 'Major', 'Enemies killed while burning explode, igniting nearby enemies.', 6),
+(34, 4, 'Molten Core', 'Major', 'Burning enemies leave fire trails that damage others.', 7),
+(35, 4, 'Flame On', 'Minor', 'Increases the damage multiplier against burning enemies.', 8),
+(36, 4, 'Phoenix Protocol', 'Major', 'Burning enemies have a chance to reignite after the burn expires.', 9),
+(37, 5, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 1),
+(38, 5, 'Event Horizon', 'Major', 'Increases the pull radius of the black hole.', 2),
+(39, 5, 'Singularity', 'Minor', 'Increases the duration of the black hole.', 3),
+(40, 5, 'Gravity Well', 'Minor', 'Increases the pull strength of the black hole.', 4),
+(41, 5, 'Dark Matter', 'Minor', 'Increases the frequency of black hole spawns.', 5),
+(42, 5, 'Void Collapse', 'Major', 'Black holes deal damage over time to trapped enemies.', 6),
+(43, 5, 'Dimensional Rift', 'Major', 'Black holes last longer and pull in more enemies before collapsing.', 7),
+(44, 5, 'Warp Speed', 'Minor', 'Enemies dropped from the air take increased fall damage.', 8),
+(45, 5, 'Supermassive', 'Major', 'Black holes have a chance to spawn a second smaller black hole nearby.', 9),
+(46, 6, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 1),
+(47, 6, 'Hive Mind', 'Major', 'Turned enemies are more aggressive and deal more damage.', 2),
+(48, 6, 'Infectious', 'Minor', 'Increases the duration enemies remain as allies.', 3),
+(49, 6, 'Contagion', 'Minor', 'Increases the frequency of enemy conversion.', 4),
+(50, 6, 'Zombification', 'Minor', 'Turned enemies have increased health.', 5),
+(51, 6, 'Outbreak', 'Major', 'When a turned enemy is killed, they have a chance to turn a nearby enemy.', 6),
+(52, 6, 'Symbiosis', 'Major', 'You heal slightly when your turned allies damage enemies.', 7),
+(53, 6, 'Mind Control', 'Minor', 'Turned enemies prioritize attacking stronger enemy types.', 8),
+(54, 6, 'Mutation', 'Major', 'Turned enemies explode when their duration expires, dealing toxic damage.', 9);
 
 -- --------------------------------------------------------
 
@@ -2602,6 +2709,20 @@ ALTER TABLE `perk_a_cola_augments`
   ADD KEY `perk_id` (`perk_id`);
 
 --
+-- Indexes for table `ammo_mods`
+--
+ALTER TABLE `ammo_mods`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `ammo_mod_augments`
+--
+ALTER TABLE `ammo_mod_augments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ammo_mod_id` (`ammo_mod_id`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2708,6 +2829,18 @@ ALTER TABLE `perk_a_cola_augments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
 
 --
+-- AUTO_INCREMENT for table `ammo_mods`
+--
+ALTER TABLE `ammo_mods`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `ammo_mod_augments`
+--
+ALTER TABLE `ammo_mod_augments`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
 -- AUTO_INCREMENT for table `maps`
 --
 ALTER TABLE `maps`
@@ -2740,6 +2873,12 @@ ALTER TABLE `map_markers`
 --
 ALTER TABLE `perk_a_cola_augments`
   ADD CONSTRAINT `perk_a_cola_augments_ibfk_1` FOREIGN KEY (`perk_id`) REFERENCES `perk_a_cola` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `ammo_mod_augments`
+--
+ALTER TABLE `ammo_mod_augments`
+  ADD CONSTRAINT `ammo_mod_augments_ibfk_1` FOREIGN KEY (`ammo_mod_id`) REFERENCES `ammo_mods` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `map_layers`
