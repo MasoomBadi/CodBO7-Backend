@@ -57,6 +57,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('perks', 1, 1, '2025-11-18 00:00:00', 'Multiplayer perk system for loadout customization'),
 ('perk_a_cola', 1, 1, '2025-11-18 00:00:00', 'Perk-a-Cola perks for zombies mode'),
 ('perk_a_cola_augments', 1, 1, '2025-11-18 00:00:00', 'Augments for Perk-a-Cola perks'),
+('power_ups', 1, 1, '2025-11-18 00:00:00', 'Power ups for zombies mode'),
 ('scorestreaks', 1, 1, '2025-11-18 00:00:00', 'Scorestreaks with overclock upgrades'),
 ('tacticals_mp', 1, 1, '2025-11-18 00:00:00', 'Tactical equipment for multiplayer and zombies modes'),
 ('wildcards', 1, 1, '2025-11-18 00:00:00', 'Wildcards for loadout customization');
@@ -846,6 +847,37 @@ INSERT INTO `field_upgrade_zm_augments` (`id`, `field_upgrade_id`, `name`, `type
 (52, 6, 'Extension', 'Minor', 'Duration significantly increased.', 7),
 (53, 6, 'Impulse', 'Minor', 'Deal Shadow damage & gain movement speed.', 8),
 (54, 6, 'Extra Slot', 'Minor', 'Equip a second minor augment.', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `power_ups`
+--
+
+CREATE TABLE `power_ups` (
+  `id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `effect_type` enum('Instant','Duration') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `duration` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `icon_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `power_ups`
+--
+
+INSERT INTO `power_ups` (`id`, `name`, `description`, `effect_type`, `duration`, `icon_url`, `sort_order`) VALUES
+(1, 'Insta-Kill', 'Normal enemies die in a single hit. Stronger enemies take heavy bonus damage. Field Upgrades do not recharge from these kills. Lasts 30 seconds.', 'Duration', '30 seconds', '/assets/power_ups/instant_kill.webp', 1),
+(2, 'Double Points', 'All Essence earned is doubled for a short duration. Lasts 30 seconds.', 'Duration', '30 seconds', '/assets/power_ups/double_point.webp', 2),
+(3, 'Max Ammo', 'Fully replenishes ammo and equipment for all carried weapons. Instant effect.', 'Instant', 'Instant effect', '/assets/power_ups/max_ammo.webp', 3),
+(4, 'Nuke', 'Eliminates all normal enemies on the map. Stronger enemies survive but still take damage. Spawning is briefly halted. Instant effect.', 'Instant', 'Instant effect', '/assets/power_ups/nuke.webp', 4),
+(5, 'Fire Sale', 'All Mystery Box spots activate and cost drops to 10 Essence. Trap cost also reduced. Only appears after the first box move. Lasts 30 seconds.', 'Duration', '30 seconds', '/assets/power_ups/fire_sale.webp', 5),
+(6, 'Bonus Points', 'Grants every player a burst of free Essence. Instant effect.', 'Instant', 'Instant effect', '/assets/power_ups/bonus_point.webp', 6),
+(7, 'Full Power', 'Instantly restores all players\' Field Upgrades, making them ready to use.', 'Instant', 'Instant effect', '/assets/power_ups/full_power.webp', 7),
+(8, 'Max Armor', 'Repairs armor fully up to the highest tier the player has unlocked. Instant effect.', 'Instant', 'Instant effect', '/assets/power_ups/max_armor.webp', 8),
+(9, 'Random Perk', 'Awards a random Perk the player does not already have. Instant effect.', 'Instant', 'Instant effect', '/assets/power_ups/random_perk.webp', 9);
 
 -- --------------------------------------------------------
 
@@ -2846,6 +2878,13 @@ ALTER TABLE `field_upgrade_zm_augments`
   ADD KEY `field_upgrade_id` (`field_upgrade_id`);
 
 --
+-- Indexes for table `power_ups`
+--
+ALTER TABLE `power_ups`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `maps`
 --
 ALTER TABLE `maps`
@@ -2974,6 +3013,12 @@ ALTER TABLE `field_upgrades_zm`
 --
 ALTER TABLE `field_upgrade_zm_augments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
+-- AUTO_INCREMENT for table `power_ups`
+--
+ALTER TABLE `power_ups`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `maps`
