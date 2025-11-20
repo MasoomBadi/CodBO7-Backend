@@ -2,6 +2,36 @@
 
 This document outlines the MANDATORY standards, patterns, and rules for developing the CodBO7 Backend API. **READ THIS FIRST** before making any changes to the codebase.
 
+---
+
+## ⚠️ CRITICAL RULE - NEVER FORGET! ⚠️
+
+### When Creating ANY New Table:
+
+**YOU MUST IMMEDIATELY ADD AN ENTRY TO `data_versions` TABLE!**
+
+```sql
+-- Step 1: Create your table
+CREATE TABLE `your_new_table` (...);
+
+-- Step 2: Insert your data
+INSERT INTO `your_new_table` (...) VALUES (...);
+
+-- Step 3: ⚠️ MANDATORY - Add to data_versions ⚠️
+INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`)
+VALUES ('your_new_table', 1, 1, CURRENT_TIMESTAMP, 'Brief description');
+```
+
+**Without this entry:**
+- ❌ The table won't appear in `/api/version` endpoint
+- ❌ The table won't appear in `/api/data/all` endpoint
+- ❌ Mobile apps won't know the table exists
+- ❌ Version tracking won't work
+
+**This is NOT optional. Every single table must be in `data_versions`.**
+
+---
+
 ## Table of Contents
 1. [Project Overview](#project-overview)
 2. [Database Standards](#database-standards)
@@ -440,13 +470,13 @@ curl https://codbo7.masoombadi.top/api/data/all
 ## Final Reminders
 
 1. **ALWAYS** read this document before making database changes
-2. **ALWAYS** test SQL queries before committing
-3. **ALWAYS** count INSERT statement values vs columns
-4. **ALWAYS** update `data_versions` table
-5. **ALWAYS** add type conversions to `data.php`
+2. ⚠️ **ALWAYS** add new tables to `data_versions` table - NO EXCEPTIONS! ⚠️
+3. **ALWAYS** test SQL queries before committing
+4. **ALWAYS** count INSERT statement values vs columns
+5. **ALWAYS** add type conversions to `data.php` (both sections!)
 6. **ALWAYS** use proper character encoding (`utf8mb4`)
 7. **NEVER** add data to wrong tables (check table name!)
-8. **NEVER** skip version updates
+8. **NEVER** skip version updates after data/schema changes
 9. **NEVER** forget type conversions for new tables
 
 ---
