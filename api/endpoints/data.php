@@ -245,6 +245,18 @@ try {
                         // No special conversions needed - id is already converted
                         break;
 
+                    case 'weapons_mp':
+                        if (isset($row['unlock_level'])) {
+                            $row['unlock_level'] = (int)$row['unlock_level'];
+                        }
+                        if (isset($row['max_level'])) {
+                            $row['max_level'] = (int)$row['max_level'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -389,6 +401,10 @@ try {
             }
             if (isset($row['recyclable'])) {
                 $row['recyclable'] = (int)$row['recyclable'];
+            }
+            // Weapons MP integer fields
+            if (isset($row['max_level'])) {
+                $row['max_level'] = (int)$row['max_level'];
             }
 
             // Map-related table conversions
