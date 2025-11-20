@@ -363,6 +363,29 @@ try {
             if (isset($row['sort_order'])) {
                 $row['sort_order'] = (int)$row['sort_order'];
             }
+            // Gobblegum tips foreign key
+            if (isset($row['gobblegum_id'])) {
+                $row['gobblegum_id'] = (int)$row['gobblegum_id'];
+            }
+            // Perk-a-Cola augments foreign key
+            if (isset($row['perk_id'])) {
+                $row['perk_id'] = (int)$row['perk_id'];
+            }
+            // Ammo mod augments foreign key
+            if (isset($row['ammo_mod_id'])) {
+                $row['ammo_mod_id'] = (int)$row['ammo_mod_id'];
+            }
+            // Field upgrade augments foreign key
+            if (isset($row['field_upgrade_id'])) {
+                $row['field_upgrade_id'] = (int)$row['field_upgrade_id'];
+            }
+            // Gobblegums integer fields
+            if (isset($row['essence_value'])) {
+                $row['essence_value'] = (int)$row['essence_value'];
+            }
+            if (isset($row['recyclable'])) {
+                $row['recyclable'] = (int)$row['recyclable'];
+            }
 
             // Map-related table conversions
             // For maps table
