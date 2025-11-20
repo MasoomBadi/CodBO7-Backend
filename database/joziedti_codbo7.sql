@@ -47,6 +47,8 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('field_upgrades_zm', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for zombies mode'),
 ('field_upgrade_zm_augments', 1, 1, '2025-11-18 00:00:00', 'Augments for Zombies Field Upgrades'),
 ('game_modes', 1, 1, '2025-11-17 00:00:00', 'Multiplayer game modes'),
+('gobblegums', 1, 1, '2025-11-20 00:00:00', 'GobbleGums for zombies mode'),
+('gobblegum_tips', 1, 1, '2025-11-20 00:00:00', 'Tips and strategies for GobbleGums'),
 ('icons', 1, 1, '2025-11-14 16:04:00', 'Icons and emblems'),
 ('lethals', 1, 1, '2025-11-18 00:00:00', 'Lethal equipment for multiplayer and zombies modes'),
 ('map_layers', 1, 1, '2025-11-16 00:00:00', 'Map overlay layers'),
