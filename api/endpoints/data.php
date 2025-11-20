@@ -241,6 +241,10 @@ try {
                         }
                         break;
 
+                    case 'classic_prestige':
+                        // No special conversions needed - id is already converted
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
