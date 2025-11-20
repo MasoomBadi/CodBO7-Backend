@@ -1,0 +1,55 @@
+id,ammo_mod_id,name,type,effect
+1,1,Chain Lightning,Major,The stunned enemy can spread the stun to others.
+2,1,Big Game,Major,Dead Wire can stun elite enemies. Adjustment: This stuns elite enemies sooner.
+3,1,Lightning Strike,Major,"A bolt of lightning strikes from above, stunning all normal and special enemies in the area."
+4,1,Ball Lightning,Major,Activating Dead Wire launches an orb that deals electric damage to nearby enemies as it moves.
+5,1,High Voltage,Minor,Dead Wire deals more damage.
+6,1,Haste,Minor,Dead Wire cooldown is reduced.
+7,1,Extension,Minor,The stun and electric field last longer.
+8,1,Aftershock,Minor,Enemies that are stunned by Dead Wire have a chance to spread to nearby enemies.
+9,1,Extra Slot,Minor,Equip a second minor augment.
+10,2,Big Game,Major,Cryo Freeze can slow Elite Enemies. Adjustment: This slows Elite Enemies more frequently.
+11,2,Ice Cloud,Major,Enemies that are killed while frozen may leave a cloud that slows enemies. Adjustment: A cooldown has been employed to adjust and lessen the number of ice clouds appearing.
+12,2,Frozen Stiff,Major,Enemies are frozen in place.
+13,2,Cold Company,Major,Cryo Freeze has a chance to activate on more than one enemy at a time.
+14,2,Extension,Minor,Increase the slow duration.
+15,2,Freezer Burn,Minor,Increase damage to frozen enemies.
+16,2,Liquid Nitrogen,Minor,Significantly increase your chance for Cryo Freeze to activate.
+17,2,Thermal Shock,Minor,Enemies are damaged once they’re unfrozen.
+18,2,Extra Slot,Minor,Equip a second minor augment.
+19,3,Big Game,Major,"Fire Works can activate on Elite Enemies, creating a bigger lightshow."
+20,3,Starburst,Major,"Fire Works explodes immediately, sending flares through enemies in all directions."
+21,3,Weeping Willow,Major,Instead of targeting enemies the flares will land on the ground and explode for a while.
+22,3,Fire Wheel,Major,Create two Fire Wheels that spin around and damage enemies.
+23,3,Starlight,Minor,Fire Works launches more flares.
+24,3,Big Bang,Minor,Fire Works flares deal more damage to Special and Elite Enemies.
+25,3,High Yield,Minor,Increase the area of effect.
+26,3,Short Fuse,Minor,Fire Works cooldown is reduced.
+27,3,Extra Slot,Minor,Equip a second minor augment.
+28,4,Big Game,Major,Napalm Burst can burn Elite Enemies. Adjustment: This burns elite enemies more frequently.
+29,4,Thermite,Major,Increase burn effect damage.
+30,4,Firebomb,Major,"Burned enemies explode on death, spreading the fire to nearby enemies."
+31,4,Petroleum,Major,Napalm Burst leaves a pool of fire on the ground.
+32,4,Extension,Minor,Increase the burn duration.
+33,4,Incendiary,Minor,Each damage tick has a small chance to spread to a nearby enemy.
+34,4,Contact Burn,Minor,Initial burn effect deals more damage.
+35,4,Backdraft,Minor,Increase the activation radius.
+36,4,Extra Slot,Minor,Equip a second minor augment.
+37,5,Big Game,Major,Shadow Rift can activate on Elite Enemies. Adjustment: This activation on elite enemies occurs more frequently.
+38,5,Topple Danger,Major,Warp one enemy that receives Shadow damage to others nearby. Normal Enemies are knocked down while Special Enemies are stunned.
+39,5,Explosive Rain,Major,Enemies that are dropped from portals will explode on contact with the ground.
+40,5,Gravity Well,Major,"Shadow Rift becomes a black hole that pulls in enemies, before teleporting away nearby enemy survivors."
+41,5,Haste,Minor,Shadow Rift cooldown is reduced.
+42,5,Targeted,Minor,Dropped enemies will fall on other enemies.
+43,5,Supermassive,Minor,The singularity’s lethal radius is increased and can kill more enemies.
+44,5,Ammo Theorem,Minor,Teleporting enemies away adds ammo to your weapon magazine from stock.
+45,5,Extra Slot,Minor,Equip a second minor augment.
+46,6,Plague,Major,The charmed enemy has a chance to turn other enemies.
+47,6,Pheromone,Major,The charmed enemy distracts nearby Normal and Special Enemies for a short time.
+48,6,Big Game,Major,Brain Rot can charm Elite Enemies. Adjustment: This charms elite enemies more frequently.
+49,6,Caustic Fumes,Major,Charmed enemies deal Toxic damage to nearby enemies.
+50,6,Extension,Minor,Brain Rot duration is increased.
+51,6,Haste,Minor,Brain Rot cooldown is reduced.
+52,6,Explosive,Minor,"Charmed enemies explode at the end of Brain Rot’s duration, dealing Toxic damage."
+53,6,Super Serum,Minor,Increase the damage dealt by charmed enemies.
+54,6,Extra Slot,Minor,Equip a second minor augment.

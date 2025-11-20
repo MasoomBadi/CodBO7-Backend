@@ -1,0 +1,133 @@
+id,gobblegum_id,tip,sort_order
+1,1,Provides perk insurance when combined with Perkaholic.,1
+2,1,Great safety net for high rounds when one down can ruin the run.,2
+3,1,Useful during puzzles or Easter Egg steps where a down can cost progress.,3
+4,2,Combo with Double Points or Who's Keeping Score? to generate large Essence bursts.,1
+5,2,Perfect emergency tool to secure revives when your team is overwhelmed.,2
+6,2,Use before difficult objectives to gain a temporary offensive advantage.,3
+7,3,Coordinate with your team to avoid wasting a Max Ammo when one may already be active.,1
+8,3,"Use strategically instead of spending Essence at Ammo Caches, especially on expensive Pack-a-Punch weapons.",2
+9,3,Ideal for camo grinding or challenges on weapons with small ammo reserves.,3
+10,4,Use just before picking up a strong timed Power-Up like Insta-Kill for maximum benefit.,1
+11,4,Extend Fire Sale duration to give your team more time to roll the Mystery Box.,2
+12,4,A great solo boost since extended Power-Ups greatly improve survival windows.,3
+13,5,Great with LMGs or ARs with large reserve ammo for nonstop firing.,1
+14,5,Use when trapped in tight spaces to shoot continuously without reloading.,2
+15,5,Prevent reload downtime during powerful buffs like Arsenal Accelerator or Insta-Kill.,3
+16,6,Use when you're isolated from your squad to quickly reposition and rejoin the team.,1
+17,6,Escape overwhelming hordes and secure breathing room thanks to the concussive blast on arrival.,2
+18,6,A free mobility tool when you're far from fast travel or don’t want to spend Essence.,3
+19,7,Combine with Arsenal Accelerator to rapidly chain multiple Field Upgrades.,1
+20,7,Use during tense moments to quickly access supportive Field Upgrades for revives.,2
+21,7,Grants near-instant access to tools like Frost Blast or Energy Mine for strong area control.,3
+22,8,Use before picking up a Nuke to avoid losing potential Essence and gain guaranteed income instead.,1
+23,8,Combine with Double Points to maximize the bonus Essence payout.,2
+24,8,Great to use early in a match to accelerate your weapon and perk upgrades.,3
+25,9,Use immediately after deploying a Field Upgrade to start recharging it faster.,1
+26,9,Excellent for solo runs where your Field Upgrade acts as your lifeline.,2
+27,9,"During Directed mode or Easter Egg steps, keep your Field Upgrade charged for quick problem solving.",3
+28,10,Use during desperate retreats to survive heavy damage while escaping large hordes.,1
+29,10,Pair with Nowhere But There! to safely survive the chaos when teleporting into a downed teammate's location.,2
+30,10,Excellent for solo players who rely on strong armor to avoid consuming Self-Revives.,3
+31,11,Lets you stay stocked on equipment without taking chip damage from looting.,1
+32,11,Save Salvage by letting Requipment refill basic items automatically.,2
+33,11,Great for Decoy-heavy strategies in Directed mode or story-focused objectives.,3
+34,12,Use when low on Power-Up focused GobbleGums like Kill Joy or Cache Back to restock naturally.,1
+35,12,Great for helping teammates survive since anyone can pick up the extra Power-Ups you spawn.,2
+36,12,Activate shortly after a round begins to maximize the five-minute window.,3
+37,13,Combine with Crate Power and Wonderbar! to secure higher-tier or Wonder Weapons reliably.,1
+38,13,"The Mystery Box re-closes and re-spins before settling, so be patient.",2
+39,13,Use in early rounds or when low on Essence to avoid wasting points on bad box rolls.,3
+40,14,Activate a round before difficult objectives to farm Salvage for Ammo Mods and Support items.,1
+41,14,"With increased Equipment drops, use grenades and tacticals freely without worrying about running out.",2
+42,14,Pairs well with the Picky Eater Vulture Aid augment for even more Equipment drops.,3
+43,15,Activate when a large horde is present to maximize Double Points value.,1
+44,15,"Use early in the match to quickly open doors, buy perks, and upgrade weapons.",2
+45,15,Pop before Pack-a-Punching if you're short on Essence to secure the upgrade sooner.,3
+46,16,Use when swarmed to mow down large groups and regain control.,1
+47,16,Pairs extremely well with Pack-a-Punched high fire rate weapons for huge damage output.,2
+48,16,Activate when you're low on ammo to fight your way toward an Ammo Cache safely.,3
+49,17,Use when rounds get too chaotic and you want a safe Exfil for bonus XP.,1
+50,17,Great fallback when you reach the Exfil area but miss the prompt due to a round transition.,2
+51,17,Trigger Exfil to complete Daily Challenges without advancing the Main Quest path.,3
+52,18,Activate while grouped tightly with your full squad to maximize shared Essence gains.,1
+53,18,Great for helping the entire team reach Pack-A-Punch or expensive wall weapon unlocks.,2
+54,18,Stay with the group until the effect ends—splitting early wastes potential shared income.,3
+55,19,Use when being closed in by a horde—each reload creates a shockwave that clears space.,1
+56,19,Pairs extremely well with Speed Cola to trigger more explosive reloads in shorter intervals.,2
+57,19,Stack with Elemental Pop’s Electric Cherry augment to deal both explosive and electric damage on reload.,3
+58,20,Buy easily accessible Perks first so the bonus Perk is guaranteed to be something rare or harder to obtain.,1
+59,20,A great recovery tool after losing all Perks—helps rebuild your loadout quickly.,2
+60,20,Use when you're slightly underpowered to get an unexpected power boost from a bonus Perk.,3
+61,21,Best used when multiple teammates are down together—teleport in and revive them instantly.,1
+62,21,Reload before activating since you will teleport straight into danger.,2
+63,21,Avoid teleporting to lone downed players far from the team—it can split the group and make the situation worse.,3
+64,22,"Use when you need uninterrupted breathing room to reset, heal, or re-equip—especially in solo runs.",1
+65,22,"Activate to give your whole squad time to regroup, plan, and prepare for upcoming objectives.",2
+66,22,Ideal for long Easter Egg attempts when you need quiet time to solve steps or organize items.,3
+67,23,Use at the start of a match to get a three-plate vest immediately and save Essence on early armor purchases.,1
+68,23,Great for solo runs—jump straight into tank mode without needing upgrades or crafting.,2
+69,23,Provides a major survivability spike in DOA4 where armor plates massively improve durability.,3
+70,24,"Use during Main Quest steps that require uninterrupted interaction, especially in solo runs.",1
+71,24,Great for emergency revives—zombies freeze long enough to bring the whole squad back safely.,2
+72,24,Communicate before activating in squads so everyone can maximize the 30-second window.,3
+73,25,Activate just before buying the specific Wall Buy weapon you intend to use long-term.,1
+74,25,Choose Wall Buys positioned in high-traffic or choke-point areas to benefit from constant nearby ammo.,2
+75,25,Pair with Cache Back for a guaranteed Max Ammo to support your powered-up Wall Buy.,3
+76,26,Use when you need a burst of power—any Ultra GobbleGum can swing a tough situation in your favor.,1
+77,26,Remember that you must pop the awarded Ultra GobbleGum after using Flavor Hex to activate its effect.,2
+78,26,Activate during a calm moment to plan the best use of the Ultra GobbleGum you receive.,3
+79,27,"Activate and rush the nearest Mystery Box—Fire Sale time is short, so maximize every second.",1
+80,27,Have teammates spread across different Mystery Boxes to avoid waiting and increase total spins.,2
+81,27,Plan ahead by positioning your team at multiple boxes before using the GobbleGum.,3
+82,28,"Use the ARC-XD first to unlock the Mangler Cannon, then the Sentry Gun, and finally the Disciple Injection—plan the order for maximum impact.",1
+83,28,Save Support Group for boss encounters or Main Quest steps where its sequence of Support items can deal huge burst damage.,2
+84,28,"Create space before activating—each Support item takes a few seconds to prep, and popping it while surrounded is risky.",3
+85,29,Use when multiple teammates are down—Phoenix Up revives everyone instantly and preserves their full Perk setup.,1
+86,29,Communicate before activating so teammates don't waste other revives or GobbleGums unnecessarily.,2
+87,29,"No range limit—teammates are revived no matter where they are on the map, perfect for chaotic split-up moments.",3
+88,30,Equip Ammo Mods before using Modified Chaos—its cooldown reduction only matters when an Ammo Mod is active.,1
+89,30,Combine with Elemental Pop and its Chill Berry Minor Augment for even faster Ammo Mod procs.,2
+90,30,Use during intense fights or boss encounters when frequent elemental procs can swing the battle.,3
+91,31,Grab your essential Perks first so the bonus Perk has a higher chance of being a rare one.,1
+92,31,"Whoever picks up the spawned Perk Power-Up, the entire squad gets the Perk—use it to rally team strength.",2
+93,31,Activate between rounds to avoid losing the free Perk by getting downed immediately after.,3
+94,32,Use early in a match to save massive amounts of Essence on Wall Buy weapons for the entire squad.,1
+95,32,Give teammates a heads-up before activating so everyone can reach their preferred Wall Buy in time.,2
+96,32,Stack with Wall Power for an extremely cheap Pack-A-Punched Wall Buy immediately.,3
+97,33,Use during a Fire Sale to maximize your odds of getting the perfect weapon before it becomes Pack-A-Punched.,1
+98,33,Combine with Time Out to safely browse Mystery Box rolls without zombies interrupting you.,2
+99,33,"Best used early game before Pack-A-Punch becomes accessible, saving Essence for other upgrades.",3
+100,34,Use early with Hidden Power to reach a Legendary Pack-A-Punch setup far sooner than normal.,1
+101,34,Perfect comeback tool after being revived with no resources—instantly rebuild your entire loadout.,2
+102,34,Use to recover from expensive purchases or misallocations and quickly stabilize your economy.,3
+103,35,Use early to save massive amounts of Essence and unlock your full perk setup immediately.,1
+104,35,Combine with Hidden Power for a guaranteed Legendary weapon after fully perk-stacking your Operator.,2
+105,35,A perfect recovery tool—pop it after a late-game down to instantly regain your entire perk loadout.,3
+106,36,Use before Main Quest steps that require specific Wonder Weapons so you’re guaranteed to get one from the box.,1
+107,36,Grab the Wonder Weapon and drop it for a teammate if they're struggling—strong squad > strong solo.,2
+108,36,Combine with Crate Power for a guaranteed Pack-A-Punched Wonder Weapon; activate during a Fire Sale for maximum value.,3
+109,37,"Activate when things get chaotic to reset the area, revive teammates, and reorganize the squad safely.",1
+110,37,Use at the end of a round to guarantee three minutes without enemy spawns or mid-round threats.,2
+111,37,"Use the downtime to hit Der Wunderfizz, purchase Perks, or combo with Hidden Power + Crate Power for fast setup.",3
+112,38,Use during chaotic moments like horde rushes or boss fights to revive multiple teammates instantly without losing control.,1
+113,38,"If you go down, teammates can instantly revive you while preserving all your Perks—great for endgame survival.",2
+114,38,Activate before entering a dangerous fight; popping it too late risks losing the ability before it helps.,3
+115,39,Use during overwhelming situations to instantly get every core Power-Up and stabilize the fight.,1
+116,39,"Using it early in a run creates a massive advantage with Fire Sale, Bonus Points, and a Perk Power-Up all at once.",2
+117,39,Pop it during Main Quest steps where teammates are occupied with objectives to compensate for the reduced firepower.,3
+118,40,Equip the weapon you want upgraded in your loadout so you can transform it into a Legendary gun immediately.,1
+119,40,Use early in the match to breeze through low rounds while saving Salvage for Ammo Mods and Crafting Table upgrades.,2
+120,40,"Combine with Wall Power for an instant Pack-A-Punched Legendary weapon, and add Perkaholic for a huge early-game power spike.",3
+121,41,"Use when you want a silly, lighthearted match—this Gum alters visuals but not gameplay.",1
+122,41,Great for casual maps or chill sessions where you want some comic relief.,2
+123,42,Use for a humorous match—adds silly sound and visual effects without changing gameplay.,1
+124,42,Great for casual runs or when you want to lighten the mood with some goofy zombie deaths.,2
+125,43,Use when you want a colorful and silly visual effect while slaying zombies.,1
+126,43,Perfect for casual or relaxed matches where you just want fun visual flair.,2
+127,44,Use when you want comedic relief—the zombies look ridiculous with floaty duck tubes.,1
+128,44,Perfect for fun runs or when streaming for entertainment value.,2
+129,45,"Adds lighthearted comedy by giving zombies squeaky, high-pitched voices.",1
+130,45,Great for relaxed sessions or streams where you want funny audio moments.,2
+131,46,Use during casual matches to bring goofy festive decorations to the zombie horde.,1
+132,46,Great for holiday-themed sessions or anytime you want cheerful visual fun.,2

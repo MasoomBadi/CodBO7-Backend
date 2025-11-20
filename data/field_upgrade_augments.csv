@@ -1,0 +1,55 @@
+id,field_upgrade_id,name,type,effect
+1,1,Extension,Major,Significantly increase Dark Flare duration.
+2,1,Supernova,Major,Beam replaced with a damaging sphere that detonates at end.
+3,1,Dark Pact,Major,Beam heals and revives allies; faster revive speed.
+4,1,Muzzle Blast,Major,Beam deals additional cone damage in front of you.
+5,1,Broad Beam,Minor,Increase beam size.
+6,1,Heavy Gloom,Minor,Beam slows enemies.
+7,1,Extra Charge,Minor,Increase maximum charges by one.
+8,1,Dusk Flame,Minor,Beam applies Shadow damage over time.
+9,1,Extra Slot,Minor,Equip a second minor augment.
+10,2,Scatter,Major,Mine splits into three mines after first detonation.
+11,2,Turret,Major,Mine becomes a turret firing at enemies.
+12,2,Carousel,Major,Three mines orbit you and detonate near enemies.
+13,2,Smart Mine,Major,"More detonations, waits for multiple enemies per blast."
+14,2,Frequency Boost,Minor,Increase detonation count and duration.
+15,2,Extra Charge,Minor,Increase maximum charges by one.
+16,2,Siren,Minor,Mine attracts nearby Normal Enemies.
+17,2,Recycle,Minor,Recycle mine for Field Upgrade charge.
+18,2,Extra Slot,Minor,Equip a second minor augment.
+19,3,Phalanx,Major,Allies near you also repair armor from kills.
+20,3,Retribution,Major,Explosion on activation; melee attackers damaged and knocked.
+21,3,Frenzy Fire,Major,Use ammo from stock.
+22,3,Fists of Frenzy,Major,"While Frenzied, fists annihilate enemies."
+23,3,Repair Boost,Minor,Repair more armor per kill.
+24,3,Extension,Minor,Increase Frenzied Guard duration.
+25,3,Rally,Minor,Activation repairs nearby allies’ armor.
+26,3,Dual Layer,Minor,Armor durability increased while active.
+27,3,Extra Slot,Minor,Equip a second minor augment.
+28,4,Resilience,Major,Reduce regen delay; increase healing rate.
+29,4,Enduring Radiance,Major,Healing beams persist briefly after leaving area.
+30,4,Persistence,Major,Revived players keep perks on bleed-out bar.
+31,4,Necromancer,Major,Can revive dead allies.
+32,4,Inner Strength,Minor,Affected player damage increased.
+33,4,Protection,Minor,Healing players take less damage.
+34,4,Stoic Presence,Minor,Stuns elites/specials; knocks normal enemies.
+35,4,Cornucopia,Minor,Players gain temporary health overcharge.
+36,4,Extra Slot,Minor,Equip a second minor augment.
+37,5,Urticant,Major,Wider area; enemies stay slowed after leaving.
+38,5,Cordyception,Major,First enemy becomes charmed and attacks others.
+39,5,Pollination,Major,Killed enemies explode with Toxic damage.
+40,5,Zoochory,Major,First enemy becomes the Toxic Growth.
+41,5,Ankle Shredder,Minor,Enemies slowed more.
+42,5,Green Thumb,Minor,Increase Toxic Growth health.
+43,5,Extra Charge,Minor,Increase maximum charges by one.
+44,5,Plant Food,Minor,Chance to drop healing fruit on kill.
+45,5,Extra Slot,Minor,Equip a second minor augment.
+46,6,Group Shroud,Major,Nearby players are cloaked too.
+47,6,Burst Dash,Major,Warp forward killing Normal Enemies.
+48,6,Void Sheath,Major,Dark Aether melee; kills extend duration.
+49,6,Afterimage,Major,Creates a Dark Aether clone that distracts enemies.
+50,6,Instant Reload,Minor,Instant reload current weapon.
+51,6,Extra Charge,Minor,Increase maximum charges by one.
+52,6,Extension,Minor,Duration significantly increased.
+53,6,Impulse,Minor,Deal Shadow damage & gain movement speed.
+54,6,Extra Slot,Minor,Equip a second minor augment.
