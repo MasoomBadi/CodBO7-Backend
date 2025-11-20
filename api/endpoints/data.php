@@ -241,6 +241,12 @@ try {
                         }
                         break;
 
+                    case 'camo':
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'classic_prestige':
                         // No special conversions needed - id is already converted
                         break;

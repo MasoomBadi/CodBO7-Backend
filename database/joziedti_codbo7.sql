@@ -42,6 +42,7 @@ CREATE TABLE `data_versions` (
 INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`) VALUES
 ('ammo_mods', 1, 1, '2025-11-18 00:00:00', 'Ammo Mods for zombies mode'),
 ('ammo_mod_augments', 1, 1, '2025-11-18 00:00:00', 'Augments for Ammo Mods'),
+('camo', 1, 1, '2025-11-20 00:00:00', 'Weapon camouflage customization options'),
 ('classic_prestige', 1, 1, '2025-11-20 00:00:00', 'Classic prestige progression system for multiplayer'),
 ('combat_specialties', 1, 1, '2025-11-18 00:00:00', 'Combat specialties for multiplayer loadouts'),
 ('field_upgrades', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for multiplayer mode'),
@@ -1169,6 +1170,166 @@ INSERT INTO `gobblegum_tips` (`id`, `gobblegum_id`, `tip`, `sort_order`) VALUES
 (130, 45, 'Great for relaxed sessions or streams where you want funny audio moments.', 2),
 (131, 46, 'Use during casual matches to bring goofy festive decorations to the zombie horde.', 1),
 (132, 46, 'Great for holiday-themed sessions or anytime you want cheerful visual fun.', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `camo`
+--
+
+CREATE TABLE `camo` (
+  `id` int NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `display_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` enum('military','special','mastery','prestige1','prestige2','prestigem','prestigem1','prestigem2','prestigem3') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mode` enum('campaign','multiplayer','zombie','prestige') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `camo_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sort_order` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `camo`
+--
+
+INSERT INTO `camo` (`id`, `name`, `display_name`, `category`, `mode`, `camo_url`, `sort_order`) VALUES
+(1, 'foliage', 'Foliage', 'military', 'campaign', '/assets/camo/foliage.webp', 1),
+(2, 'desert', 'Desert', 'military', 'campaign', '/assets/camo/desert.webp', 2),
+(3, 'city_digital', 'City Digital', 'military', 'campaign', '/assets/camo/city_digital.webp', 3),
+(4, 'pine', 'Pine', 'military', 'campaign', '/assets/camo/pine.webp', 4),
+(5, 'forest', 'Forest', 'military', 'campaign', '/assets/camo/forest.webp', 5),
+(6, 'sludge', 'Sludge', 'military', 'campaign', '/assets/camo/sludge.webp', 6),
+(7, 'plateau', 'Plateau', 'military', 'campaign', '/assets/camo/plateau.webp', 7),
+(8, 'nocturne', 'Nocturne', 'military', 'campaign', '/assets/camo/nocturne.webp', 8),
+(9, 'topaz_snake', 'Topaz Snake', 'military', 'campaign', '/assets/camo/topaz_snake.webp', 9),
+(10, 'cinder', 'Cinder', 'special', 'campaign', '/assets/camo/cinder.webp', 10),
+(11, 'caiman', 'Caiman', 'special', 'campaign', '/assets/camo/caiman.webp', 11),
+(12, 'network', 'Network', 'special', 'campaign', '/assets/camo/network.webp', 12),
+(13, 'molten_gold', 'Molten Gold', 'mastery', 'campaign', '/assets/camo/molten_gold.webp', 13),
+(14, 'moonstone', 'Moonstone', 'mastery', 'campaign', '/assets/camo/moonstone.webp', 14),
+(15, 'chroma_flux', 'Chroma Flux', 'mastery', 'campaign', '/assets/camo/chroma_flux.webp', 15),
+(16, 'genesis', 'Genesis', 'mastery', 'campaign', '/assets/camo/genesis.webp', 16),
+(17, 'underbrush', 'Underbrush', 'military', 'multiplayer', '/assets/camo/underbrush.webp', 17),
+(18, 'woodland', 'Woodland', 'military', 'multiplayer', '/assets/camo/woodland.webp', 18),
+(19, 'slate_digital', 'Slate Digital', 'military', 'multiplayer', '/assets/camo/slate_digital.webp', 19),
+(20, 'redwood', 'Redwood', 'military', 'multiplayer', '/assets/camo/redwood.webp', 20),
+(21, 'poison', 'Poison', 'military', 'multiplayer', '/assets/camo/poison.webp', 21),
+(22, 'toxic', 'Toxic', 'military', 'multiplayer', '/assets/camo/toxic.webp', 22),
+(23, 'mountain', 'Mountain', 'military', 'multiplayer', '/assets/camo/mountain.webp', 23),
+(24, 'stalker', 'Stalker', 'military', 'multiplayer', '/assets/camo/stalker.webp', 24),
+(25, 'ruby_snake', 'Ruby Snake', 'military', 'multiplayer', '/assets/camo/ruby_snake.webp', 25),
+(26, 'diamondback', 'Diamondback', 'special', 'multiplayer', '/assets/camo/diamondback.webp', 26),
+(27, 'raptor', 'Raptor', 'special', 'multiplayer', '/assets/camo/raptor.webp', 27),
+(28, 'mainframe', 'Mainframe', 'special', 'multiplayer', '/assets/camo/mainframe.webp', 28),
+(29, 'shattered_gold', 'Shattered Gold', 'mastery', 'multiplayer', '/assets/camo/shattered_gold.webp', 29),
+(30, 'arclight', 'Arclight', 'mastery', 'multiplayer', '/assets/camo/arclight.webp', 30),
+(31, 'tempest', 'Tempest', 'mastery', 'multiplayer', '/assets/camo/tempest.webp', 31),
+(32, 'singularity', 'Singularity', 'mastery', 'multiplayer', '/assets/camo/singularity.webp', 32),
+(33, 'char', 'Char', 'military', 'zombie', '/assets/camo/char.webp', 33),
+(34, 'tundra', 'Tundra', 'military', 'zombie', '/assets/camo/tundra.webp', 34),
+(35, 'flood_digital', 'Flood Digital', 'military', 'zombie', '/assets/camo/flood_digital.webp', 35),
+(36, 'cedar', 'Cedar', 'military', 'zombie', '/assets/camo/cedar.webp', 36),
+(37, 'marshland', 'Marshland', 'military', 'zombie', '/assets/camo/marshland.webp', 37),
+(38, 'mire', 'Mire', 'military', 'zombie', '/assets/camo/mire.webp', 38),
+(39, 'ravine', 'Ravine', 'military', 'zombie', '/assets/camo/ravine.webp', 39),
+(40, 'skulk', 'Skulk', 'military', 'zombie', '/assets/camo/skulk.webp', 40),
+(41, 'emerald_snake', 'Emerald Snake', 'military', 'zombie', '/assets/camo/emerald_snake.webp', 41),
+(42, 'mutilate', 'Mutilate', 'special', 'zombie', '/assets/camo/mutilate.webp', 42),
+(43, 'slither', 'Slither', 'special', 'zombie', '/assets/camo/slither.webp', 43),
+(44, 'pathfinder', 'Pathfinder', 'special', 'zombie', '/assets/camo/pathfinder.webp', 44),
+(45, 'golden_dragon', 'Golden Dragon', 'mastery', 'zombie', '/assets/camo/golden_dragon.webp', 45),
+(46, 'bloodstone', 'Bloodstone', 'mastery', 'zombie', '/assets/camo/bloodstone.webp', 46),
+(47, 'doomsteel', 'Doomsteel', 'mastery', 'zombie', '/assets/camo/doomsteel.webp', 47),
+(48, 'infestation', 'Infestation', 'mastery', 'zombie', '/assets/camo/infestation.webp', 48),
+(49, 'graffiti', 'Graffiti', 'prestige1', 'prestige', '/assets/camo/graffiti.webp', 49),
+(50, 'aces', 'Aces', 'prestige2', 'prestige', '/assets/camo/aces.webp', 50),
+(51, 'cobalt_circuit', 'Cobalt Circuit', 'prestigem1', 'prestige', '/assets/camo/cobalt_circuit.webp', 51),
+(52, 'vermilion_cypher', 'Vermilion Cypher', 'prestigem2', 'prestige', '/assets/camo/vermilion_cypher.webp', 52),
+(53, 'violet_network', 'Violet Network', 'prestigem3', 'prestige', '/assets/camo/violet_network.webp', 53),
+(54, 'obscured', 'Obscured', 'prestigem', 'prestige', '/assets/camo/obscured.webp', 54),
+(55, 'skull', 'Skull', 'prestige1', 'prestige', '/assets/camo/skull.webp', 55),
+(56, 'dia_de_muertos', 'Dia De Muertos', 'prestige2', 'prestige', '/assets/camo/dia_de_muertos.webp', 56),
+(57, 'afterlife', 'Afterlife', 'prestigem', 'prestige', '/assets/camo/afterlife.webp', 57),
+(58, 'prowler', 'Prowler', 'prestige1', 'prestige', '/assets/camo/prowler.webp', 58),
+(59, 'ocean', 'Ocean', 'prestige2', 'prestige', '/assets/camo/ocean.webp', 59),
+(60, 'cyborg', 'Cyborg', 'prestigem', 'prestige', '/assets/camo/cyborg.webp', 60),
+(61, 'strands', 'Strands', 'prestige1', 'prestige', '/assets/camo/strands.webp', 61),
+(62, 'murder', 'Murder', 'prestige2', 'prestige', '/assets/camo/murder.webp', 62),
+(63, 'hellfire', 'Hellfire', 'prestigem', 'prestige', '/assets/camo/hellfire.webp', 63),
+(64, 'fracture', 'Fracture', 'prestige1', 'prestige', '/assets/camo/fracture.webp', 64),
+(65, 'nocturnal', 'Nocturnal', 'prestige2', 'prestige', '/assets/camo/nocturnal.webp', 65),
+(66, 'oni', 'Oni', 'prestigem', 'prestige', '/assets/camo/oni.webp', 66),
+(67, 'carbon_fiber', 'Carbon Fiber', 'prestige1', 'prestige', '/assets/camo/carbon_fibre.webp', 67),
+(68, 'shackled', 'Shackled', 'prestige2', 'prestige', '/assets/camo/shackled.webp', 68),
+(69, 'lotus', 'Lotus', 'prestigem', 'prestige', '/assets/camo/lotus.webp', 69),
+(70, 'aqua', 'Aqua', 'prestige1', 'prestige', '/assets/camo/aqua.webp', 70),
+(71, 'azalea', 'Azalea', 'prestige2', 'prestige', '/assets/camo/azalea.webp', 71),
+(72, 'tagged', 'Tagged', 'prestigem', 'prestige', '/assets/camo/tagged.webp', 72),
+(73, 'kawaii', 'Kawaii', 'prestige1', 'prestige', '/assets/camo/kawaii.webp', 73),
+(74, 'concrete', 'Concrete', 'prestige2', 'prestige', '/assets/camo/concrete.webp', 74),
+(75, 'sealed', 'Sealed', 'prestigem', 'prestige', '/assets/camo/sealed.webp', 75),
+(76, 'leopard', 'Leopard', 'prestige1', 'prestige', '/assets/camo/leopard.webp', 76),
+(77, 'scorch', 'Scorch', 'prestige2', 'prestige', '/assets/camo/scorch.webp', 77),
+(78, 'heatwave', 'Heatwave', 'prestigem', 'prestige', '/assets/camo/heatwave.webp', 78),
+(79, 'paladin', 'Paladin', 'prestige1', 'prestige', '/assets/camo/paladin.webp', 79),
+(80, 'wavelength', 'Wavelength', 'prestige2', 'prestige', '/assets/camo/wavelength.webp', 80),
+(81, 'shrouded', 'Shrouded', 'prestigem', 'prestige', '/assets/camo/shrouded.webp', 81),
+(82, 'comics', 'Comics', 'prestige1', 'prestige', '/assets/camo/comics.webp', 82),
+(83, 'plum', 'Plum', 'prestige2', 'prestige', '/assets/camo/plum.webp', 83),
+(84, 'bacon', 'Bacon', 'prestigem', 'prestige', '/assets/camo/bacon.webp', 84),
+(85, 'billow', 'Billow', 'prestige1', 'prestige', '/assets/camo/billow.webp', 85),
+(86, 'neon_zebra', 'Neon Zebra', 'prestige2', 'prestige', '/assets/camo/neon_zebra.webp', 86),
+(87, 'spotted', 'Spotted', 'prestigem', 'prestige', '/assets/camo/spotted.webp', 87),
+(88, 'trade_tools', 'Trade Tools', 'prestige1', 'prestige', '/assets/camo/trade_tools.webp', 88),
+(89, 'sunset_zebra', 'Sunset Zebra', 'prestige2', 'prestige', '/assets/camo/sunset_zebra.webp', 89),
+(90, 'overdrive', 'Overdrive', 'prestigem', 'prestige', '/assets/camo/overdrive.webp', 90),
+(91, 'zombie', 'Zombie', 'prestige1', 'prestige', '/assets/camo/zombie.webp', 91),
+(92, 'pack_a_punch', 'Pack-A-Punch', 'prestige2', 'prestige', '/assets/camo/pack_a_punch.webp', 92),
+(93, 'weaponized_115', 'Weaponized 115', 'prestigem', 'prestige', '/assets/camo/weaponized_115.webp', 93),
+(94, 'fissure', 'Fissure', 'prestige1', 'prestige', '/assets/camo/fissure.webp', 94),
+(95, 'slither', 'Slither', 'prestige2', 'prestige', '/assets/camo/slither_prestige.webp', 95),
+(96, 'hexed', 'Hexed', 'prestigem', 'prestige', '/assets/camo/hexed.webp', 96),
+(97, 'invertebrate', 'Invertebrate', 'prestige1', 'prestige', '/assets/camo/invertebrate.webp', 97),
+(98, 'mitosis', 'Mitosis', 'prestige2', 'prestige', '/assets/camo/mitosis.webp', 98),
+(99, 'luna', 'Luna', 'prestigem', 'prestige', '/assets/camo/luna.webp', 99),
+(100, 'voltaic', 'Voltaic', 'prestige1', 'prestige', '/assets/camo/voltaic.webp', 100),
+(101, 'fated', 'Fated', 'prestige2', 'prestige', '/assets/camo/fated.webp', 101),
+(102, 'lacerate', 'Lacerate', 'prestigem', 'prestige', '/assets/camo/lacerate.webp', 102),
+(103, 'cherry_blossom', 'Cherry Blossom', 'prestige1', 'prestige', '/assets/camo/cherry_blossom.webp', 103),
+(104, 'clay', 'Clay', 'prestige2', 'prestige', '/assets/camo/clay.webp', 104),
+(105, 'dragon', 'Dragon', 'prestigem', 'prestige', '/assets/camo/dragon.webp', 105),
+(106, 'psychedelic', 'Psychedelic', 'prestige1', 'prestige', '/assets/camo/psychedelic.webp', 106),
+(107, 'uranium', 'Uranium', 'prestige2', 'prestige', '/assets/camo/uranium.webp', 107),
+(108, 'marbled', 'Marbled', 'prestigem', 'prestige', '/assets/camo/marbled.webp', 108),
+(109, 'shattered', 'Shattered', 'prestige1', 'prestige', '/assets/camo/shattered.webp', 109),
+(110, 'cohesion', 'Cohesion', 'prestige2', 'prestige', '/assets/camo/cohesion.webp', 110),
+(111, 'koi_pond', 'Koi Pond', 'prestigem', 'prestige', '/assets/camo/koi_pond.webp', 111),
+(112, 'arachnid', 'Arachnid', 'prestige1', 'prestige', '/assets/camo/arachnid.webp', 112),
+(113, 'sulphur', 'Sulphur', 'prestige2', 'prestige', '/assets/camo/sulphur.webp', 113),
+(114, 'nightlight', 'Nightlight', 'prestigem', 'prestige', '/assets/camo/nightlight.webp', 114),
+(115, 'burner', 'Burner', 'prestige1', 'prestige', '/assets/camo/burner.webp', 115),
+(116, 'serenity', 'Serenity', 'prestige2', 'prestige', '/assets/camo/serenity.webp', 116),
+(117, 'snake_eyes', 'Snake Eyes', 'prestigem', 'prestige', '/assets/camo/snake_eyes.webp', 117),
+(118, 'ronin', 'Ronin', 'prestige1', 'prestige', '/assets/camo/ronin.webp', 118),
+(119, 'jasper', 'Jasper', 'prestige2', 'prestige', '/assets/camo/jasper.webp', 119),
+(120, 'aced', 'Aced', 'prestigem', 'prestige', '/assets/camo/aced.webp', 120),
+(121, 'art_of_war', 'Art of War', 'prestige1', 'prestige', '/assets/camo/art_of_war.webp', 121),
+(122, 'moss', 'Moss', 'prestige2', 'prestige', '/assets/camo/moss.webp', 122),
+(123, 'benjamins', 'Benjamins', 'prestigem', 'prestige', '/assets/camo/benjamins.webp', 123),
+(124, 'plasma', 'Plasma', 'prestige1', 'prestige', '/assets/camo/plasma.webp', 124),
+(125, 'onyx', 'Onyx', 'prestige2', 'prestige', '/assets/camo/onyx.webp', 125),
+(126, 'moonlit', 'Moonlit', 'prestigem', 'prestige', '/assets/camo/moonlit.webp', 126),
+(127, 'equinox', 'Equinox', 'prestige1', 'prestige', '/assets/camo/equinox.webp', 127),
+(128, 'asphalt', 'Asphalt', 'prestige2', 'prestige', '/assets/camo/asphalt.webp', 128),
+(129, 'birdie', 'Birdie', 'prestigem', 'prestige', '/assets/camo/birdie.webp', 129),
+(130, 'haze', 'Haze', 'prestige1', 'prestige', '/assets/camo/haze.webp', 130),
+(131, 'blend', 'Blend', 'prestige2', 'prestige', '/assets/camo/blend.webp', 131),
+(132, 'dimensions', 'Dimensions', 'prestigem', 'prestige', '/assets/camo/dimensions.webp', 132),
+(133, 'vivid', 'Vivid', 'prestige1', 'prestige', '/assets/camo/vivid.webp', 133),
+(134, 'tangerine', 'Tangerine', 'prestige2', 'prestige', '/assets/camo/tangerine.webp', 134),
+(135, 'igneous', 'Igneous', 'prestigem', 'prestige', '/assets/camo/igneous.webp', 135),
+(136, 'glyph', 'Glyph', 'prestige1', 'prestige', '/assets/camo/glyph.webp', 136),
+(137, 'runoff', 'Runoff', 'prestige2', 'prestige', '/assets/camo/runoff.webp', 137),
+(138, 'qwerty', 'QWERTY', 'prestigem', 'prestige', '/assets/camo/qwerty.webp', 138);
 
 -- --------------------------------------------------------
 
@@ -3437,6 +3598,13 @@ ALTER TABLE `gobblegum_tips`
   ADD KEY `gobblegum_id` (`gobblegum_id`);
 
 --
+-- Indexes for table `camo`
+--
+ALTER TABLE `camo`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `classic_prestige`
 --
 ALTER TABLE `classic_prestige`
@@ -3453,6 +3621,12 @@ ALTER TABLE `gobblegums`
 --
 ALTER TABLE `gobblegum_tips`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+
+--
+-- AUTO_INCREMENT for table `camo`
+--
+ALTER TABLE `camo`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- Constraints for table `gobblegum_tips`
