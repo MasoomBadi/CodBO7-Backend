@@ -42,6 +42,7 @@ CREATE TABLE `data_versions` (
 INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_updated`, `description`) VALUES
 ('ammo_mods', 1, 1, '2025-11-18 00:00:00', 'Ammo Mods for zombies mode'),
 ('ammo_mod_augments', 1, 1, '2025-11-18 00:00:00', 'Augments for Ammo Mods'),
+('classic_prestige', 1, 1, '2025-11-20 00:00:00', 'Classic prestige progression system for multiplayer'),
 ('combat_specialties', 1, 1, '2025-11-18 00:00:00', 'Combat specialties for multiplayer loadouts'),
 ('field_upgrades', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for multiplayer mode'),
 ('field_upgrades_zm', 1, 1, '2025-11-18 00:00:00', 'Field upgrades for zombies mode'),
@@ -1111,6 +1112,36 @@ INSERT INTO `gobblegum_tips` (`id`, `gobblegum_id`, `tip`, `sort_order`) VALUES
 (130, 45, 'Great for relaxed sessions or streams where you want funny audio moments.', 2),
 (131, 46, 'Use during casual matches to bring goofy festive decorations to the zombie horde.', 1),
 (132, 46, 'Great for holiday-themed sessions or anytime you want cheerful visual fun.', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `classic_prestige`
+--
+
+CREATE TABLE `classic_prestige` (
+  `id` int NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `unlock_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `classic_prestige`
+--
+
+INSERT INTO `classic_prestige` (`id`, `title`, `unlock_by`, `icon`) VALUES
+(1, 'Prestige 1', 'Reach Level 55', '/assets/classic_prestige/prestige1.webp'),
+(2, 'Prestige 2', 'Reach Level 55 while in Prestige 1', '/assets/classic_prestige/prestige2.webp'),
+(3, 'Prestige 3', 'Reach Level 55 while in Prestige 2', '/assets/classic_prestige/prestige3.webp'),
+(4, 'Prestige 4', 'Reach Level 55 while in Prestige 3', '/assets/classic_prestige/prestige4.webp'),
+(5, 'Prestige 5', 'Reach Level 55 while in Prestige 4', '/assets/classic_prestige/prestige5.webp'),
+(6, 'Prestige 6', 'Reach Level 55 while in Prestige 5', '/assets/classic_prestige/prestige6.webp'),
+(7, 'Prestige 7', 'Reach Level 55 while in Prestige 6', '/assets/classic_prestige/prestige7.webp'),
+(8, 'Prestige 8', 'Reach Level 55 while in Prestige 7', '/assets/classic_prestige/prestige8.webp'),
+(9, 'Prestige 9', 'Reach Level 55 while in Prestige 8', '/assets/classic_prestige/prestige9.webp'),
+(10, 'Prestige 10', 'Reach Level 55 while in Prestige 9', '/assets/classic_prestige/prestige10.webp'),
+(11, 'Prestige Master', 'Reach Prestige 10 and continue leveling to Level 1000', '/assets/classic_prestige/prestigeMaster.webp');
 
 -- --------------------------------------------------------
 
@@ -3334,6 +3365,12 @@ ALTER TABLE `gobblegums`
 ALTER TABLE `gobblegum_tips`
   ADD PRIMARY KEY (`id`),
   ADD KEY `gobblegum_id` (`gobblegum_id`);
+
+--
+-- Indexes for table `classic_prestige`
+--
+ALTER TABLE `classic_prestige`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for table `gobblegums`
