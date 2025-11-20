@@ -291,8 +291,6 @@ CREATE TABLE `wildcards` (
 --
 
 INSERT INTO `wildcards` (`id`, `name`, `display_name`, `unlock_level`, `unlock_label`, `description`, `icon_url`, `sort_order`) VALUES
-('gobblegums', 1, 1, '2025-11-20 00:00:00', 'GobbleGums for zombies mode'),
-('gobblegum_tips', 1, 1, '2025-11-20 00:00:00', 'Tips and strategies for GobbleGums'),
 (1, 'tac_expert', 'Tac Expert', 15, 'Level 15', 'Spawn with an extra Tactical.', '/assets/wildcards/tac_expert.webp', 1),
 (2, 'overkill', 'Overkill', 20, 'Level 20', 'Equip any non-melee weapon in Primary and Secondary slots.', '/assets/wildcards/overkill.webp', 2),
 (3, 'danger_close', 'Danger Close', 24, 'Level 24', 'Spawn with an extra lethal.', '/assets/wildcards/danger_close.webp', 3),
