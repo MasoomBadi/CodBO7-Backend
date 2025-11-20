@@ -220,6 +220,27 @@ try {
                         }
                         break;
 
+                    case 'gobblegums':
+                        if (isset($row['essence_value'])) {
+                            $row['essence_value'] = (int)$row['essence_value'];
+                        }
+                        if (isset($row['recyclable'])) {
+                            $row['recyclable'] = (int)$row['recyclable'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
+                    case 'gobblegum_tips':
+                        if (isset($row['gobblegum_id'])) {
+                            $row['gobblegum_id'] = (int)$row['gobblegum_id'];
+                        }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
