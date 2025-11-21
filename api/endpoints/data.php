@@ -273,6 +273,9 @@ try {
                         break;
 
                     case 'camo_criteria':
+                        if (isset($row['weapon_id'])) {
+                            $row['weapon_id'] = (int)$row['weapon_id'];
+                        }
                         if (isset($row['camo_id'])) {
                             $row['camo_id'] = (int)$row['camo_id'];
                         }

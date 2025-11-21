@@ -1446,6 +1446,7 @@ INSERT INTO `camo` (`id`, `name`, `display_name`, `category`, `mode`, `camo_url`
 
 CREATE TABLE `camo_criteria` (
   `id` int NOT NULL,
+  `weapon_id` int NOT NULL,
   `camo_id` int NOT NULL,
   `criteria_order` tinyint NOT NULL DEFAULT 1,
   `criteria_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
@@ -6155,6 +6156,7 @@ ALTER TABLE `camo`
 --
 ALTER TABLE `camo_criteria`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `weapon_id` (`weapon_id`),
   ADD KEY `camo_id` (`camo_id`);
 
 --
