@@ -6155,7 +6155,6 @@ ALTER TABLE `camo`
 --
 ALTER TABLE `camo_criteria`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `camo_order` (`camo_id`, `criteria_order`),
   ADD KEY `camo_id` (`camo_id`);
 
 --
