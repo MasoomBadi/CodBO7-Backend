@@ -272,6 +272,15 @@ try {
                         }
                         break;
 
+                    case 'camo_criteria':
+                        if (isset($row['camo_id'])) {
+                            $row['camo_id'] = (int)$row['camo_id'];
+                        }
+                        if (isset($row['criteria_order'])) {
+                            $row['criteria_order'] = (int)$row['criteria_order'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -416,6 +425,10 @@ try {
             }
             if (isset($row['camo_id'])) {
                 $row['camo_id'] = (int)$row['camo_id'];
+            }
+            // Camo criteria order
+            if (isset($row['criteria_order'])) {
+                $row['criteria_order'] = (int)$row['criteria_order'];
             }
             // Gobblegums integer fields
             if (isset($row['essence_value'])) {
