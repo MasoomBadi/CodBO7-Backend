@@ -263,6 +263,15 @@ try {
                         }
                         break;
 
+                    case 'weapon_camo':
+                        if (isset($row['weapon_id'])) {
+                            $row['weapon_id'] = (int)$row['weapon_id'];
+                        }
+                        if (isset($row['camo_id'])) {
+                            $row['camo_id'] = (int)$row['camo_id'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -400,6 +409,13 @@ try {
             // Field upgrade augments foreign key
             if (isset($row['field_upgrade_id'])) {
                 $row['field_upgrade_id'] = (int)$row['field_upgrade_id'];
+            }
+            // Weapon camo foreign keys
+            if (isset($row['weapon_id'])) {
+                $row['weapon_id'] = (int)$row['weapon_id'];
+            }
+            if (isset($row['camo_id'])) {
+                $row['camo_id'] = (int)$row['camo_id'];
             }
             // Gobblegums integer fields
             if (isset($row['essence_value'])) {

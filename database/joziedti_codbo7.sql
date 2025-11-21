@@ -65,6 +65,7 @@ INSERT INTO `data_versions` (`category`, `version`, `schema_version`, `last_upda
 ('scorestreaks', 1, 1, '2025-11-18 00:00:00', 'Scorestreaks with overclock upgrades'),
 ('tacticals_mp', 1, 1, '2025-11-18 00:00:00', 'Tactical equipment for multiplayer and zombies modes'),
 ('weapons_mp', 1, 1, '2025-11-20 00:00:00', 'Multiplayer weapons data'),
+('weapon_camo', 1, 1, '2025-11-20 00:00:00', 'Weapon-specific prestige camo mappings'),
 ('wildcards', 1, 1, '2025-11-18 00:00:00', 'Wildcards for loadout customization');
 
 -- --------------------------------------------------------
@@ -329,6 +330,111 @@ INSERT INTO `weapons_mp` (`id`, `name`, `display_name`, `category`, `weapon_type
 (27, 'arc_m1', 'A.R.C. M1', 'Launcher', 'Secondary', 'Level Unlock', 25, 'Level 25', 30, 'Semi-automatic', '/assets/weapons/arc_m1.webp', 27),
 (28, 'knife', 'Knife', 'Melee', 'Secondary', 'Immediate Unlock', NULL, 'Default', 30, 'Melee', '/assets/weapons/knife.webp', 28),
 (29, 'flatline_mk2', 'Flatline MK. II', 'Melee', 'Secondary', 'Level Unlock', 49, 'Level 49', 30, 'Melee', '/assets/weapons/flatline_mk2.webp', 29);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weapon_camo`
+--
+
+CREATE TABLE `weapon_camo` (
+  `id` int NOT NULL,
+  `weapon_id` int NOT NULL,
+  `camo_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `weapon_camo`
+--
+
+INSERT INTO `weapon_camo` (`id`, `weapon_id`, `camo_id`) VALUES
+(1, 1, 49),
+(2, 1, 50),
+(3, 1, 54),
+(4, 2, 67),
+(5, 2, 68),
+(6, 2, 69),
+(7, 3, 55),
+(8, 3, 56),
+(9, 3, 57),
+(10, 4, 58),
+(11, 4, 59),
+(12, 4, 60),
+(13, 5, 64),
+(14, 5, 65),
+(15, 5, 66),
+(16, 6, 61),
+(17, 6, 62),
+(18, 6, 63),
+(19, 7, 70),
+(20, 7, 71),
+(21, 7, 72),
+(22, 8, 73),
+(23, 8, 74),
+(24, 8, 75),
+(25, 9, 85),
+(26, 9, 86),
+(27, 9, 87),
+(28, 10, 76),
+(29, 10, 77),
+(30, 10, 78),
+(31, 11, 82),
+(32, 11, 83),
+(33, 11, 84),
+(34, 12, 79),
+(35, 12, 80),
+(36, 12, 81),
+(37, 13, 88),
+(38, 13, 89),
+(39, 13, 90),
+(40, 14, 91),
+(41, 14, 92),
+(42, 14, 93),
+(43, 15, 94),
+(44, 15, 95),
+(45, 15, 96),
+(46, 16, 97),
+(47, 16, 98),
+(48, 16, 99),
+(49, 17, 100),
+(50, 17, 101),
+(51, 17, 102),
+(52, 18, 103),
+(53, 18, 104),
+(54, 18, 105),
+(55, 19, 106),
+(56, 19, 107),
+(57, 19, 108),
+(58, 20, 109),
+(59, 20, 110),
+(60, 20, 111),
+(61, 21, 112),
+(62, 21, 113),
+(63, 21, 114),
+(64, 22, 115),
+(65, 22, 116),
+(66, 22, 117),
+(67, 23, 118),
+(68, 23, 119),
+(69, 23, 120),
+(70, 24, 121),
+(71, 24, 122),
+(72, 24, 123),
+(73, 25, 124),
+(74, 25, 125),
+(75, 25, 126),
+(76, 26, 127),
+(77, 26, 128),
+(78, 26, 129),
+(79, 27, 130),
+(80, 27, 131),
+(81, 27, 132),
+(82, 28, 133),
+(83, 28, 134),
+(84, 28, 135),
+(85, 29, 136),
+(86, 29, 137),
+(87, 29, 138);
 
 -- --------------------------------------------------------
 
@@ -3290,6 +3396,15 @@ ALTER TABLE `weapons_mp`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `weapon_camo`
+--
+ALTER TABLE `weapon_camo`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `weapon_camo_unique` (`weapon_id`, `camo_id`),
+  ADD KEY `weapon_id` (`weapon_id`),
+  ADD KEY `camo_id` (`camo_id`);
+
+--
 -- Indexes for table `wildcards`
 --
 ALTER TABLE `wildcards`
@@ -3442,6 +3557,12 @@ ALTER TABLE `combat_specialties`
 --
 ALTER TABLE `weapons_mp`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `weapon_camo`
+--
+ALTER TABLE `weapon_camo`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT for table `wildcards`
