@@ -1392,7 +1392,7 @@ INSERT INTO `camo` (`id`, `name`, `display_name`, `category`, `mode`, `camo_url`
 (92, 'pack_a_punch', 'Pack-A-Punch', 'prestige2', 'prestige', '/assets/camo/pack_a_punch.webp', 92),
 (93, 'weaponized_115', 'Weaponized 115', 'prestigem', 'prestige', '/assets/camo/weaponized_115.webp', 93),
 (94, 'fissure', 'Fissure', 'prestige1', 'prestige', '/assets/camo/fissure.webp', 94),
-(95, 'slither', 'Slither', 'prestige2', 'prestige', '/assets/camo/slither_prestige.webp', 95),
+(95, 'slither_prestige', 'Slither Prestige', 'prestige2', 'prestige', '/assets/camo/slither_prestige.webp', 95),
 (96, 'hexed', 'Hexed', 'prestigem', 'prestige', '/assets/camo/hexed.webp', 96),
 (97, 'invertebrate', 'Invertebrate', 'prestige1', 'prestige', '/assets/camo/invertebrate.webp', 97),
 (98, 'mitosis', 'Mitosis', 'prestige2', 'prestige', '/assets/camo/mitosis.webp', 98),
