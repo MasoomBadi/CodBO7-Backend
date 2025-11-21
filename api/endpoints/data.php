@@ -241,6 +241,12 @@ try {
                         }
                         break;
 
+                    case 'camo':
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
                     case 'classic_prestige':
                         // No special conversions needed - id is already converted
                         break;
@@ -254,6 +260,15 @@ try {
                         }
                         if (isset($row['sort_order'])) {
                             $row['sort_order'] = (int)$row['sort_order'];
+                        }
+                        break;
+
+                    case 'weapon_camo':
+                        if (isset($row['weapon_id'])) {
+                            $row['weapon_id'] = (int)$row['weapon_id'];
+                        }
+                        if (isset($row['camo_id'])) {
+                            $row['camo_id'] = (int)$row['camo_id'];
                         }
                         break;
 
@@ -394,6 +409,13 @@ try {
             // Field upgrade augments foreign key
             if (isset($row['field_upgrade_id'])) {
                 $row['field_upgrade_id'] = (int)$row['field_upgrade_id'];
+            }
+            // Weapon camo foreign keys
+            if (isset($row['weapon_id'])) {
+                $row['weapon_id'] = (int)$row['weapon_id'];
+            }
+            if (isset($row['camo_id'])) {
+                $row['camo_id'] = (int)$row['camo_id'];
             }
             // Gobblegums integer fields
             if (isset($row['essence_value'])) {
