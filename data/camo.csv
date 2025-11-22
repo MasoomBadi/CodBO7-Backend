@@ -1,139 +1,139 @@
-id,name,camo_url,category,mode
-1,Foliage,/assets/camo/foliage.webp,military,campaign
-2,Desert,/assets/camo/desert.webp,military,campaign
-3,City Digital,/assets/camo/city_digital.webp,military,campaign
-4,Pine,/assets/camo/pine.webp,military,campaign
-5,Forest,/assets/camo/forest.webp,military,campaign
-6,Sludge,/assets/camo/sludge.webp,military,campaign
-7,Plateau,/assets/camo/plateau.webp,military,campaign
-8,Nocturne,/assets/camo/nocturne.webp,military,campaign
-9,Topaz Snake,/assets/camo/topaz_snake.webp,military,campaign
-10,Cinder,/assets/camo/cinder.webp,special,campaign
-11,Caiman,/assets/camo/caiman.webp,special,campaign
-12,Network,/assets/camo/network.webp,special,campaign
-13,Molten Gold,/assets/camo/molten_gold.webp,mastery,campaign
-14,Moonstone,/assets/camo/moonstone.webp,mastery,campaign
-15,Chroma Flux,/assets/camo/chroma_flux.webp,mastery,campaign
-16,Genesis,/assets/camo/genesis.webp,mastery,campaign
-17,Underbrush,/assets/camo/underbrush.webp,military,multiplayer
-18,Woodland,/assets/camo/woodland.webp,military,multiplayer
-19,Slate Digital,/assets/camo/slate_digital.webp,military,multiplayer
-20,Redwood,/assets/camo/redwood.webp,military,multiplayer
-21,Poison,/assets/camo/poison.webp,military,multiplayer
-22,Toxic,/assets/camo/toxic.webp,military,multiplayer
-23,Mountain,/assets/camo/mountain.webp,military,multiplayer
-24,Stalker,/assets/camo/stalker.webp,military,multiplayer
-25,Ruby Snake,/assets/camo/ruby_snake.webp,military,multiplayer
-26,Diamondback,/assets/camo/diamondback.webp,special,multiplayer
-27,Raptor,/assets/camo/raptor.webp,special,multiplayer
-28,Mainframe,/assets/camo/mainframe.webp,special,multiplayer
-29,Shattered Gold,/assets/camo/shattered_gold.webp,mastery,multiplayer
-30,Arclight,/assets/camo/arclight.webp,mastery,multiplayer
-31,Tempest,/assets/camo/tempest.webp,mastery,multiplayer
-32,Singularity,/assets/camo/singularity.webp,mastery,multiplayer
-33,Char,/assets/camo/char.webp,military,zombie
-34,Tundra,/assets/camo/tundra.webp,military,zombie
-35,Flood Digital,/assets/camo/flood_digital.webp,military,zombie
-36,Cedar,/assets/camo/cedar.webp,military,zombie
-37,Marshland,/assets/camo/marshland.webp,military,zombie
-38,Mire,/assets/camo/mire.webp,military,zombie
-39,Ravine,/assets/camo/ravine.webp,military,zombie
-40,Skulk,/assets/camo/skulk.webp,military,zombie
-41,Emerald Snake,/assets/camo/emerald_snake.webp,military,zombie
-42,Mutilate,/assets/camo/mutilate.webp,special,zombie
-43,Slither,/assets/camo/slither.webp,special,zombie
-44,Pathfinder,/assets/camo/pathfinder.webp,special,zombie
-45,Golden Dragon,/assets/camo/golden_dragon.webp,mastery,zombie
-46,Bloodstone,/assets/camo/bloodstone.webp,mastery,zombie
-47,Doomsteel,/assets/camo/doomsteel.webp,mastery,zombie
-48,Infestation,/assets/camo/infestation.webp,mastery,zombie
-49,Graffiti,/assets/camo/graffiti.webp,prestige1,prestige
-50,Aces,/assets/camo/aces.webp,prestige2,prestige
-51,Cobalt Circuit,/assets/camo/cobalt_circuit.webp,prestigem1,prestige
-52,Vermilion Cypher,/assets/camo/vermilion_cypher.webp,prestigem2,prestige
-53,Violet Network,/assets/camo/violet_network.webp,prestigem3,prestige
-54,Obscured,/assets/camo/obscured.webp,prestigem,prestige
-55,Skulls,/assets/camo/skulls.webp,prestige1,prestige
-56,Dia De Muertos,/assets/camo/dia_de_muertos.webp,prestige2,prestige
-57,Afterlife,/assets/camo/afterlife.webp,prestigem,prestige
-58,Prowler,/assets/camo/prowler.webp,prestige1,prestige
-59,Ocean,/assets/camo/ocean.webp,prestige2,prestige
-60,Cyborg,/assets/camo/cyborg.webp,prestigem,prestige
-61,Strands,/assets/camo/strands.webp,prestige1,prestige
-62,Murder,/assets/camo/murder.webp,prestige2,prestige
-63,Hellfire,/assets/camo/hellfire.webp,prestigem,prestige
-64,Fracture,/assets/camo/fracture.webp,prestige1,prestige
-65,Nocturnal,/assets/camo/nocturnal.webp,prestige2,prestige
-66,Oni,/assets/camo/oni.webp,prestigem,prestige
-67,Carbon Fiber,/assets/camo/carbon_fibre.webp,prestige1,prestige
-68,Shackled,/assets/camo/shackled.webp,prestige2,prestige
-69,Lotus,/assets/camo/lotus.webp,prestigem,prestige
-70,Aqua,/assets/camo/aqua.webp,prestige1,prestige
-71,Azalea,/assets/camo/azalea.webp,prestige2,prestige
-72,Tagged,/assets/camo/tagged.webp,prestigem,prestige
-73,Kawaii,/assets/camo/kawaii.webp,prestige1,prestige
-74,Concrete,/assets/camo/concrete.webp,prestige2,prestige
-75,Sealed,/assets/camo/sealed.webp,prestigem,prestige
-76,Leopard,/assets/camo/leopard.webp,prestige1,prestige
-77,Scorch,/assets/camo/scorch.webp,prestige2,prestige
-78,Heatwave,/assets/camo/heatwave.webp,prestigem,prestige
-79,Paladin,/assets/camo/paladin.webp,prestige1,prestige
-80,Wavelength,/assets/camo/wavelength.webp,prestige2,prestige
-81,Shrouded,/assets/camo/shrouded.webp,prestigem,prestige
-82,Comics,/assets/camo/comics.webp,prestige1,prestige
-83,Plum,/assets/camo/plum.webp,prestige2,prestige
-84,Bacon,/assets/camo/bacon.webp,prestigem,prestige
-85,Billow,/assets/camo/billow.webp,prestige1,prestige
-86,Neon Zebra,/assets/camo/neon_zebra.webp,prestige2,prestige
-87,Spotted,/assets/camo/spotted.webp,prestigem,prestige
-88,Trade Tools,/assets/camo/trade_tools.webp,prestige1,prestige
-89,Sunset Zebra,/assets/camo/sunset_zebra.webp,prestige2,prestige
-90,Overdrive,/assets/camo/overdrive.webp,prestigem,prestige
-91,Zombies,/assets/camo/zombies.webp,prestige1,prestige
-92,Pack-A-Punch,/assets/camo/pack_a_punch.webp,prestige2,prestige
-93,Weaponized 115,/assets/camo/weaponized_115.webp,prestigem,prestige
-94,Fissure,/assets/camo/fissure.webp,prestige1,prestige
-95,Slither Prestige,/assets/camo/slither_prestige.webp,prestige2,prestige
-96,Hexed,/assets/camo/hexed.webp,prestigem,prestige
-97,Invertebrate,/assets/camo/invertebrate.webp,prestige1,prestige
-98,Mitosis,/assets/camo/mitosis.webp,prestige2,prestige
-99,Luna,/assets/camo/luna.webp,prestigem,prestige
-100,Voltaic,/assets/camo/voltaic.webp,prestige1,prestige
-101,Fated,/assets/camo/fated.webp,prestige2,prestige
-102,Lacerate,/assets/camo/lacerate.webp,prestigem,prestige
-103,Cherry Blossom,/assets/camo/cherry_blossom.webp,prestige1,prestige
-104,Clay,/assets/camo/clay.webp,prestige2,prestige
-105,Dragon,/assets/camo/dragon.webp,prestigem,prestige
-106,Psychedelic,/assets/camo/psychedelic.webp,prestige1,prestige
-107,Uranium,/assets/camo/uranium.webp,prestige2,prestige
-108,Marbled,/assets/camo/marbled.webp,prestigem,prestige
-109,Shattered,/assets/camo/shattered.webp,prestige1,prestige
-110,Cohesion,/assets/camo/cohesion.webp,prestige2,prestige
-111,Koi Pond,/assets/camo/koi_pond.webp,prestigem,prestige
-112,Arachnid,/assets/camo/arachnid.webp,prestige1,prestige
-113,Sulfur,/assets/camo/sulfur.webp,prestige2,prestige
-114,Nightlight,/assets/camo/nightlight.webp,prestigem,prestige
-115,Burner,/assets/camo/burner.webp,prestige1,prestige
-116,Serenity,/assets/camo/serenity.webp,prestige2,prestige
-117,Snake Eyes,/assets/camo/snake_eyes.webp,prestigem,prestige
-118,Ronin,/assets/camo/ronin.webp,prestige1,prestige
-119,Jasper,/assets/camo/jasper.webp,prestige2,prestige
-120,Aced,/assets/camo/aced.webp,prestigem,prestige
-121,Art of War,/assets/camo/art_of_war.webp,prestige1,prestige
-122,Moss,/assets/camo/moss.webp,prestige2,prestige
-123,Benjamin,/assets/camo/benjamins.webp,prestigem,prestige
-124,Plasma,/assets/camo/plasma.webp,prestige1,prestige
-125,Onyx,/assets/camo/onyx.webp,prestige2,prestige
-126,Moonlit,/assets/camo/moonlit.webp,prestigem,prestige
-127,Equinox,/assets/camo/equinox.webp,prestige1,prestige
-128,Asphalt,/assets/camo/asphalt.webp,prestige2,prestige
-129,Birdie,/assets/camo/birdie.webp,prestigem,prestige
-130,Haze,/assets/camo/haze.webp,prestige1,prestige
-131,Blend,/assets/camo/blend.webp,prestige2,prestige
-132,Dimensions,/assets/camo/dimensions.webp,prestigem,prestige
-133,Vivid,/assets/camo/vivid.webp,prestige1,prestige
-134,Tangerine,/assets/camo/tangerine.webp,prestige2,prestige
-135,Igneous,/assets/camo/igneous.webp,prestigem,prestige
-136,Glyph,/assets/camo/glyph.webp,prestige1,prestige
-137,Runoff,/assets/camo/runoff.webp,prestige2,prestige
-138,QWERTY,/assets/camo/qwerty.webp,prestigem,prestige
+id,name,camo_url,category,mode,sort_order
+1,Foliage,/assets/camo/foliage.webp,military,campaign,1
+2,Desert,/assets/camo/desert.webp,military,campaign,2
+3,City Digital,/assets/camo/city_digital.webp,military,campaign,3
+4,Pine,/assets/camo/pine.webp,military,campaign,4
+5,Forest,/assets/camo/forest.webp,military,campaign,5
+6,Sludge,/assets/camo/sludge.webp,military,campaign,6
+7,Plateau,/assets/camo/plateau.webp,military,campaign,7
+8,Nocturne,/assets/camo/nocturne.webp,military,campaign,8
+9,Topaz Snake,/assets/camo/topaz_snake.webp,military,campaign,9
+10,Cinder,/assets/camo/cinder.webp,special,campaign,1
+11,Caiman,/assets/camo/caiman.webp,special,campaign,2
+12,Network,/assets/camo/network.webp,special,campaign,3
+13,Molten Gold,/assets/camo/molten_gold.webp,mastery,campaign,1
+14,Moonstone,/assets/camo/moonstone.webp,mastery,campaign,2
+15,Chroma Flux,/assets/camo/chroma_flux.webp,mastery,campaign,3
+16,Genesis,/assets/camo/genesis.webp,mastery,campaign,4
+17,Underbrush,/assets/camo/underbrush.webp,military,multiplayer,1
+18,Woodland,/assets/camo/woodland.webp,military,multiplayer,2
+19,Slate Digital,/assets/camo/slate_digital.webp,military,multiplayer,3
+20,Redwood,/assets/camo/redwood.webp,military,multiplayer,4
+21,Poison,/assets/camo/poison.webp,military,multiplayer,5
+22,Toxic,/assets/camo/toxic.webp,military,multiplayer,6
+23,Mountain,/assets/camo/mountain.webp,military,multiplayer,7
+24,Stalker,/assets/camo/stalker.webp,military,multiplayer,8
+25,Ruby Snake,/assets/camo/ruby_snake.webp,military,multiplayer,9
+26,Diamondback,/assets/camo/diamondback.webp,special,multiplayer,1
+27,Raptor,/assets/camo/raptor.webp,special,multiplayer,2
+28,Mainframe,/assets/camo/mainframe.webp,special,multiplayer,3
+29,Shattered Gold,/assets/camo/shattered_gold.webp,mastery,multiplayer,1
+30,Arclight,/assets/camo/arclight.webp,mastery,multiplayer,2
+31,Tempest,/assets/camo/tempest.webp,mastery,multiplayer,3
+32,Singularity,/assets/camo/singularity.webp,mastery,multiplayer,4
+33,Char,/assets/camo/char.webp,military,zombie,1
+34,Tundra,/assets/camo/tundra.webp,military,zombie,2
+35,Flood Digital,/assets/camo/flood_digital.webp,military,zombie,3
+36,Cedar,/assets/camo/cedar.webp,military,zombie,4
+37,Marshland,/assets/camo/marshland.webp,military,zombie,5
+38,Mire,/assets/camo/mire.webp,military,zombie,6
+39,Ravine,/assets/camo/ravine.webp,military,zombie,7
+40,Skulk,/assets/camo/skulk.webp,military,zombie,8
+41,Emerald Snake,/assets/camo/emerald_snake.webp,military,zombie,9
+42,Mutilate,/assets/camo/mutilate.webp,special,zombie,1
+43,Slither,/assets/camo/slither.webp,special,zombie,2
+44,Pathfinder,/assets/camo/pathfinder.webp,special,zombie,3
+45,Golden Dragon,/assets/camo/golden_dragon.webp,mastery,zombie,1
+46,Bloodstone,/assets/camo/bloodstone.webp,mastery,zombie,2
+47,Doomsteel,/assets/camo/doomsteel.webp,mastery,zombie,3
+48,Infestation,/assets/camo/infestation.webp,mastery,zombie,4
+49,Graffiti,/assets/camo/graffiti.webp,prestige1,prestige,1
+50,Aces,/assets/camo/aces.webp,prestige2,prestige,2
+51,Cobalt Circuit,/assets/camo/cobalt_circuit.webp,prestigem1,prestige,3
+52,Vermilion Cypher,/assets/camo/vermilion_cypher.webp,prestigem2,prestige,4
+53,Violet Network,/assets/camo/violet_network.webp,prestigem3,prestige,5
+54,Obscured,/assets/camo/obscured.webp,prestigem,prestige,6
+55,Skulls,/assets/camo/skulls.webp,prestige1,prestige,1
+56,Dia De Muertos,/assets/camo/dia_de_muertos.webp,prestige2,prestige,2
+57,Afterlife,/assets/camo/afterlife.webp,prestigem,prestige,6
+58,Prowler,/assets/camo/prowler.webp,prestige1,prestige,1
+59,Ocean,/assets/camo/ocean.webp,prestige2,prestige,2
+60,Cyborg,/assets/camo/cyborg.webp,prestigem,prestige,6
+61,Strands,/assets/camo/strands.webp,prestige1,prestige,1
+62,Murder,/assets/camo/murder.webp,prestige2,prestige,2
+63,Hellfire,/assets/camo/hellfire.webp,prestigem,prestige,6
+64,Fracture,/assets/camo/fracture.webp,prestige1,prestige,1
+65,Nocturnal,/assets/camo/nocturnal.webp,prestige2,prestige,2
+66,Oni,/assets/camo/oni.webp,prestigem,prestige,6
+67,Carbon Fiber,/assets/camo/carbon_fibre.webp,prestige1,prestige,1
+68,Shackled,/assets/camo/shackled.webp,prestige2,prestige,2
+69,Lotus,/assets/camo/lotus.webp,prestigem,prestige,6
+70,Aqua,/assets/camo/aqua.webp,prestige1,prestige,1
+71,Azalea,/assets/camo/azalea.webp,prestige2,prestige,2
+72,Tagged,/assets/camo/tagged.webp,prestigem,prestige,6
+73,Kawaii,/assets/camo/kawaii.webp,prestige1,prestige,1
+74,Concrete,/assets/camo/concrete.webp,prestige2,prestige,2
+75,Sealed,/assets/camo/sealed.webp,prestigem,prestige,6
+76,Leopard,/assets/camo/leopard.webp,prestige1,prestige,1
+77,Scorch,/assets/camo/scorch.webp,prestige2,prestige,2
+78,Heatwave,/assets/camo/heatwave.webp,prestigem,prestige,6
+79,Paladin,/assets/camo/paladin.webp,prestige1,prestige,1
+80,Wavelength,/assets/camo/wavelength.webp,prestige2,prestige,2
+81,Shrouded,/assets/camo/shrouded.webp,prestigem,prestige,6
+82,Comics,/assets/camo/comics.webp,prestige1,prestige,1
+83,Plum,/assets/camo/plum.webp,prestige2,prestige,2
+84,Bacon,/assets/camo/bacon.webp,prestigem,prestige,6
+85,Billow,/assets/camo/billow.webp,prestige1,prestige,1
+86,Neon Zebra,/assets/camo/neon_zebra.webp,prestige2,prestige,2
+87,Spotted,/assets/camo/spotted.webp,prestigem,prestige,6
+88,Trade Tools,/assets/camo/trade_tools.webp,prestige1,prestige,1
+89,Sunset Zebra,/assets/camo/sunset_zebra.webp,prestige2,prestige,2
+90,Overdrive,/assets/camo/overdrive.webp,prestigem,prestige,6
+91,Zombies,/assets/camo/zombies.webp,prestige1,prestige,1
+92,Pack-A-Punch,/assets/camo/pack_a_punch.webp,prestige2,prestige,2
+93,Weaponized 115,/assets/camo/weaponized_115.webp,prestigem,prestige,6
+94,Fissure,/assets/camo/fissure.webp,prestige1,prestige,1
+95,Slither Prestige,/assets/camo/slither_prestige.webp,prestige2,prestige,2
+96,Hexed,/assets/camo/hexed.webp,prestigem,prestige,6
+97,Invertebrate,/assets/camo/invertebrate.webp,prestige1,prestige,1
+98,Mitosis,/assets/camo/mitosis.webp,prestige2,prestige,2
+99,Luna,/assets/camo/luna.webp,prestigem,prestige,6
+100,Voltaic,/assets/camo/voltaic.webp,prestige1,prestige,1
+101,Fated,/assets/camo/fated.webp,prestige2,prestige,2
+102,Lacerate,/assets/camo/lacerate.webp,prestigem,prestige,6
+103,Cherry Blossom,/assets/camo/cherry_blossom.webp,prestige1,prestige,1
+104,Clay,/assets/camo/clay.webp,prestige2,prestige,2
+105,Dragon,/assets/camo/dragon.webp,prestigem,prestige,6
+106,Psychedelic,/assets/camo/psychedelic.webp,prestige1,prestige,1
+107,Uranium,/assets/camo/uranium.webp,prestige2,prestige,2
+108,Marbled,/assets/camo/marbled.webp,prestigem,prestige,6
+109,Shattered,/assets/camo/shattered.webp,prestige1,prestige,1
+110,Cohesion,/assets/camo/cohesion.webp,prestige2,prestige,2
+111,Koi Pond,/assets/camo/koi_pond.webp,prestigem,prestige,6
+112,Arachnid,/assets/camo/arachnid.webp,prestige1,prestige,1
+113,Sulfur,/assets/camo/sulfur.webp,prestige2,prestige,2
+114,Nightlight,/assets/camo/nightlight.webp,prestigem,prestige,6
+115,Burner,/assets/camo/burner.webp,prestige1,prestige,1
+116,Serenity,/assets/camo/serenity.webp,prestige2,prestige,2
+117,Snake Eyes,/assets/camo/snake_eyes.webp,prestigem,prestige,6
+118,Ronin,/assets/camo/ronin.webp,prestige1,prestige,1
+119,Jasper,/assets/camo/jasper.webp,prestige2,prestige,2
+120,Aced,/assets/camo/aced.webp,prestigem,prestige,6
+121,Art of War,/assets/camo/art_of_war.webp,prestige1,prestige,1
+122,Moss,/assets/camo/moss.webp,prestige2,prestige,2
+123,Benjamin,/assets/camo/benjamins.webp,prestigem,prestige,6
+124,Plasma,/assets/camo/plasma.webp,prestige1,prestige,1
+125,Onyx,/assets/camo/onyx.webp,prestige2,prestige,2
+126,Moonlit,/assets/camo/moonlit.webp,prestigem,prestige,6
+127,Equinox,/assets/camo/equinox.webp,prestige1,prestige,1
+128,Asphalt,/assets/camo/asphalt.webp,prestige2,prestige,2
+129,Birdie,/assets/camo/birdie.webp,prestigem,prestige,6
+130,Haze,/assets/camo/haze.webp,prestige1,prestige,1
+131,Blend,/assets/camo/blend.webp,prestige2,prestige,2
+132,Dimensions,/assets/camo/dimensions.webp,prestigem,prestige,6
+133,Vivid,/assets/camo/vivid.webp,prestige1,prestige,1
+134,Tangerine,/assets/camo/tangerine.webp,prestige2,prestige,2
+135,Igneous,/assets/camo/igneous.webp,prestigem,prestige,6
+136,Glyph,/assets/camo/glyph.webp,prestige1,prestige,1
+137,Runoff,/assets/camo/runoff.webp,prestige2,prestige,2
+138,QWERTY,/assets/camo/qwerty.webp,prestigem,prestige,6
