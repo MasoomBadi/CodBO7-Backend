@@ -470,7 +470,17 @@ INSERT INTO `wildcards` (`id`, `name`, `display_name`, `unlock_level`, `unlock_l
 (8, 'high_roller', 'High Roller', 48, 'Level 48', 'Equip a fourth Scorestreak.', '/assets/wildcards/high_roller.webp', 8),
 (9, 'specialist', 'Specialist', 53, 'Level 53', 'Replace your Scorestreaks with three Perks. You earn them at 200, 400, and 600 Score. Earn all remaining eligible Perks at 1200 Score. Perks equipped by using Wildcards do not count towards Combat Specialty.', '/assets/wildcards/specialist.webp', 9);
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -6036,6 +6046,12 @@ ALTER TABLE `wildcards`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `scorestreaks`
 --
 ALTER TABLE `scorestreaks`
@@ -6193,6 +6209,12 @@ ALTER TABLE `weapon_camo`
 --
 ALTER TABLE `wildcards`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `scorestreaks`
