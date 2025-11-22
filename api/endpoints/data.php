@@ -294,6 +294,9 @@ try {
                         if (isset($row['zm_kills_required'])) {
                             $row['zm_kills_required'] = (int)$row['zm_kills_required'];
                         }
+                        if (isset($row['sort_order'])) {
+                            $row['sort_order'] = (int)$row['sort_order'];
+                        }
                         break;
 
                     case 'maps':
