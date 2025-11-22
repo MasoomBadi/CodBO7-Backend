@@ -284,6 +284,18 @@ try {
                         }
                         break;
 
+                    case 'weapon_mastery_badge':
+                        if (isset($row['weapon_id'])) {
+                            $row['weapon_id'] = (int)$row['weapon_id'];
+                        }
+                        if (isset($row['mp_kills_required'])) {
+                            $row['mp_kills_required'] = (int)$row['mp_kills_required'];
+                        }
+                        if (isset($row['zm_kills_required'])) {
+                            $row['zm_kills_required'] = (int)$row['zm_kills_required'];
+                        }
+                        break;
+
                     case 'maps':
                         // Parse JSON bounds field
                         if (isset($row['bounds'])) {
@@ -432,6 +444,13 @@ try {
             // Camo criteria order
             if (isset($row['criteria_order'])) {
                 $row['criteria_order'] = (int)$row['criteria_order'];
+            }
+            // Weapon mastery badge kill requirements
+            if (isset($row['mp_kills_required'])) {
+                $row['mp_kills_required'] = (int)$row['mp_kills_required'];
+            }
+            if (isset($row['zm_kills_required'])) {
+                $row['zm_kills_required'] = (int)$row['zm_kills_required'];
             }
             // Gobblegums integer fields
             if (isset($row['essence_value'])) {
