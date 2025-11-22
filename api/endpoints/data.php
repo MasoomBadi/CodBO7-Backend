@@ -288,11 +288,8 @@ try {
                         if (isset($row['weapon_id'])) {
                             $row['weapon_id'] = (int)$row['weapon_id'];
                         }
-                        if (isset($row['mp_kills_required'])) {
-                            $row['mp_kills_required'] = (int)$row['mp_kills_required'];
-                        }
-                        if (isset($row['zm_kills_required'])) {
-                            $row['zm_kills_required'] = (int)$row['zm_kills_required'];
+                        if (isset($row['kills_required'])) {
+                            $row['kills_required'] = (int)$row['kills_required'];
                         }
                         if (isset($row['sort_order'])) {
                             $row['sort_order'] = (int)$row['sort_order'];
@@ -449,11 +446,8 @@ try {
                 $row['criteria_order'] = (int)$row['criteria_order'];
             }
             // Weapon mastery badge kill requirements
-            if (isset($row['mp_kills_required'])) {
-                $row['mp_kills_required'] = (int)$row['mp_kills_required'];
-            }
-            if (isset($row['zm_kills_required'])) {
-                $row['zm_kills_required'] = (int)$row['zm_kills_required'];
+            if (isset($row['kills_required'])) {
+                $row['kills_required'] = (int)$row['kills_required'];
             }
             // Gobblegums integer fields
             if (isset($row['essence_value'])) {
