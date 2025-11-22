@@ -245,6 +245,9 @@ try {
                         if (isset($row['sort_order'])) {
                             $row['sort_order'] = (int)$row['sort_order'];
                         }
+                        if (isset($row['category_order'])) {
+                            $row['category_order'] = (int)$row['category_order'];
+                        }
                         break;
 
                     case 'classic_prestige':
@@ -417,6 +420,10 @@ try {
             // Sort order (perks, combat_specialties, wildcards, and scorestreaks)
             if (isset($row['sort_order'])) {
                 $row['sort_order'] = (int)$row['sort_order'];
+            }
+            // Category order (camo)
+            if (isset($row['category_order'])) {
+                $row['category_order'] = (int)$row['category_order'];
             }
             // Gobblegum tips foreign key
             if (isset($row['gobblegum_id'])) {
